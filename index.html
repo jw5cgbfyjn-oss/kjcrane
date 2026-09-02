@@ -69,12 +69,12 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 .location-preview .map-link{display:inline-block;margin-top:14px;font-size:13px;color:#666;border-bottom:1px solid #bbb;padding-bottom:2px}
 
 /* 대표 인사말 - 페이지 마지막 중앙 정렬 */
-.representative-message{padding:54px 20px 48px;text-align:center;background:#fff}
+.representative-message{padding:24px 20px 48px;text-align:center;background:#fff}
 .representative-message .wrap{text-align:center}
-.representative-quote{margin:0;color:#222;font-size:17px;font-weight:600;line-height:1.9;letter-spacing:-.02em}
+.representative-quote{margin:0;color:#666;font-size:19px;font-weight:500;line-height:1.9;letter-spacing:-.02em}
 .representative-sign{margin:20px 0 0;color:#666;font-size:13px;font-weight:650;letter-spacing:.01em}
 .representative-sign span{padding:0 6px;color:#aaa}
-@media(max-width:700px){.representative-message{padding:42px 18px 38px}.representative-quote{font-size:15px;line-height:1.85}.representative-sign{margin-top:17px;font-size:12px}}
+@media(max-width:700px){.representative-message{padding:34px 18px 30px;margin-top:0}.representative-quote{font-size:16px;line-height:1.9}footer{font-size:9.5px!important;padding:24px 0 20px!important;line-height:1.55!important}.footer-info{padding-top:0!important}.footer-info>div{margin:2px 0!important}.privacy{font-size:9.5px!important;margin-top:20px!important;margin-bottom:8px!important}}
 </style>
 <style>
 .contact-slogan{
@@ -205,12 +205,12 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <meta content="춘천 크레인 작업 | 국제크레인" property="og:title"/>
 <meta content="춘천을 중심으로 강원 전 지역 크레인 작업을 진행합니다. 13T부터 100T까지 장비 보유, 구조물·자재·수목·정자·공장 및 설비 작업 문의." property="og:description"/>
 <style>
-.location-preview{padding:72px 0 76px;border-top:1px solid #eee}
+.location-preview{padding:72px 0 24px;border-top:1px solid #eee}
 .location-preview .map-address{margin:10px 0 22px;font-size:15px;color:#555}
 .location-preview .map-box{position:relative;width:100%;height:340px;overflow:hidden;border:1px solid #ececec;background:#f7f7f7}
 .location-preview .map-box img{width:100%;height:100%;object-fit:cover;display:block}
 .location-preview .map-box img.map-pin-label{position:absolute;left:59%;top:82%;width:112px;height:auto;object-fit:contain;transform:translate(-50%,-100%);z-index:2;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
-@media(max-width:700px){.location-preview{padding:54px 0 58px}.location-preview .map-box{height:290px}.location-preview .map-address{font-size:14px}.location-preview .map-box img.map-pin-label{width:96px}}
+@media(max-width:700px){.location-preview{padding:54px 0 30px}.location-preview .map-box{height:290px}.location-preview .map-address{font-size:14px}.location-preview .map-box img.map-pin-label{width:96px}}
 </style><style>#about h1{font-size:31px;line-height:1.2;margin:0 0 18px;letter-spacing:-1px;font-weight:800}@media(max-width:700px){#about h1{font-size:25px}}</style><style id="mega-final">
 .mega-nav{display:flex;gap:0;margin-left:auto;align-self:stretch}.mega-item{position:relative;display:flex;align-items:center}.mega-trigger{height:100%;display:flex;align-items:center;padding:0 27px;font-size:14px;font-weight:700;color:#555;white-space:nowrap}
 .mega-panel{position:absolute;top:100%;left:0;width:270px;background:#fff;border:1px solid #e8e8e8;padding:10px 0;box-shadow:0 16px 34px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(-7px);transition:.22s ease;z-index:1000}
@@ -249,6 +249,15 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 .footer-representative{max-width:1100px;margin:8px auto 0;padding:0 20px;text-align:right;font-size:11px;font-weight:650;color:#666}
 .footer-representative span{padding:0 5px;color:#aaa}
 @media(max-width:700px){.footer-representative{padding:0 14px;font-size:11px}}
+</style>
+<style id="mobile-final-spacing-exact">
+@media(max-width:700px){
+  /* 지도 아래 대표 한마디는 위로, 사업자정보는 아래로 각각 분리 배치 */
+  .location-preview{padding-bottom:8px !important;}
+  .representative-message{padding-top:10px !important;padding-bottom:110px !important;margin-top:0 !important;}
+  .representative-quote{margin:0 !important;}
+  footer{margin-top:0 !important;}
+}
 </style>
 </head>
 <body>
@@ -312,7 +321,6 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <section class="representative-message" id="contact">
 <div class="wrap">
 <p class="representative-quote">“작은 작업 하나도 가볍게 생각하지 않겠습니다.<br>맡겨주신 현장은 끝까지 책임지고 작업하겠습니다.”</p>
-<p class="representative-sign">국제크레인 대표 <span>|</span> 김선원</p>
 </div>
 </section>
 </main>
@@ -366,4 +374,30 @@ slider('workSlider','work-slide','workNow');
 </script>
 <script id="mega-touch-final">
 (function(){const items=[...document.querySelectorAll('.mega-item')];items.forEach(item=>{const t=item.querySelector('.mega-trigger');t.addEventListener('click',e=>{if(matchMedia('(max-width:700px)').matches&&!item.classList.contains('menu-open')){e.preventDefault();items.forEach(x=>x.classList.remove('menu-open'));item.classList.add('menu-open')}});item.querySelectorAll('.mega-panel a').forEach(a=>a.addEventListener('click',()=>item.classList.remove('menu-open')))});document.addEventListener('click',e=>{if(!e.target.closest('.mega-item'))items.forEach(x=>x.classList.remove('menu-open'))})})();
-</script></body></html>
+</script></body></html><style id="mobile-lower-fixed-layout">
+@media(max-width:700px){
+  /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
+  .location-preview{padding-bottom:18px !important;}
+  .representative-message{
+    height:245px !important;
+    box-sizing:border-box !important;
+    padding:92px 18px 0 !important;
+    margin:0 !important;
+    display:block !important;
+    background:#fff !important;
+  }
+  .representative-quote{margin:0 !important;font-size:16px !important;line-height:1.9 !important;}
+  footer{
+    height:245px !important;
+    box-sizing:border-box !important;
+    margin:0 !important;
+    padding:48px 0 22px !important;
+    border-top:1px solid #e7e7e7 !important;
+    font-size:9.5px !important;
+    line-height:1.55 !important;
+    background:#fff !important;
+  }
+  .footer-info>div{margin:2px 0 !important;}
+  .privacy{font-size:9.5px !important;margin-top:20px !important;margin-bottom:0 !important;}
+}
+</style>
