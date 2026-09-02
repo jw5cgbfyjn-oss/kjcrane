@@ -229,6 +229,12 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   line-height:1;
 }
 </style>
+
+<style>
+/* 작업현장 하위메뉴 터치 밑줄 제거 */
+.mega-panel a::after,.mega-panel a:hover::after,.mega-panel a:focus::after,.mega-panel a:focus-visible::after,.mega-panel a:active::after{display:none!important;content:none!important;transform:none!important;border:0!important}
+.mega-panel a:hover,.mega-panel a:focus,.mega-panel a:focus-visible,.mega-panel a:active{background:#eeeeee!important;color:#111!important;text-decoration:none!important;box-shadow:none!important;border-bottom:0!important}
+</style>
 </head>
 <body>
 <header><div class="wrap head">
