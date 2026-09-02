@@ -364,7 +364,7 @@ function slider(id, slideClass, counterId){
  n=next;
  if(counter)counter.textContent=n+1;
 }
- function start(){clearInterval(timer);timer=setInterval(()=>show(n+1),3600)}
+ function start(){clearInterval(timer);timer=setInterval(()=>show(n+1),4200)}
  box.querySelector('.prev').onclick=()=>{show(n-1);start()}; box.querySelector('.next').onclick=()=>{show(n+1);start()};
  let x=null;box.addEventListener('touchstart',e=>x=e.touches[0].clientX,{passive:true});
  box.addEventListener('touchend',e=>{if(x===null)return;let d=e.changedTouches[0].clientX-x;if(Math.abs(d)>45){show(n+(d<0?1:-1));start()}x=null},{passive:true});
