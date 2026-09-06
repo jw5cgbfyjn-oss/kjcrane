@@ -376,7 +376,6 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <a class="phone" href="tel:01063798692">대표전화 010-6379-8692</a>
 </div></header>
 
-<main class="rep-page">
 <main class="activity-page">
   <section class="activity-hero">
     <div class="wrap">
@@ -386,7 +385,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
         <div class="activity-copy">
           <div class="eyebrow">2026. 04. 30</div>
           <h2>2026 노동절 기념 표창</h2>
-          <p>국제크레인 김선원 대표가 조합원 권익 신장과 노동조합 발전에 기여한 공로로 제136주년 세계노동절 기념 표창을 받았습니다.</p>
+          
         </div>
         <div class="activity-slider" id="activitySlider">
           <div class="activity-slide active"><img src="activity-01.jpg" alt="2026 노동절 기념 표창장"></div>
@@ -415,20 +414,6 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <dialog id="privacyDialog"><div class="privacy-box"><button class="close" onclick="this.closest('dialog').close()">닫기</button><h3>개인정보처리방침</h3><p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p></div></dialog>
 
 <script>
-const repSlides=[...document.querySelectorAll('.rep-slide')];
-let repIndex=0;
-const repCount=document.getElementById('repCount');
-function showRep(n){
-  repIndex=(n+repSlides.length)%repSlides.length;
-  repSlides.forEach((s,i)=>s.classList.toggle('active',i===repIndex));
-  repCount.textContent=(repIndex+1)+' / '+repSlides.length;
-}
-document.querySelector('.rep-prev').addEventListener('click',()=>showRep(repIndex-1));
-document.querySelector('.rep-next').addEventListener('click',()=>showRep(repIndex+1));
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft') showRep(repIndex-1);
-  if(e.key==='ArrowRight') showRep(repIndex+1);
-});
 document.querySelectorAll('.mega-trigger').forEach(t=>t.addEventListener('click',e=>{
   if(window.matchMedia('(max-width:700px)').matches){
     const item=t.closest('.mega-item');
