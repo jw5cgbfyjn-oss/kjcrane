@@ -394,13 +394,41 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 
 
 
-<style id="pc-slider-full-image-fix">
+<style id="activity-scroll-gallery-final">
+.activity-slider{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:18px!important;
+  overflow:visible!important;
+  background:transparent!important;
+}
+.activity-slide{
+  display:block!important;
+  position:relative!important;
+  inset:auto!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transition:none!important;
+  width:100%!important;
+}
+.activity-slide img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  object-fit:contain!important;
+}
+.activity-prev,.activity-next,.activity-counter{display:none!important}
 @media(min-width:701px){
- .activity-slider{background:#f6f6f4!important}
- .activity-slide{text-align:center!important}
- .activity-slide img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important;margin:0 auto!important}
+  .activity-slider{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:24px!important;
+    align-items:start!important;
+  }
 }
 </style>
+
 </head>
 <body>
 <header><div class="wrap head">
@@ -426,7 +454,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
           
         </div>
         <div class="activity-slider" id="activitySlider">
-          <div class="activity-slide active"><img src="activity-01.jpg" alt="2026 노동절 기념 표창장"></div>
+          <div class="activity-slide"><img src="activity-01.jpg" alt="2026 노동절 기념 표창장"></div>
           <div class="activity-slide"><img src="activity-02.jpg" alt="2026 노동절 기념행사 표창 현장 1"></div>
           <div class="activity-slide"><img src="activity-03.jpg" alt="2026 노동절 기념행사 기념사진"></div>
           <div class="activity-slide"><img src="activity-04.jpg" alt="2026 노동절 기념행사 표창 현장 2"></div>

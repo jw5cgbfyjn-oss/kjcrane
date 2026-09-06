@@ -366,13 +366,21 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 
 
 
-<style id="pc-about-full-image-fix">
+<style id="pc-about-logo-only">
 @media(min-width:701px){
- #about::before{background-size:auto 100%!important;background-position:right center!important;background-color:#eef7ff!important}
- #about::after{background:linear-gradient(90deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.96) 48%,rgba(255,255,255,.72) 68%,rgba(255,255,255,.18) 88%,rgba(255,255,255,.06) 100%)!important}
- #about .wrap::after{top:auto!important;bottom:28px!important;width:210px!important;height:90px!important}
+  #about::before{
+    background-image:none!important;
+    background:#fff!important;
+  }
+  #about::after{
+    background:none!important;
+  }
+  #about .wrap::after{
+    opacity:.13!important;
+  }
 }
 </style>
+
 </head>
 <body>
 <header><div class="wrap head">
