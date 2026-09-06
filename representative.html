@@ -535,46 +535,5 @@ button[class*="activity-prev"], button[class*="activity-next"],
 </div></footer>
 <dialog id="privacyDialog"><div class="privacy-box"><button class="close" onclick="this.closest('dialog').close()">닫기</button><h3>개인정보처리방침</h3><p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p></div></dialog>
 
-<script id="rep-slider-script">
-(function(){
-  const slides=[...document.querySelectorAll('.rep-slide')];
-  const count=document.getElementById('repCount');
-  if(!slides.length) return;
 
-  let i=0;
-  let timer=null;
-  const INTERVAL=4200;
-
-  function show(n){
-    slides[i].classList.remove('active');
-    i=(n+slides.length)%slides.length;
-    slides[i].classList.add('active');
-    if(count) count.textContent=(i+1)+' / '+slides.length;
-  }
-
-  function stop(){
-    if(timer){ clearInterval(timer); timer=null; }
-  }
-
-  function start(){
-    stop();
-    timer=setInterval(()=>show(i+1), INTERVAL);
-  }
-
-  document.querySelector('.rep-arrow.rep-prev')?.addEventListener('click',()=>{
-    show(i-1);
-    start();
-  });
-  document.querySelector('.rep-arrow.rep-next')?.addEventListener('click',()=>{
-    show(i+1);
-    start();
-  });
-
-  const slider=document.getElementById('repSlider');
-  slider?.addEventListener('mouseenter', stop);
-  slider?.addEventListener('mouseleave', start);
-
-  start();
-})();
-</script>
 </body></html>
