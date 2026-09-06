@@ -339,6 +339,36 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   #representative-teaser{padding-top:52px!important;padding-bottom:58px!important}
 }
 </style>
+
+<style id="about-lower-left-soft-reveal">
+@media(max-width:700px){
+  #about::after{
+    /* 처음 사진의 색감/하늘/글씨 영역은 그대로 유지 */
+    background:linear-gradient(90deg,
+      rgba(255,255,255,.99) 0%,
+      rgba(255,255,255,.96) 45%,
+      rgba(255,255,255,.70) 66%,
+      rgba(255,255,255,.16) 100%) !important;
+
+    /* 왼쪽 아래만 아주 살짝 더 사진이 비치게 */
+    -webkit-mask-image:radial-gradient(
+      ellipse 62% 48% at 0% 100%,
+      rgba(0,0,0,.84) 0%,
+      rgba(0,0,0,.89) 28%,
+      rgba(0,0,0,.96) 48%,
+      rgba(0,0,0,1) 68%
+    );
+    mask-image:radial-gradient(
+      ellipse 62% 48% at 0% 100%,
+      rgba(0,0,0,.84) 0%,
+      rgba(0,0,0,.89) 28%,
+      rgba(0,0,0,.96) 48%,
+      rgba(0,0,0,1) 68%
+    );
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="wrap head">
