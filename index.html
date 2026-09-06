@@ -284,6 +284,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </style>
 
 
+
 <style id="about-crane-background">
 #about{
   position:relative;
@@ -294,25 +295,38 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   content:"";
   position:absolute;
   inset:0;
-  z-index:-2;
-  background-image:url("img-043.jpg");
+  z-index:-3;
+  background-image:url("intro-hero-final.jpg");
   background-repeat:no-repeat;
   background-size:cover;
-  background-position:62% 52%;
+  background-position:58% 50%;
 }
 #about::after{
   content:"";
   position:absolute;
   inset:0;
-  z-index:-1;
+  z-index:-2;
   background:linear-gradient(90deg,
-    rgba(255,255,255,.99) 0%,
-    rgba(255,255,255,.96) 34%,
-    rgba(255,255,255,.76) 54%,
-    rgba(255,255,255,.22) 78%,
+    rgba(255,255,255,.98) 0%,
+    rgba(255,255,255,.94) 43%,
+    rgba(255,255,255,.68) 64%,
+    rgba(255,255,255,.24) 82%,
     rgba(255,255,255,.08) 100%);
 }
-#about .wrap{position:relative;z-index:1}
+#about .wrap{position:relative;z-index:2}
+#about .wrap::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:430px;
+  width:245px;
+  height:110px;
+  background:url("img-001.jpg") center/contain no-repeat;
+  opacity:.13;
+  filter:grayscale(1);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+}
 @media(max-width:700px){
   #about{
     padding-bottom:150px!important;
@@ -324,13 +338,22 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   }
   #about::after{
     background:linear-gradient(90deg,
-      rgba(255,255,255,.99) 0%,
-      rgba(255,255,255,.96) 45%,
-      rgba(255,255,255,.70) 66%,
-      rgba(255,255,255,.16) 100%);
+      rgba(255,255,255,.98) 0%,
+      rgba(255,255,255,.94) 43%,
+      rgba(255,255,255,.68) 64%,
+      rgba(255,255,255,.24) 82%,
+      rgba(255,255,255,.08) 100%);
+  }
+  #about .wrap::after{
+    left:0;
+    top:455px;
+    width:245px;
+    height:105px;
+    opacity:.13;
   }
 }
 </style>
+
 
 
 <style id="rep-teaser-text-only">
@@ -340,34 +363,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 }
 </style>
 
-<style id="about-lower-left-soft-reveal">
-@media(max-width:700px){
-  #about::after{
-    /* 처음 사진의 색감/하늘/글씨 영역은 그대로 유지 */
-    background:linear-gradient(90deg,
-      rgba(255,255,255,.99) 0%,
-      rgba(255,255,255,.96) 45%,
-      rgba(255,255,255,.70) 66%,
-      rgba(255,255,255,.16) 100%) !important;
 
-    /* 왼쪽 아래만 아주 살짝 더 사진이 비치게 */
-    -webkit-mask-image:radial-gradient(
-      ellipse 62% 48% at 0% 100%,
-      rgba(0,0,0,.84) 0%,
-      rgba(0,0,0,.89) 28%,
-      rgba(0,0,0,.96) 48%,
-      rgba(0,0,0,1) 68%
-    );
-    mask-image:radial-gradient(
-      ellipse 62% 48% at 0% 100%,
-      rgba(0,0,0,.84) 0%,
-      rgba(0,0,0,.89) 28%,
-      rgba(0,0,0,.96) 48%,
-      rgba(0,0,0,1) 68%
-    );
-  }
-}
-</style>
 
 </head>
 <body>
