@@ -282,6 +282,56 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 .faq-section-last .faq-block{margin-top:0!important}
 @media(max-width:700px){.faq-section-last{padding-bottom:54px!important}}
 </style>
+
+
+<style id="about-crane-background">
+#about{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+#about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-image:url("img-043.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:62% 52%;
+}
+#about::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,.99) 0%,
+    rgba(255,255,255,.96) 34%,
+    rgba(255,255,255,.76) 54%,
+    rgba(255,255,255,.22) 78%,
+    rgba(255,255,255,.08) 100%);
+}
+#about .wrap{position:relative;z-index:1}
+@media(max-width:700px){
+  #about{
+    padding-bottom:150px!important;
+    min-height:650px;
+  }
+  #about::before{
+    background-size:auto 100%;
+    background-position:61% center;
+  }
+  #about::after{
+    background:linear-gradient(90deg,
+      rgba(255,255,255,.99) 0%,
+      rgba(255,255,255,.96) 45%,
+      rgba(255,255,255,.70) 66%,
+      rgba(255,255,255,.16) 100%);
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="wrap head">
