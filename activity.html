@@ -430,15 +430,53 @@ document.addEventListener('click',e=>{
 });
 </script>
 
+
 <script id="activity-slider-script">
 (function(){
- const slides=[...document.querySelectorAll('.activity-slide')];
- const count=document.getElementById('activityCount');
- let i=0;
- function show(n){ if(!slides.length)return; slides[i].classList.remove('active'); i=(n+slides.length)%slides.length; slides[i].classList.add('active'); count.textContent=(i+1)+' / '+slides.length; }
- document.querySelector('.activity-arrow.prev')?.addEventListener('click',()=>show(i-1));
- document.querySelector('.activity-arrow.next')?.addEventListener('click',()=>show(i+1));
+  const slides=[...document.querySelectorAll('.activity-slide')];
+  const count=document.getElementById('activityCount');
+  if(!slides.length) return;
+
+  let i=0;
+  let timer=null;
+  const INTERVAL=4200;
+
+  function show(n){
+    slides[i].classList.remove('active');
+    i=(n+slides.length)%slides.length;
+    slides[i].classList.add('active');
+    if(count) count.textContent=(i+1)+' / '+slides.length;
+  }
+
+  function start(){
+    stop();
+    timer=setInterval(()=>show(i+1), INTERVAL);
+  }
+
+  function stop(){
+    if(timer){
+      clearInterval(timer);
+      timer=null;
+    }
+  }
+
+  document.querySelector('.activity-arrow.prev')?.addEventListener('click',()=>{
+    show(i-1);
+    start();
+  });
+
+  document.querySelector('.activity-arrow.next')?.addEventListener('click',()=>{
+    show(i+1);
+    start();
+  });
+
+  const slider=document.getElementById('activitySlider');
+  slider?.addEventListener('mouseenter', stop);
+  slider?.addEventListener('mouseleave', start);
+
+  start();
 })();
 </script>
+
 
 </body></html>

@@ -387,34 +387,46 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </div></footer>
 <dialog id="privacyDialog"><div class="privacy-box"><button class="close" onclick="this.closest('dialog').close()">닫기</button><h3>개인정보처리방침</h3><p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p></div></dialog>
 
-<script>
-const repSlides=[...document.querySelectorAll('.rep-slide')];
-let repIndex=0;
-const repCount=document.getElementById('repCount');
-function showRep(n){
-  repIndex=(n+repSlides.length)%repSlides.length;
-  repSlides.forEach((s,i)=>s.classList.toggle('active',i===repIndex));
-  repCount.textContent=(repIndex+1)+' / '+repSlides.length;
-}
-document.querySelector('.rep-prev').addEventListener('click',()=>showRep(repIndex-1));
-document.querySelector('.rep-next').addEventListener('click',()=>showRep(repIndex+1));
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft') showRep(repIndex-1);
-  if(e.key==='ArrowRight') showRep(repIndex+1);
-});
-document.querySelectorAll('.mega-trigger').forEach(t=>t.addEventListener('click',e=>{
-  if(window.matchMedia('(max-width:700px)').matches){
-    const item=t.closest('.mega-item');
-    const panel=item.querySelector('.mega-panel');
-    if(panel){
-      e.preventDefault();
-      document.querySelectorAll('.mega-item').forEach(x=>{if(x!==item)x.classList.remove('menu-open')});
-      item.classList.toggle('menu-open');
-    }
+<script id="rep-slider-script">
+(function(){
+  const slides=[...document.querySelectorAll('.rep-slide')];
+  const count=document.getElementById('repCount');
+  if(!slides.length) return;
+
+  let i=0;
+  let timer=null;
+  const INTERVAL=4200;
+
+  function show(n){
+    slides[i].classList.remove('active');
+    i=(n+slides.length)%slides.length;
+    slides[i].classList.add('active');
+    if(count) count.textContent=(i+1)+' / '+slides.length;
   }
-}));
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.mega-item')) document.querySelectorAll('.mega-item').forEach(x=>x.classList.remove('menu-open'));
-});
+
+  function stop(){
+    if(timer){ clearInterval(timer); timer=null; }
+  }
+
+  function start(){
+    stop();
+    timer=setInterval(()=>show(i+1), INTERVAL);
+  }
+
+  document.querySelector('.rep-arrow.rep-prev')?.addEventListener('click',()=>{
+    show(i-1);
+    start();
+  });
+  document.querySelector('.rep-arrow.rep-next')?.addEventListener('click',()=>{
+    show(i+1);
+    start();
+  });
+
+  const slider=document.getElementById('repSlider');
+  slider?.addEventListener('mouseenter', stop);
+  slider?.addEventListener('mouseleave', start);
+
+  start();
+})();
 </script>
 </body></html>
