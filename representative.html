@@ -334,8 +334,9 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </style>
 
 
+
 <style id="unified-smooth-slider">
-.rep-slider, .activity-slider{position:relative}
+.rep-slider, .activity-slider{position:relative;overflow:hidden}
 .rep-slide, .activity-slide{
   display:block!important;
   position:absolute!important;
@@ -346,6 +347,8 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   pointer-events:none;
 }
 .rep-slide.active, .activity-slide.active{
+  position:relative!important;
+  inset:auto;
   opacity:1;
   visibility:visible;
   transition:opacity .75s ease;
@@ -354,8 +357,11 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 }
 .rep-slide img, .activity-slide img{
   display:block;
+  width:100%;
+  height:auto;
 }
 </style>
+
 
 </head>
 <body>

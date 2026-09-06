@@ -364,8 +364,9 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </style>
 
 
+
 <style id="unified-smooth-slider">
-.rep-slider, .activity-slider{position:relative}
+.rep-slider, .activity-slider{position:relative;overflow:hidden}
 .rep-slide, .activity-slide{
   display:block!important;
   position:absolute!important;
@@ -376,6 +377,8 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
   pointer-events:none;
 }
 .rep-slide.active, .activity-slide.active{
+  position:relative!important;
+  inset:auto;
   opacity:1;
   visibility:visible;
   transition:opacity .75s ease;
@@ -384,8 +387,11 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 }
 .rep-slide img, .activity-slide img{
   display:block;
+  width:100%;
+  height:auto;
 }
 </style>
+
 
 </head>
 <body>
@@ -414,14 +420,12 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
         <div class="activity-slider" id="activitySlider">
           <div class="activity-slide active"><img src="activity-01.jpg" alt="2026 노동절 기념 표창장"></div>
           <div class="activity-slide"><img src="activity-02.jpg" alt="2026 노동절 기념행사 표창 현장 1"></div>
-          <div class="activity-slide"><img src="activity-03.jpg" alt="2026 노동절 기념행사 표창 현장 2"></div>
-          <div class="activity-slide"><img src="activity-04.jpg" alt="2026 노동절 기념행사 기념사진 1"></div>
-          <div class="activity-slide"><img src="activity-05.jpg" alt="2026 노동절 기념행사 기념사진 2"></div>
+          <div class="activity-slide"><img src="activity-03.jpg" alt="2026 노동절 기념행사 기념사진"></div>
+          <div class="activity-slide"><img src="activity-04.jpg" alt="2026 노동절 기념행사 표창 현장 2"></div>
           <button class="activity-arrow prev" type="button" aria-label="이전 사진">‹</button>
           <button class="activity-arrow next" type="button" aria-label="다음 사진">›</button>
         </div>
-        <div class="activity-meta"><span>2026 노동절 기념행사 · 춘천시청 대회의실</span><span id="activityCount">1 / 5</span></div>
-        <p class="privacy-note">김선원 대표 외 참석자 얼굴은 개인정보 보호를 위해 블러 처리했습니다.</p>
+        <div class="activity-meta"><span>2026 노동절 기념행사 · 춘천시청 대회의실</span><span id="activityCount">1 / 4</span></div>
       </div>
     </div>
   </section>
