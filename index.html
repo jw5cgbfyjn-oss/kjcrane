@@ -449,7 +449,55 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
     <p class="form-preview-note">※ 현재 파일은 문의폼 화면 구성본입니다. 실제 접수·문자 알림은 발송 서비스를 연결한 뒤 작동합니다.</p>
   </form>
 </div>
+<script>
+document.getElementById('online-inquiry-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
+  const form = e.currentTarget;
+  if (!form.reportValidity()) return;
+
+  const button = form.querySelector('.inquiry-submit');
+  const originalText = button.textContent;
+
+  button.disabled = true;
+  button.textContent = '접수 중...';
+
+  try {
+    const data = {
+      region: form.querySelector('input[type="text"]').value.trim(),
+      work: form.querySelector('textarea').value.trim(),
+      date: form.querySelector('input[type="date"]').value,
+      phone: form.querySelector('input[type="tel"]').value.trim()
+    };
+
+    const response = await fetch(
+      'https://kjcrane-inquiry.rlagytjs97.workers.dev',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.ok) {
+      throw new Error(result.message || '접수 실패');
+    }
+
+    alert('문의가 정상적으로 접수되었습니다.');
+    form.reset();
+
+  } catch (error) {
+    alert('문의 접수에 실패했습니다. 잠시 후 다시 시도하시거나 대표전화로 문의해주세요.');
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+});
+</script>
 </div>
 </section>
 <!-- 3 -->
