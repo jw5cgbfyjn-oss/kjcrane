@@ -433,6 +433,23 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </div>
 <p class="guide-note">작업 내용과 현장 여건을 확인한 후 안내드리겠습니다.</p>
 
+<div class="online-inquiry" id="online-inquiry">
+  <div class="kicker">ONLINE INQUIRY</div>
+  <h2>온라인 작업문의</h2>
+  <p class="lead online-inquiry-lead">아래 내용을 작성해 주시면 확인 후 연락드리겠습니다.</p>
+  <form class="online-inquiry-form" action="#" method="post" enctype="multipart/form-data">
+    <label><span>작업 지역 <b>*</b></span><input type="text" name="area" required placeholder="예) 춘천시 동면, 강원 전 지역 등"></label>
+    <label><span>작업 내용 <b>*</b></span><textarea name="details" required placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등"></textarea></label>
+    <label><span>희망 작업일</span><input type="date" name="date"></label>
+    <label><span>연락처 <b>*</b></span><input type="tel" name="phone" required inputmode="tel" placeholder="예) 010-0000-0000"></label>
+    <label><span>현장 사진 첨부</span><input class="file-input" type="file" name="photos" accept="image/jpeg,image/png,image/heic" multiple></label>
+    <p class="file-help">현장 사진이 있으시면 함께 보내주세요. (최대 5장 / JPG, PNG, HEIC)</p>
+    <label class="privacy-check"><input type="checkbox" required><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
+    <button class="inquiry-submit" type="submit">문의 접수하기</button>
+    <p class="form-preview-note">※ 현재 파일은 문의폼 화면 구성본입니다. 실제 접수·문자 알림은 발송 서비스를 연결한 뒤 작동합니다.</p>
+  </form>
+</div>
+
 </div>
 </section>
 <!-- 3 -->
@@ -530,7 +547,38 @@ slider('workSlider','work-slide','workNow');
 </script>
 <script id="mega-touch-final">
 (function(){const items=[...document.querySelectorAll('.mega-item')];items.forEach(item=>{const t=item.querySelector('.mega-trigger');t.addEventListener('click',e=>{if(matchMedia('(max-width:700px)').matches&&!item.classList.contains('menu-open')){e.preventDefault();items.forEach(x=>x.classList.remove('menu-open'));item.classList.add('menu-open')}});item.querySelectorAll('.mega-panel a').forEach(a=>a.addEventListener('click',()=>item.classList.remove('menu-open')))});document.addEventListener('click',e=>{if(!e.target.closest('.mega-item'))items.forEach(x=>x.classList.remove('menu-open'))})})();
-</script></body></html><style id="mobile-lower-fixed-layout">
+</script>
+<style id="online-inquiry-ui">
+.online-inquiry{margin-top:46px;padding-top:42px;border-top:1px solid #ededed}
+.online-inquiry h2{margin-bottom:10px}
+.online-inquiry-lead{margin-bottom:25px}
+.online-inquiry-form{border:1px solid #e6e6e6;padding:26px 28px;display:grid;gap:17px;background:#fff}
+.online-inquiry-form label:not(.privacy-check){display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+.online-inquiry-form label>span{font-size:14px;font-weight:700;color:#222}
+.online-inquiry-form b{color:#b93434}
+.online-inquiry-form input[type=text],.online-inquiry-form input[type=tel],.online-inquiry-form input[type=date],.online-inquiry-form textarea,.online-inquiry-form input[type=file]{width:100%;box-sizing:border-box;border:1px solid #dedede;border-radius:0;background:#fff;padding:13px 14px;font:inherit;font-size:13px;color:#333}
+.online-inquiry-form textarea{min-height:105px;resize:vertical;line-height:1.65}
+.online-inquiry-form input::placeholder,.online-inquiry-form textarea::placeholder{color:#aaa}
+.file-help{margin:-8px 0 0 168px;color:#888;font-size:11.5px}
+.privacy-check{display:flex;align-items:center;gap:9px;margin-left:168px}
+.privacy-check input{width:17px;height:17px;margin:0}
+.privacy-check span{font-size:12.5px!important}
+.inquiry-submit{margin-left:168px;border:0;background:#202b35;color:#fff;padding:15px 20px;font-size:14px;font-weight:700;cursor:pointer}
+.form-preview-note{margin:0 0 0 168px;color:#888;font-size:11px;line-height:1.6}
+@media(max-width:700px){
+ .online-inquiry{margin-top:34px;padding-top:34px}
+ .online-inquiry-form{padding:20px 16px;gap:15px}
+ .online-inquiry-form label:not(.privacy-check){grid-template-columns:1fr;gap:7px}
+ .online-inquiry-form label>span{font-size:13.5px}
+ .online-inquiry-form input[type=text],.online-inquiry-form input[type=tel],.online-inquiry-form input[type=date],.online-inquiry-form textarea,.online-inquiry-form input[type=file]{padding:12px;font-size:12.5px}
+ .online-inquiry-form textarea{min-height:100px}
+ .file-help,.privacy-check,.inquiry-submit,.form-preview-note{margin-left:0}
+ .file-help{margin-top:-7px}
+ .privacy-check{align-items:flex-start}
+ .inquiry-submit{width:100%;padding:14px}
+}
+</style>
+</body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
   .location-preview{padding-bottom:18px !important;}
