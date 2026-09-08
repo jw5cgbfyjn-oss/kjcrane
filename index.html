@@ -486,14 +486,18 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
       try { result = await response.json(); } catch (_) {}
 
       if (!response.ok || result.ok !== true) {
-        throw new Error(result.message || '문의 접수 실패');
+        throw new Error(
+          (result.error || '문의 접수 실패') +
+          (result.status ? ` / ${result.status}` : '') +
+          (result.detail ? ` / ${JSON.stringify(result.detail)}` : '')
+        );
       }
 
       alert('문의가 정상적으로 접수되었습니다.');
       form.reset();
     } catch (error) {
       console.error('Inquiry submit error:', error);
-      alert('문의 접수에 실패했습니다. 잠시 후 다시 시도하시거나 대표전화로 문의해주세요.');
+      alert(error.message);
     } finally {
       if (button) {
         button.disabled = false;
