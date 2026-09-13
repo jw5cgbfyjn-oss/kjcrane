@@ -15,7 +15,11 @@ header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-
 .head{min-height:74px;display:flex;align-items:center;gap:24px}
 .brand{font-size:23px;font-weight:850;letter-spacing:-.04em}.brand-logo{display:flex;align-items:center}.brand-logo img{display:block;width:auto;height:46px}
 nav{display:flex;gap:24px;margin-left:auto} nav a{font-size:14px;font-weight:700;color:#555}
-.phone{border:1px solid #ddd;border-radius:999px;padding:10px 15px;font-size:13px;font-weight:750}
+.contact-actions{display:flex;align-items:center;gap:8px}
+.phone,.kakao-chat{border:1px solid #ddd;border-radius:999px;padding:10px 15px;font-size:13px;font-weight:750;white-space:nowrap}
+.kakao-chat{display:inline-flex;align-items:center;gap:6px;background:#fff}
+.kakao-dot{width:16px;height:16px;border-radius:50%;background:#FEE500;display:inline-flex;align-items:center;justify-content:center;flex:0 0 16px}
+.kakao-dot:after{content:"";width:7px;height:6px;border-radius:50%;background:#191919;display:block}
 .section{padding:62px 0;border-bottom:1px solid #f0f0f0;scroll-margin-top:90px}
 .kicker{font-size:10px;font-weight:800;letter-spacing:.18em;color:#aaa;margin-bottom:9px}
 h1,h2,h3,p{margin-top:0} h2{font-size:31px;line-height:1.25;letter-spacing:-.045em;margin-bottom:0}
@@ -40,6 +44,7 @@ h1,h2,h3,p{margin-top:0} h2{font-size:31px;line-height:1.25;letter-spacing:-.045
 
 
 footer{flex-shrink:0;border-top:1px solid #e7e7e7;margin-top:auto;padding:18px 0 6px;color:#777;font-size:11px;line-height:1.65;text-align:center}.footer-info>div{margin:0}.footer-label{font-weight:650;color:#666}
+.footer-contact{margin:10px 0 2px!important}.footer-contact a{font-weight:700;color:#555}.footer-contact .sep{padding:0 9px}
 .sep{padding:0 7px;color:#bbb}
 .privacy{border:0;background:none;margin-top:12px;padding:0;color:#888;font-size:10px;text-decoration:underline;cursor:pointer}
 dialog{width:min(92vw,680px);max-height:82vh;border:0;border-radius:14px;padding:0;box-shadow:0 18px 60px rgba(0,0,0,.18)}
@@ -49,7 +54,9 @@ dialog::backdrop{background:rgba(0,0,0,.35)} .privacy-box{padding:28px;line-heig
 @media(max-width:760px){
  .wrap{width:min(100% - 32px,1120px)}
  .head{min-height:68px;flex-wrap:wrap;padding:10px 0;gap:10px}
- .brand{font-size:21px}.brand-logo img{height:40px} .phone{margin-left:auto;font-size:12px;padding:9px 12px}
+ .brand{font-size:21px}.brand-logo img{height:40px}
+ .contact-actions{order:2;width:100%;gap:8px}
+ .contact-actions .phone,.contact-actions .kakao-chat{flex:1;justify-content:center;text-align:center;font-size:11.5px;padding:9px 8px}
  nav{order:3;width:100%;margin:0;justify-content:space-between;gap:7px;border-top:1px solid #f1f1f1;padding-top:8px}
  nav a{font-size:12px}
  .section{padding:42px 0;scroll-margin-top:112px}
@@ -421,7 +428,10 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <div class="mega-item"><a class="mega-trigger" href="#work">작업현장 <span class="nav-chevron">›</span></a><div class="mega-panel"><a href="work.html"><span class="mega-label">전체 작업현장</span><span class="mega-arrow">›</span></a><a href="work-structure.html"><span class="mega-label">구조물 작업</span><span class="mega-arrow">›</span></a><a href="work-landscape.html"><span class="mega-label">수목·조경 작업</span><span class="mega-arrow">›</span></a><a href="work-material.html"><span class="mega-label">자재 작업</span><span class="mega-arrow">›</span></a><a href="work-factory.html"><span class="mega-label">공장·설비 작업</span><span class="mega-arrow">›</span></a></div></div>
 <div class="mega-item"><a class="mega-trigger" href="#equipment">보유장비 <span class="nav-chevron">›</span></a><div class="mega-panel equipment-panel"><a href="#equipment"><span class="mega-label">100T · 70T · 60T</span><span class="mega-arrow">›</span></a><a href="#equipment"><span class="mega-label">50T · 25T · 13T</span><span class="mega-arrow">›</span></a><a href="#equipment"><span class="mega-label">보유장비 안내</span><span class="mega-arrow">›</span></a></div></div>
 </nav>
+<div class="contact-actions">
 <a class="phone" href="tel:01063798692">대표전화 010-6379-8692</a>
+<a class="kakao-chat" href="https://pf.kakao.com/_IqfrX/chat" target="_blank" rel="noopener noreferrer" aria-label="국제크레인 카카오톡 문의"><span class="kakao-dot" aria-hidden="true"></span>카카오톡 문의</a>
+</div>
 </div></header>
 <main style="flex:1 0 auto;">
 <!-- 1 -->
@@ -574,6 +584,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <div><span class="footer-label">사업자등록번호</span><span class="sep">|</span>221-08-87838</div>
 <div><span class="footer-label">소재지</span><span class="sep">|</span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</div>
 <div><span class="footer-label">작업지역</span><span class="sep">|</span>춘천 · 강원 전 지역</div>
+<div class="footer-contact"><a href="tel:01063798692">전화문의</a><span class="sep">|</span><a href="https://pf.kakao.com/_IqfrX/chat" target="_blank" rel="noopener noreferrer">카카오톡 문의</a></div>
 <div><button class="privacy" onclick="document.getElementById('privacyPolicy').showModal()" type="button">개인정보처리방침</button></div>
 </div></footer>
 <dialog id="privacyPolicy"><div class="privacy-box">
