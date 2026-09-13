@@ -18,8 +18,9 @@ nav{display:flex;gap:24px;margin-left:auto} nav a{font-size:14px;font-weight:700
 .contact-actions{display:flex;align-items:center;gap:8px}
 .phone,.kakao-chat{border:1px solid #ddd;border-radius:999px;padding:10px 15px;font-size:13px;font-weight:750;white-space:nowrap}
 .kakao-chat{display:inline-flex;align-items:center;gap:6px;background:#fff}
-.kakao-dot{width:16px;height:16px;border-radius:50%;background:#FEE500;display:inline-flex;align-items:center;justify-content:center;flex:0 0 16px}
-.kakao-dot:after{content:"";width:7px;height:6px;border-radius:50%;background:#191919;display:block}
+.kakao-dot{width:18px;height:18px;border-radius:50%;background:#FEE500;display:inline-block;position:relative;flex:0 0 18px}
+.kakao-dot:after{content:"";position:absolute;left:4px;top:4px;width:10px;height:8px;border-radius:50%;background:#191919}
+.kakao-dot:before{content:"";position:absolute;left:5px;top:10px;width:0;height:0;border-top:4px solid #191919;border-right:3px solid transparent;transform:rotate(8deg)}
 .section{padding:62px 0;border-bottom:1px solid #f0f0f0;scroll-margin-top:90px}
 .kicker{font-size:10px;font-weight:800;letter-spacing:.18em;color:#aaa;margin-bottom:9px}
 h1,h2,h3,p{margin-top:0} h2{font-size:31px;line-height:1.25;letter-spacing:-.045em;margin-bottom:0}
