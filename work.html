@@ -53,7 +53,39 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
   .track{animation-duration:220s}
 }
 </style>
-</head>
+<style>
+.mobile-cta-fixed{
+  position:fixed;left:0;right:0;bottom:0;z-index:9999;
+  display:flex;width:100%;
+  padding-bottom:env(safe-area-inset-bottom);
+  box-shadow:0 -1px 0 rgba(0,0,0,.08);
+}
+.mobile-cta-btn{
+  flex:1;min-height:64px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  text-decoration:none;font-size:18px;font-weight:700;
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-cta-btn.phone{background:#111;color:#fff;}
+.mobile-cta-btn.kakao{background:#FEE500;color:#111;}
+.phone-symbol{font-size:26px;line-height:1;color:#fff}
+.kakao-bubble{
+  width:24px;height:20px;background:#111;border-radius:50%;
+  display:inline-block;position:relative;flex:0 0 auto;
+}
+.kakao-bubble::after{
+  content:"";position:absolute;left:3px;bottom:-4px;
+  width:7px;height:7px;background:#111;
+  transform:skew(-28deg) rotate(18deg);
+  border-bottom-left-radius:2px;
+}
+@media(min-width:769px){
+  .mobile-cta-fixed{display:none!important;}
+}
+@media(max-width:768px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))!important;}
+}
+</style></head>
 <body>
 <header>
 <div class="head">
@@ -132,10 +164,7 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
     강원특별자치도 춘천시 동내면 학곡서3길 20-31 · 춘천 · 강원 전 지역
   </div>
 </footer>
-<div class="mobile-cta">
-<a class="phone" href="tel:01063798692">☎  전화 문의</a>
-<a class="kakao" href="https://pf.kakao.com/_IqfrX/chat">●  카카오톡 문의</a>
-</div>
+<div class="mobile-cta-fixed"><a class="mobile-cta-btn phone" href="tel:01063798692"><span class="phone-symbol">☎</span><span>전화 문의</span></a><a class="mobile-cta-btn kakao" href="https://pf.kakao.com/_IqfrX/chat"><span class="kakao-bubble"></span><span>카카오톡 문의</span></a></div>
 <div aria-hidden="true" class="lightbox" id="lightbox">
 <button aria-label="닫기" class="lightbox-close" type="button">×</button>
 <img alt="작업현장 확대 사진" id="lightboxImg"/>
