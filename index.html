@@ -716,12 +716,6 @@ nav a::after{display:none!important}
 </div>
 </div>
 </section>
-<!-- 5 -->
-<section class="representative-message" id="contact">
-<div class="wrap">
-<p class="representative-quote">“작은 작업 하나도 가볍게 생각하지 않겠습니다.<br/>맡겨주신 현장은 끝까지 책임지고 작업하겠습니다.”</p>
-</div>
-</section>
 </main>
 <footer><div class="wrap footer-info">
 <div><span class="footer-label">대표자</span><span class="sep">|</span>김선원</div>
@@ -827,7 +821,13 @@ slider('workSlider','work-slide','workNow');
  nums.forEach((b,i)=>b.addEventListener('click',()=>{show(i);start();}));
  show(0);start();
 })();
-</script></body></html><style id="mobile-lower-fixed-layout">
+</script>
+<style id="footer-no-quote-fix">
+@media(max-width:700px){
+  footer{padding-top:54px !important;}
+}
+</style>
+</body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
   .location-preview{padding-bottom:18px !important;}
