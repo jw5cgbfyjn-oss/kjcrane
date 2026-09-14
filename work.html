@@ -85,7 +85,25 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
 @media(max-width:768px){
   body{padding-bottom:calc(64px + env(safe-area-inset-bottom))!important;}
 }
-</style></head>
+</style><style>
+.mobile-cta{display:none}
+@media(max-width:700px){
+ .mobile-cta{
+   position:fixed;left:0;right:0;bottom:0;z-index:9999;
+   display:flex;height:calc(66px + env(safe-area-inset-bottom));
+   padding-bottom:env(safe-area-inset-bottom);
+   box-shadow:0 -2px 12px rgba(0,0,0,.12)
+ }
+ .mobile-cta a{
+   height:66px;flex:1;display:flex;align-items:center;justify-content:center;
+   gap:10px;font-size:16px;font-weight:800;text-decoration:none
+ }
+ .mobile-cta-phone{background:#111;color:#fff}
+ .mobile-cta-kakao{background:#FEE500;color:#111}
+ .mobile-cta svg{width:24px;height:24px;flex:0 0 auto}
+ body{padding-bottom:calc(66px + env(safe-area-inset-bottom))!important}
+}
+</style><style>.kakao-bubble,.kakao-bubble::before,.kakao-bubble::after{display:none!important;content:none!important}</style></head>
 <body>
 <header>
 <div class="head">
@@ -164,7 +182,10 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
     강원특별자치도 춘천시 동내면 학곡서3길 20-31 · 춘천 · 강원 전 지역
   </div>
 </footer>
-<div class="mobile-cta-fixed"><a class="mobile-cta-btn phone" href="tel:01063798692"><span class="phone-symbol">☎</span><span>전화 문의</span></a><a class="mobile-cta-btn kakao" href="https://pf.kakao.com/_IqfrX/chat"><span class="kakao-bubble"></span><span>카카오톡 문의</span></a></div>
+<div aria-label="빠른 문의" class="mobile-cta">
+<a aria-label="전화 문의" class="mobile-cta-phone" href="tel:01063798692"><svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M6.6 2.8 9.2 7c.4.7.3 1.5-.3 2l-1.5 1.2c1.2 2.5 3.2 4.5 5.7 5.7l1.2-1.5c.5-.6 1.3-.8 2-.3l4.2 2.6c.7.4 1 1.2.7 1.9-.6 1.5-2 2.6-3.6 2.7C9.9 21.7 2.3 14.1 2.7 6.4c.1-1.6 1.2-3 2.7-3.6.4-.2.9-.2 1.2 0Z" fill="currentColor"></path></svg><span>전화 문의</span></a>
+<a aria-label="카카오톡 문의" class="mobile-cta-kakao" href="https://pf.kakao.com/_IqfrX/chat" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6 4.2-2.4c.7.1 1.4.2 2.1.2 5.5 0 10-3.5 10-7.9S17.5 3 12 3Z" fill="currentColor"></path></svg><span>카카오톡 문의</span></a>
+</div>
 <div aria-hidden="true" class="lightbox" id="lightbox">
 <button aria-label="닫기" class="lightbox-close" type="button">×</button>
 <img alt="작업현장 확대 사진" id="lightboxImg"/>
