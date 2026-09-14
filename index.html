@@ -822,7 +822,7 @@ slider('workSlider','work-slide','workNow');
  };
  const start=()=>{
    clearInterval(timer);
-   timer=setInterval(()=>show(cur+1),5000);
+   timer=setInterval(()=>show(cur+1),3200);
  };
  nums.forEach((b,i)=>b.addEventListener('click',()=>{show(i);start();}));
  show(0);start();
