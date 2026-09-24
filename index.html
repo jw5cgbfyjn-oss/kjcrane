@@ -611,10 +611,20 @@ nav a::after{display:none!important}
   line-height:1.25 !important;
   z-index:2 !important;
 }
+</style><style>
+/* 작업현장 이미지 로딩 시 화면 밀림 방지 */
+img { height:auto; }
+.work-card img, .work-item img, .gallery img, .work-list img {
+  display:block;
+  width:100%;
+  aspect-ratio: 4 / 3;
+  object-fit:cover;
+  background:#f3f3f3;
+}
 </style></head>
 <body>
 <header><div class="wrap head">
-<a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" src="img-001.jpg"/></a>
+<a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="img-001.jpg"/></a>
 <nav aria-label="주요 메뉴" class="mega-nav">
 <div class="mega-item"><a class="mega-trigger" href="#about">회사소개</a><div class="mega-panel"><a href="#about"><span class="mega-label">국제크레인 소개</span><span class="mega-arrow">›</span></a><a href="representative.html"><span class="mega-label">대표 김선원</span><span class="mega-arrow">›</span></a><a href="#location"><span class="mega-label">찾아오시는 길</span><span class="mega-arrow">›</span></a></div></div>
 <div class="mega-item"><a class="mega-trigger" href="#inquiry">작업문의</a><div class="mega-panel"><a href="#inquiry"><span class="mega-label">작업 문의 안내</span><span class="mega-arrow">›</span></a><a href="#faq"><span class="mega-label">자주 묻는 질문</span><span class="mega-arrow">›</span></a><a href="tel:01063798692"><span class="mega-label">대표전화</span><span class="mega-arrow">›</span></a></div></div>
@@ -746,7 +756,7 @@ nav a::after{display:none!important}
 })();
 </script>
 <!-- 3 -->
-<section class="location-preview" id="location"><div class="wrap"><div class="kicker">LOCATION</div><h2>찾아오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div class="map-box"><img alt="국제크레인 찾아오시는 길 지도" src="img-027.jpg"/></div><a class="map-link" href="https://map.naver.com/p/search/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%B6%98%EC%B2%9C%EC%8B%9C%20%EB%8F%99%EB%82%B4%EB%A9%B4%20%ED%95%99%EA%B3%A1%EC%84%9C3%EA%B8%B8%2020-31" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section>
+<section class="location-preview" id="location"><div class="wrap"><div class="kicker">LOCATION</div><h2>찾아오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div class="map-box"><img alt="국제크레인 찾아오시는 길 지도" decoding="async" fetchpriority="low" loading="lazy" src="img-027.jpg"/></div><a class="map-link" href="https://map.naver.com/p/search/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%B6%98%EC%B2%9C%EC%8B%9C%20%EB%8F%99%EB%82%B4%EB%A9%B4%20%ED%95%99%EA%B3%A1%EC%84%9C3%EA%B8%B8%2020-31" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section>
 <!-- FAQ -->
 <section class="section faq-section-last">
 <div class="wrap">
@@ -874,7 +884,15 @@ slider('workSlider','work-slide','workNow');
   footer{padding-top:54px !important;}
 }
 </style>
-</body></html><style id="mobile-lower-fixed-layout">
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('img').forEach(function(img){
+    if (!img.hasAttribute('width') && !img.src.startsWith('data:')) {
+      img.style.minHeight = img.style.minHeight || '1px';
+    }
+  });
+});
+</script></body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
   .location-preview{padding-bottom:18px !important;}
