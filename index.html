@@ -690,7 +690,18 @@ img { height:auto; }
   animation-delay:1.00s !important;
 }
 .hero-slide{transition:opacity 1.22s ease !important;}
-</style></head>
+</style>
+<style id="desktop-hero-fix-20260925">
+/* PC only: keep the crane visible instead of over-cropping portrait hero photos */
+@media (min-width:769px){
+  #about{height:clamp(620px,72vh,780px)!important;min-height:620px!important;max-height:780px!important;background:#eef3f5!important;}
+  #about .hero-slide-banner{background-size:auto 100%!important;background-position:center center!important;background-repeat:no-repeat!important;background-color:#dce8ee!important;}
+  #about .hero-slide:first-child{background-size:auto 100%!important;background-position:center center!important;background-repeat:no-repeat!important;}
+  #about .hero01-copy{left:max(4.5vw,42px)!important;bottom:66px!important;}
+  #about .slide-copy{left:max(4.5vw,42px);}
+}
+</style>
+</head>
 <body>
 <header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="img-001.jpg"/></a>
