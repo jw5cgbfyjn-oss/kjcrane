@@ -689,7 +689,7 @@ img { height:auto; }
   animation-duration:1.22s !important;
   animation-delay:1.00s !important;
 }
-.hero-slide{transition:opacity 1.38s ease !important;}
+.hero-slide{transition:opacity 1.22s ease !important;}
 </style>
 <style id="desktop-one-screen-final">
 .desktop-home{display:none}
@@ -839,15 +839,27 @@ img { height:auto; }
 }
 </style>
 
-<style id="hero-slide02-smooth-only">
+<style id="user-latest-three-only">
 @media(max-width:900px){
-  .hero-slide:nth-of-type(2).active .slide-copy .hero-line-1{
-    animation-duration:1.12s!important; animation-delay:.28s!important;
+  /* 1) 사진 전환만 기존보다 아주 조금 천천히 */
+  .hero-slide{transition:opacity 1.38s ease !important;}
+
+  /* 2) 01의 국제크레인만 파란색 */
+  .hero-slide:first-of-type .hero-line-2{color:#1458b3 !important;}
+
+  /* 3) 02 문구도 01처럼 두 줄이 순서대로 스르륵 */
+  .hero-slide:nth-of-type(2) .slide-copy .slide-line1,
+  .hero-slide:nth-of-type(2) .slide-copy .slide-line2{
+    opacity:0;
+    transform:translateY(22px);
+    animation:none !important;
   }
-  .hero-slide:nth-of-type(2).active .slide-copy .hero-line-2{
-    animation-duration:1.12s!important; animation-delay:.92s!important;
+  .hero-slide:nth-of-type(2).active .slide-copy .slide-line1{
+    animation:kjSafeLineIn 1.05s .28s cubic-bezier(.2,.75,.25,1) both !important;
   }
-  .hero-copy h1{color:#2468b3!important;}
+  .hero-slide:nth-of-type(2).active .slide-copy .slide-line2{
+    animation:kjSafeLineIn 1.05s .92s cubic-bezier(.2,.75,.25,1) both !important;
+  }
 }
 </style>
 </head>
