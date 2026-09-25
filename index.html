@@ -932,6 +932,37 @@ img { height:auto; }
 }
 @media(max-width:390px){#about .mobile-split-copy{padding:29px 22px 18px!important}#about .mobile-split-copy .split-line-1{font-size:18px}#about .mobile-split-copy .split-line-2{font-size:28px}}
 </style>
+
+<style id="mobile-main-split-trust-final-v4">
+@media(max-width:900px){
+  /* Mobile hero only: preserve image ratio, keep copy panel fixed. */
+  #about .hero-slide{
+    background-size:auto 58%!important;
+    background-position:top center!important;
+    background-color:#f5f5f5!important;
+    transition:opacity 1.25s ease!important;
+  }
+  #about .mobile-split-copy{
+    display:flex!important;flex-direction:column!important;
+    padding:30px 26px 20px!important;
+  }
+  #about .mobile-split-copy .split-line-1{
+    animation:kjSplitFixedIn 1.05s .48s cubic-bezier(.22,.61,.36,1) both!important;
+  }
+  #about .mobile-split-copy .split-line-2{
+    color:#1f5fae!important;
+    animation:kjSplitFixedIn 1.05s 1.22s cubic-bezier(.22,.61,.36,1) both!important;
+  }
+  #about .mobile-split-copy .split-meta{
+    margin-top:auto;display:flex;align-items:center;justify-content:space-between;
+    font-size:10.5px;line-height:1;letter-spacing:.16em;color:#8b8b8b;font-weight:600;
+  }
+  #about .mobile-split-copy .split-meta-count{letter-spacing:.08em;color:#777;}
+}
+@media(max-width:390px){
+  #about .mobile-split-copy{padding:27px 22px 18px!important;}
+}
+</style>
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
@@ -957,7 +988,7 @@ img { height:auto; }
 <p class="hero-is">입니다.</p>
 <p class="hero-sub">안전한 작업, 신뢰로 보답합니다.</p>
 </div>
-<div class="mobile-split-copy"><div class="split-line split-line-1">현장에서 증명해온 신뢰</div><div class="split-line split-line-2">국제크레인입니다.</div></div><div class="hero-slide-nav"><button aria-label="1번 대표사진" class="hero-num active" type="button">01</button><button aria-label="2번 대표사진" class="hero-num" type="button">02</button></div></section>
+<div class="mobile-split-copy"><div class="split-line split-line-1">현장에서 증명해온 신뢰</div><div class="split-line split-line-2">국제크레인입니다.</div><div class="split-meta"><span>KUKJE CRANE</span><span class="split-meta-count">01 — 02</span></div></div><div class="hero-slide-nav"><button aria-label="1번 대표사진" class="hero-num active" type="button">01</button><button aria-label="2번 대표사진" class="hero-num" type="button">02</button></div></section>
 <section aria-label="바로가기" class="quick-links"></section>
 <!-- 대표 김선원 메인 티저 -->
 <section class="section rep-teaser" id="representative-teaser">
@@ -1181,7 +1212,7 @@ slider('workSlider','work-slide','workNow');
    cur=(i+slides.length)%slides.length;
    slides.forEach((s,n)=>s.classList.toggle('active',n===cur));
    nums.forEach((b,n)=>b.classList.toggle('active',n===cur));
-   const cp=document.querySelector('.mobile-split-copy'); if(cp){cp.classList.remove('replay'); cp.querySelectorAll('.split-line').forEach(el=>{el.style.animation='none'}); void cp.offsetWidth; cp.querySelectorAll('.split-line').forEach(el=>{el.style.animation=''}); cp.classList.add('replay');}
+   const count=document.querySelector('.split-meta-count'); if(count){count.textContent=String(cur+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0');}
  };
  const start=()=>{
    clearInterval(timer);
