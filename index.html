@@ -665,6 +665,20 @@ img { height:auto; }
     letter-spacing:-0.04em !important;
   }
 }
+</style><style>
+/* slower, calmer hero headline timing */
+.hero-slide.active .hero-stagger-title .hero-line-1{
+  animation:heroLineInSlow 1.05s .20s cubic-bezier(.2,.75,.25,1) forwards !important;
+}
+.hero-slide.active .hero-stagger-title .hero-line-2{
+  animation:heroLineInSlow 1.05s .85s cubic-bezier(.2,.75,.25,1) forwards !important;
+}
+@keyframes heroLineInSlow{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+/* make slide transition itself less abrupt where existing slider uses opacity */
+.hero-slide{transition:opacity 1.05s ease !important;}
 </style></head>
 <body>
 <header><div class="wrap head">
