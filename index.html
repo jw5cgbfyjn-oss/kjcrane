@@ -963,6 +963,23 @@ img { height:auto; }
   #about .mobile-split-copy{padding:27px 22px 18px!important;}
 }
 </style>
+<style id="mobile-main-v8-final">
+@media(max-width:900px){
+#about .hero-slide:first-of-type{background-size:auto 58%!important;background-position:top center!important;background-color:#f5f5f5!important;}
+#about .hero-slide:nth-of-type(2){background-size:cover!important;background-position:center center!important;background-color:#f5f5f5!important;}
+#about .mobile-split-copy{opacity:1!important;visibility:visible!important;transition:opacity .85s ease!important;}
+#about .mobile-split-copy.panel-out{opacity:0!important;}
+#about .mobile-split-copy .split-line-2{color:#1f5fae!important;}
+#about .mobile-split-copy .split-line{animation:none!important;opacity:1!important;transform:none!important;}
+#about .mobile-split-copy.cycle-in .split-line-1{animation:kjV8CopyIn .9s .22s cubic-bezier(.22,.61,.36,1) both!important;}
+#about .mobile-split-copy.cycle-in .split-line-2{animation:kjV8CopyIn .9s .78s cubic-bezier(.22,.61,.36,1) both!important;}
+@keyframes kjV8CopyIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+#about .slide02-message{position:absolute;z-index:7;left:25px;top:calc(58% - 72px);color:#fff;font-size:19px;line-height:1.25;font-weight:700;letter-spacing:-.035em;text-shadow:0 1px 7px rgba(0,0,0,.34);opacity:0;transform:translateY(10px);pointer-events:none;}
+#about .hero-slide:nth-of-type(2).active .slide02-message{animation:kjV8MsgIn .85s .55s cubic-bezier(.22,.61,.36,1) both;}
+@keyframes kjV8MsgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(max-width:390px){#about .slide02-message{left:22px;font-size:18px;}}
+</style>
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
@@ -1204,32 +1221,18 @@ slider('workSlider','work-slide','workNow');
 </div>
 <script>
 (()=>{
- const slides=[...document.querySelectorAll('.hero-slide')];
- const nums=[...document.querySelectorAll('.hero-num')];
- const panel=document.querySelector('.mobile-split-copy');
+ const slides=[...document.querySelectorAll('#about .hero-slide')];
+ const nums=[...document.querySelectorAll('#about .hero-num')];
+ const panel=document.querySelector('#about .mobile-split-copy');
+ const count=document.querySelector('#about .split-meta-count');
  if(slides.length<2)return;
- let cur=0,timer,fadeTimer;
- const clearTimers=()=>{clearTimeout(timer);clearTimeout(fadeTimer);};
- const show=i=>{
-   cur=(i+slides.length)%slides.length;
-   slides.forEach((s,n)=>s.classList.toggle('active',n===cur));
-   nums.forEach((b,n)=>b.classList.toggle('active',n===cur));
-   const count=document.querySelector('.split-meta-count');
-   if(count) count.textContent=String(cur+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0');
-   if(panel){
-     panel.classList.remove('panel-fade-out');
-     if(cur===0){panel.classList.remove('panel-reenter'); void panel.offsetWidth; panel.classList.add('panel-reenter');}
-   }
-   schedule();
- };
- const schedule=()=>{
-   clearTimers();
-   // Each slide stays 5s. Only at the END of 02 does the white panel fade out.
-   if(cur===1 && panel){fadeTimer=setTimeout(()=>panel.classList.add('panel-fade-out'),4100);}
-   timer=setTimeout(()=>show(cur+1),5000);
- };
- nums.forEach((b,i)=>b.addEventListener('click',()=>{clearTimers();show(i);}));
- show(0);
+ if(!slides[1].querySelector('.slide02-message')){const m=document.createElement('div');m.className='slide02-message';m.textContent='다양한 현장 경험으로';slides[1].appendChild(m);}
+ let cur=0,nextTimer=null,fadeTimer=null;
+ const clearTimers=()=>{clearTimeout(nextTimer);clearTimeout(fadeTimer);};
+ const replayPanel=()=>{if(!panel)return;panel.classList.remove('panel-out','cycle-in');void panel.offsetWidth;panel.classList.add('cycle-in');};
+ const schedule=()=>{clearTimers();const dwell=5000;if(cur===1&&panel){fadeTimer=setTimeout(()=>panel.classList.add('panel-out'),dwell-900);}nextTimer=setTimeout(()=>show(cur+1),dwell);};
+ const show=i=>{cur=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===cur));nums.forEach((b,n)=>b.classList.toggle('active',n===cur));if(count)count.textContent=String(cur+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0');if(cur===0)replayPanel();else if(panel){panel.classList.remove('panel-out','cycle-in');}schedule();};
+ nums.forEach((b,i)=>b.addEventListener('click',()=>{clearTimers();show(i);}));show(0);
 })();
 </script>
 <style id="footer-no-quote-fix">
@@ -1264,47 +1267,7 @@ document.addEventListener('DOMContentLoaded', function(){
    })).observe(document.querySelector('.hero-slider'),{subtree:true,attributes:true,attributeFilter:['class']});
  }
 })();
-</script>
-<style id="mobile-main-v7-precise-fix">
-@media(max-width:900px){
-  /* v4 is the base. 01 image remains exactly v4. */
-  #about .hero-slide:first-of-type{background-size:auto 58%!important;background-position:top center!important;}
-  /* Same v4 slide-02 image, only restore the previous full/cropped presentation. */
-  #about .hero-slide:nth-of-type(2){background-size:cover!important;background-position:center center!important;}
-
-  /* White panel stays through 01 -> 02. It fades only during the final 0.9s of 02. */
-  #about .mobile-split-copy{opacity:1!important;transition:opacity .9s ease!important;}
-  #about .mobile-split-copy.panel-fade-out{opacity:0!important;}
-  #about .mobile-split-copy.panel-reenter{animation:kjPanelBack .75s ease both!important;}
-  @keyframes kjPanelBack{from{opacity:0}to{opacity:1}}
-  #about .mobile-split-copy .split-line-1{animation:kjSplitFixedIn .9s .28s cubic-bezier(.22,.61,.36,1) both!important;}
-  #about .mobile-split-copy .split-line-2{color:#1f5fae!important;animation:kjSplitFixedIn .9s .88s cubic-bezier(.22,.61,.36,1) both!important;}
-
-  /* 02-only caption: small, left aligned, on the PHOTO only. */
-  #about .hero-slide .slide02-caption{display:none!important;}
-  #about .hero-slide:nth-of-type(2) .slide02-caption{
-    display:block!important;position:absolute!important;z-index:7!important;
-    left:24px!important;right:24px!important;top:calc(58% - 78px)!important;
-    color:#fff!important;font-size:20px!important;line-height:1.25!important;font-weight:700!important;
-    letter-spacing:-.04em!important;text-shadow:0 2px 10px rgba(0,0,0,.34)!important;
-    opacity:0;transform:translateY(10px);
-  }
-  #about .hero-slide:nth-of-type(2).active .slide02-caption{animation:kj02CaptionIn .85s .55s ease both!important;}
-  @keyframes kj02CaptionIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
- const s2=document.querySelector('#about .hero-slide:nth-of-type(2)');
- if(s2 && !s2.querySelector('.slide02-caption')){
-   const cap=document.createElement('div');
-   cap.className='slide02-caption';
-   cap.textContent='다양한 현장 경험으로';
-   s2.appendChild(cap);
- }
-});
-</script>
-</body></html><style id="mobile-lower-fixed-layout">
+</script></body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
   .location-preview{padding-bottom:18px !important;}
