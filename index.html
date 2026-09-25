@@ -679,6 +679,17 @@ img { height:auto; }
 }
 /* make slide transition itself less abrupt where existing slider uses opacity */
 .hero-slide{transition:opacity 1.05s ease !important;}
+</style><style>
+/* slightly slower than previous version */
+.hero-slide.active .hero-stagger-title .hero-line-1{
+  animation-duration:1.22s !important;
+  animation-delay:.22s !important;
+}
+.hero-slide.active .hero-stagger-title .hero-line-2{
+  animation-duration:1.22s !important;
+  animation-delay:1.00s !important;
+}
+.hero-slide{transition:opacity 1.22s ease !important;}
 </style></head>
 <body>
 <header><div class="wrap head">
