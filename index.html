@@ -689,7 +689,7 @@ img { height:auto; }
   animation-duration:1.22s !important;
   animation-delay:1.00s !important;
 }
-.hero-slide{transition:opacity 1.22s ease !important;}
+.hero-slide{transition:opacity 1.38s ease !important;}
 </style>
 <style id="desktop-one-screen-final">
 .desktop-home{display:none}
@@ -836,6 +836,18 @@ img { height:auto; }
   .hero-slide:first-of-type.active .slide-copy .hero-line-2{
     animation-duration:1.22s!important; animation-delay:1.02s!important;
   }
+}
+</style>
+
+<style id="hero-slide02-smooth-only">
+@media(max-width:900px){
+  .hero-slide:nth-of-type(2).active .slide-copy .hero-line-1{
+    animation-duration:1.12s!important; animation-delay:.28s!important;
+  }
+  .hero-slide:nth-of-type(2).active .slide-copy .hero-line-2{
+    animation-duration:1.12s!important; animation-delay:.92s!important;
+  }
+  .hero-copy h1{color:#2468b3!important;}
 }
 </style>
 </head>
