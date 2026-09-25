@@ -963,6 +963,43 @@ img { height:auto; }
   #about .mobile-split-copy{padding:27px 22px 18px!important;}
 }
 </style>
+
+<style id="mobile-main-slide-behavior-v5">
+@media(max-width:900px){
+  /* 01: split layout. 02: full photo. Only these mobile hero states change. */
+  #about .mobile-split-copy{
+    opacity:1!important;visibility:visible!important;
+    transition:opacity .75s ease,visibility 0s linear 0s!important;
+  }
+  #about:has(.hero-slide:nth-of-type(2).active) .mobile-split-copy{
+    opacity:0!important;visibility:hidden!important;
+    transition:opacity .65s ease,visibility 0s linear .65s!important;
+  }
+  #about .hero-slide:first-of-type{
+    background-size:auto 58%!important;background-position:top center!important;background-color:#f5f5f5!important;
+  }
+  #about .hero-slide:nth-of-type(2){
+    background-size:cover!important;background-position:center center!important;background-color:#111!important;
+  }
+  #about:has(.hero-slide:nth-of-type(2).active) .hero-slide::before{opacity:0!important;}
+  #about:has(.hero-slide:nth-of-type(2).active) .hero-slide::after{height:100%!important;background:linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.28))!important;}
+  #about .mobile-slide02-copy{
+    position:absolute;z-index:7;left:26px;right:26px;top:50%;transform:translateY(-42%);
+    color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.28);opacity:0;visibility:hidden;pointer-events:none;
+    font-size:20px;line-height:1.3;font-weight:600;letter-spacing:-.04em;
+  }
+  #about .mobile-slide02-copy strong{display:block;margin-top:8px;font-size:31px;line-height:1.15;font-weight:850;}
+  #about:has(.hero-slide:nth-of-type(2).active) .mobile-slide02-copy{
+    visibility:visible;animation:kjSlide02CopyIn 1.05s .45s cubic-bezier(.22,.61,.36,1) both;
+  }
+  @keyframes kjSlide02CopyIn{from{opacity:0;transform:translateY(calc(-42% + 14px))}to{opacity:1;transform:translateY(-42%)}}
+  #about:has(.hero-slide:nth-of-type(2).active) .hero-slide-nav{bottom:20px!important;}
+}
+@media(max-width:390px){
+  #about .mobile-slide02-copy{left:22px;right:22px;font-size:18px;}
+  #about .mobile-slide02-copy strong{font-size:28px;}
+}
+</style>
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
@@ -988,7 +1025,7 @@ img { height:auto; }
 <p class="hero-is">입니다.</p>
 <p class="hero-sub">안전한 작업, 신뢰로 보답합니다.</p>
 </div>
-<div class="mobile-split-copy"><div class="split-line split-line-1">현장에서 증명해온 신뢰</div><div class="split-line split-line-2">국제크레인입니다.</div><div class="split-meta"><span>KUKJE CRANE</span><span class="split-meta-count">01 — 02</span></div></div><div class="hero-slide-nav"><button aria-label="1번 대표사진" class="hero-num active" type="button">01</button><button aria-label="2번 대표사진" class="hero-num" type="button">02</button></div></section>
+<div class="mobile-split-copy"><div class="split-line split-line-1">현장에서 증명해온 신뢰</div><div class="split-line split-line-2">국제크레인</div><div class="split-meta"><span>KUKJE CRANE</span><span class="split-meta-count">01 — 02</span></div></div><div class="mobile-slide02-copy"><div>다양한 현장 경험으로</div><strong>안전하고 정확하게.</strong></div><div class="hero-slide-nav"><button aria-label="1번 대표사진" class="hero-num active" type="button">01</button><button aria-label="2번 대표사진" class="hero-num" type="button">02</button></div></section>
 <section aria-label="바로가기" class="quick-links"></section>
 <!-- 대표 김선원 메인 티저 -->
 <section class="section rep-teaser" id="representative-teaser">
@@ -1216,7 +1253,7 @@ slider('workSlider','work-slide','workNow');
  };
  const start=()=>{
    clearInterval(timer);
-   timer=setInterval(()=>show(cur+1),7000);
+   timer=setInterval(()=>show(cur+1),5000);
  };
  nums.forEach((b,i)=>b.addEventListener('click',()=>{show(i);start();}));
  show(0);start();
