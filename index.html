@@ -962,23 +962,10 @@ img { height:auto; }
 @media(max-width:390px){
   #about .mobile-split-copy{padding:27px 22px 18px!important;}
 }
-</style>
-<style id="mobile-main-v8-final">
 @media(max-width:900px){
-#about .hero-slide:first-of-type{background-size:auto 58%!important;background-position:top center!important;background-color:#f5f5f5!important;}
-#about .hero-slide:nth-of-type(2){background-size:cover!important;background-position:center center!important;background-color:#f5f5f5!important;}
-#about .mobile-split-copy{opacity:1!important;visibility:visible!important;transition:opacity .85s ease!important;}
-#about .mobile-split-copy.panel-out{opacity:0!important;}
-#about .mobile-split-copy .split-line-2{color:#1f5fae!important;}
-#about .mobile-split-copy .split-line{animation:none!important;opacity:1!important;transform:none!important;}
-#about .mobile-split-copy.cycle-in .split-line-1{animation:kjV8CopyIn .9s .22s cubic-bezier(.22,.61,.36,1) both!important;}
-#about .mobile-split-copy.cycle-in .split-line-2{animation:kjV8CopyIn .9s .78s cubic-bezier(.22,.61,.36,1) both!important;}
-@keyframes kjV8CopyIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-#about .slide02-message{position:absolute;z-index:7;left:25px;top:calc(58% - 72px);color:#fff;font-size:19px;line-height:1.25;font-weight:700;letter-spacing:-.035em;text-shadow:0 1px 7px rgba(0,0,0,.34);opacity:0;transform:translateY(10px);pointer-events:none;}
-#about .hero-slide:nth-of-type(2).active .slide02-message{animation:kjV8MsgIn .85s .55s cubic-bezier(.22,.61,.36,1) both;}
-@keyframes kjV8MsgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  #about .mobile-split-copy{opacity:1;transition:opacity .9s ease!important;}
+  #about .mobile-split-copy.kj-panel-fade-out{opacity:0!important;}
 }
-@media(max-width:390px){#about .slide02-message{left:22px;font-size:18px;}}
 </style>
 </head>
 <body>
@@ -1221,18 +1208,30 @@ slider('workSlider','work-slide','workNow');
 </div>
 <script>
 (()=>{
- const slides=[...document.querySelectorAll('#about .hero-slide')];
- const nums=[...document.querySelectorAll('#about .hero-num')];
- const panel=document.querySelector('#about .mobile-split-copy');
- const count=document.querySelector('#about .split-meta-count');
+ const slides=[...document.querySelectorAll('.hero-slide')];
+ const nums=[...document.querySelectorAll('.hero-num')];
+ const panel=document.querySelector('.mobile-split-copy');
  if(slides.length<2)return;
- if(!slides[1].querySelector('.slide02-message')){const m=document.createElement('div');m.className='slide02-message';m.textContent='다양한 현장 경험으로';slides[1].appendChild(m);}
- let cur=0,nextTimer=null,fadeTimer=null;
- const clearTimers=()=>{clearTimeout(nextTimer);clearTimeout(fadeTimer);};
- const replayPanel=()=>{if(!panel)return;panel.classList.remove('panel-out','cycle-in');void panel.offsetWidth;panel.classList.add('cycle-in');};
- const schedule=()=>{clearTimers();const dwell=5000;if(cur===1&&panel){fadeTimer=setTimeout(()=>panel.classList.add('panel-out'),dwell-900);}nextTimer=setTimeout(()=>show(cur+1),dwell);};
- const show=i=>{cur=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===cur));nums.forEach((b,n)=>b.classList.toggle('active',n===cur));if(count)count.textContent=String(cur+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0');if(cur===0)replayPanel();else if(panel){panel.classList.remove('panel-out','cycle-in');}schedule();};
- nums.forEach((b,i)=>b.addEventListener('click',()=>{clearTimers();show(i);}));show(0);
+ let cur=0,timer,fadeTimer;
+ const schedulePanelFade=()=>{
+   clearTimeout(fadeTimer);
+   if(!panel)return;
+   panel.classList.remove('kj-panel-fade-out');
+   if(cur===1){fadeTimer=setTimeout(()=>panel.classList.add('kj-panel-fade-out'),6100);}
+ };
+ const show=i=>{
+   cur=(i+slides.length)%slides.length;
+   slides.forEach((s,n)=>s.classList.toggle('active',n===cur));
+   nums.forEach((b,n)=>b.classList.toggle('active',n===cur));
+   const count=document.querySelector('.split-meta-count'); if(count){count.textContent=String(cur+1).padStart(2,'0')+' — '+String(slides.length).padStart(2,'0');}
+   schedulePanelFade();
+ };
+ const start=()=>{
+   clearInterval(timer);
+   timer=setInterval(()=>show(cur+1),7000);
+ };
+ nums.forEach((b,i)=>b.addEventListener('click',()=>{show(i);start();}));
+ show(0);start();
 })();
 </script>
 <style id="footer-no-quote-fix">
