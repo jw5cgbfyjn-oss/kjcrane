@@ -760,6 +760,34 @@ img { height:auto; }
 }
 </style>
 
+
+<style id="mobile-slide-transition-snap-fix">
+@media(max-width:900px){
+  .hero-slide,.slide{
+    transform:none!important;
+    animation:none!important;
+    transition:opacity 1.05s ease!important;
+  }
+  .hero-slide.active,.slide.active{
+    transform:none!important;
+  }
+  .hero-slide .hero-copy,.hero-slide .hero-text,.hero-slide .hero-content,
+  .slide .hero-copy,.slide .hero-text,.slide .hero-content{
+    transform:none!important;
+    transition:opacity .72s ease!important;
+    animation:none!important;
+  }
+  .hero-slide:not(.active) .hero-copy,.hero-slide:not(.active) .hero-text,.hero-slide:not(.active) .hero-content,
+  .slide:not(.active) .hero-copy,.slide:not(.active) .hero-text,.slide:not(.active) .hero-content{
+    opacity:0!important;
+  }
+  .hero-slide.active .hero-copy,.hero-slide.active .hero-text,.hero-slide.active .hero-content,
+  .slide.active .hero-copy,.slide.active .hero-text,.slide.active .hero-content{
+    opacity:1!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
