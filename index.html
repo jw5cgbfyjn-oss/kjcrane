@@ -796,6 +796,120 @@ img { height:auto; }
  .d-brand img{width:198px!important;left:-12px!important;top:-52px!important}
 }
 </style>
+
+<style id="mobile-final-redo-20260925">
+@media(max-width:900px){
+  html,body{height:100%;background:#fff!important}
+  .desktop-home{
+    height:100svh!important;min-height:100svh!important;
+    padding-bottom:calc(64px + env(safe-area-inset-bottom))!important;
+    overflow:hidden!important;
+  }
+
+  /* Header: show the complete original logo — no clipping/cropping */
+  .d-head{
+    padding:8px 14px 7px!important;
+    border-bottom:1px solid #eee!important;
+  }
+  .d-brand{
+    position:relative!important;overflow:visible!important;
+    width:150px!important;height:72px!important;flex:0 0 150px!important;
+    margin:0 0 3px!important;
+    display:flex!important;align-items:center!important;justify-content:flex-start!important;
+  }
+  .d-brand img{
+    content:url("logo-original.jpeg")!important;
+    position:static!important;
+    width:150px!important;height:72px!important;
+    max-width:150px!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    display:block!important;
+  }
+  .d-nav{
+    padding-top:5px!important;border-top:1px solid #f2f2f2!important;
+  }
+  .d-nav a{
+    font-size:11.5px!important;padding:5px 1px!important;
+  }
+
+  /* Make the mobile flow: title > description > crane > horizontal points */
+  .d-main{
+    flex:1!important;
+    display:flex!important;flex-direction:column!important;
+    padding:13px 18px 7px!important;
+    overflow:hidden!important;
+  }
+  .d-copy{display:contents!important}
+  .d-kicker{order:1!important;font-size:8.5px!important;letter-spacing:.30em!important;margin:0 0 7px!important}
+  .d-title{
+    order:2!important;
+    font-size:clamp(27px,7.7vw,34px)!important;
+    line-height:1.04!important;letter-spacing:-.06em!important;
+    margin:0!important;
+  }
+  .d-desc{
+    order:3!important;
+    font-size:12px!important;line-height:1.5!important;
+    margin:9px 0 0!important;max-width:none!important;
+  }
+  .d-crane{
+    order:4!important;
+    flex:1 1 auto!important;
+    min-height:120px!important;
+    max-height:235px!important;
+    margin:5px -2px 2px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+  }
+  .d-crane img{
+    width:100%!important;height:100%!important;
+    object-fit:contain!important;object-position:center!important;
+  }
+
+  /* PC-style single horizontal row; all boxes removed */
+  .d-points{
+    order:5!important;
+    display:flex!important;
+    width:100%!important;max-width:none!important;
+    margin:3px 0 4px!important;
+    border:0!important;
+    align-items:center!important;justify-content:space-between!important;
+  }
+  .d-point{
+    flex:1 1 25%!important;
+    min-height:0!important;
+    padding:0 5px!important;
+    border:0!important;
+    border-right:1px solid #e3e3e3!important;
+    font-size:9.5px!important;line-height:1.25!important;
+    font-weight:750!important;white-space:normal!important;
+    text-align:center!important;
+    display:block!important;
+  }
+  .d-point:first-child{padding-left:0!important}
+  .d-point:last-child{border-right:0!important;padding-right:0!important}
+
+  .d-actions{
+    height:calc(60px + env(safe-area-inset-bottom))!important;
+  }
+  .d-actions a{height:60px!important;font-size:15px!important}
+
+  /* Entrance order: title -> description -> crane -> points */
+  .d-title{animation:mReveal .72s .10s cubic-bezier(.22,.61,.36,1) forwards!important}
+  .d-desc{animation:mReveal .68s .62s cubic-bezier(.22,.61,.36,1) forwards!important}
+  .d-crane{animation:mReveal 1.05s 1.05s cubic-bezier(.22,.61,.36,1) forwards!important}
+  .d-points{animation:mReveal .65s 1.85s cubic-bezier(.22,.61,.36,1) forwards!important}
+  .d-actions{animation:mReveal .55s 2.15s cubic-bezier(.22,.61,.36,1) forwards!important}
+}
+@media(max-width:380px){
+  .d-brand,.d-brand img{width:140px!important;max-width:140px!important}
+  .d-brand{height:67px!important;flex-basis:140px!important}
+  .d-brand img{height:67px!important}
+  .d-title{font-size:26px!important}
+  .d-point{font-size:8.8px!important;padding:0 3px!important}
+}
+</style>
+
 </head>
 <body>
 <style id="mobile-magazine-final-20260925">
