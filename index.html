@@ -726,6 +726,40 @@ img { height:auto; }
 }
 @media (prefers-reduced-motion:reduce) and (min-width:901px){.d-title,.d-desc,.d-points,.d-actions,.d-crane{animation:none!important;opacity:1!important;transform:none!important}}
 </style>
+
+<style id="mobile-detail-effects-only">
+@media (max-width:900px){
+  /* Slight readability finish without changing the photograph/layout */
+  .hero-slide::after,.slide::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(0,0,0,0) 38%,rgba(0,0,0,.08) 62%,rgba(0,0,0,.22) 100%);
+    z-index:1;
+  }
+  .hero-copy,.hero-text,.hero-content{z-index:2!important}
+
+  /* Existing two-line headline: gentle staggered entrance */
+  .hero-line{opacity:0;transform:translateY(12px);animation:kjLineIn 1.05s cubic-bezier(.22,.61,.36,1) forwards}
+  .hero-line-1{animation-delay:.22s}
+  .hero-line-2{animation-delay:.92s}
+  @keyframes kjLineIn{to{opacity:1;transform:translateY(0)}}
+
+  /* Existing pagination: subtle finish only */
+  .hero-pagination,.slider-pagination,.slide-indicator{position:relative;z-index:3!important}
+  .hero-pagination::after,.slider-pagination::after,.slide-indicator::after{
+    transform-origin:left center;animation:kjUnderline 1.05s 1.55s cubic-bezier(.22,.61,.36,1) both;
+  }
+  @keyframes kjUnderline{from{transform:scaleX(.15);opacity:.45}to{transform:scaleX(1);opacity:1}}
+
+  /* Existing contact links: tactile press feedback */
+  .bottom-contact a,.contact-fixed a,.fixed-contact a{transition:transform .14s ease,filter .14s ease}
+  .bottom-contact a:active,.contact-fixed a:active,.fixed-contact a:active{transform:scale(.985);filter:brightness(.96)}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-line{opacity:1!important;transform:none!important;animation:none!important}
+  .hero-pagination::after,.slider-pagination::after,.slide-indicator::after{animation:none!important}
+}
+</style>
+
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
