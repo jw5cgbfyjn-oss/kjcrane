@@ -1481,6 +1481,118 @@ img { height:auto; }
  #about .kj-crane-color{animation:none!important;opacity:0!important;transform:none!important;}
 }
 </style>
+
+<style id="rep-text-watermark-final-20260930">
+/* 대표 소개: 이미지 반복 제거 + 텍스트 중심 구성 */
+#representative-teaser{
+  position:relative!important;
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  padding:82px 0 88px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  border-top:0!important;
+}
+#representative-teaser .rep-art{display:none!important;background:none!important;}
+#representative-teaser::after{
+  content:"KJ\A CRANE"!important;
+  white-space:pre!important;
+  display:block!important;
+  position:absolute!important;
+  right:5.5%!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:0!important;
+  background:none!important;
+  color:#eef0f1!important;
+  font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif!important;
+  font-size:clamp(72px,9.5vw,150px)!important;
+  line-height:.78!important;
+  font-weight:850!important;
+  letter-spacing:-.075em!important;
+  text-align:right!important;
+  pointer-events:none!important;
+}
+#representative-teaser::before{display:none!important;content:none!important;}
+#representative-teaser .rep-copy{
+  position:relative!important;
+  left:auto!important;top:auto!important;transform:none!important;
+  width:min(1120px,calc(100% - 48px))!important;
+  margin:0 auto!important;
+  z-index:2!important;
+}
+#representative-teaser .rep-copy .kicker{font-size:11px!important;letter-spacing:.24em!important;color:#777!important;margin-bottom:9px!important;}
+#representative-teaser .rep-copy h2{font-size:clamp(27px,2.5vw,38px)!important;line-height:1.2!important;letter-spacing:-.045em!important;margin:0!important;color:#171717!important;white-space:normal!important;}
+#representative-teaser .rep-redline{width:70px!important;height:4px!important;margin:26px 0 24px!important;background:#c9232b!important;}
+#representative-teaser .rep-copy p{font-size:18px!important;line-height:1.75!important;color:#686d72!important;margin:0 0 28px!important;}
+#representative-teaser .rep-button{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  width:auto!important;height:auto!important;min-width:0!important;
+  padding:10px 14px!important;border:1px solid #222!important;background:#fff!important;
+  font-size:12px!important;line-height:1!important;font-weight:700!important;color:#222!important;
+}
+#representative-teaser .rep-button span{font-size:16px!important;line-height:.8!important;}
+#representative-teaser .rep-exact-link{display:none!important;}
+@media(max-width:700px){
+  #representative-teaser{padding:58px 0 62px!important;}
+  #representative-teaser::after{right:-2%!important;top:52%!important;font-size:20vw!important;color:#f2f3f4!important;line-height:.8!important;}
+  #representative-teaser .rep-copy{width:calc(100% - 40px)!important;margin:0 20px!important;}
+  #representative-teaser .rep-copy .kicker{font-size:8px!important;letter-spacing:.22em!important;margin-bottom:7px!important;}
+  #representative-teaser .rep-copy h2{font-size:21px!important;white-space:nowrap!important;}
+  #representative-teaser .rep-redline{width:36px!important;height:3px!important;margin:16px 0 15px!important;}
+  #representative-teaser .rep-copy p{font-size:13px!important;line-height:1.7!important;margin-bottom:20px!important;}
+  #representative-teaser .rep-button{padding:8px 11px!important;font-size:10.5px!important;gap:6px!important;}
+  #representative-teaser .rep-button span{font-size:14px!important;}
+}
+</style>
+
+<style id="final-fix-20260930-2116">
+/* FINAL mobile representative + hero kicker corrections */
+#about .kj-hero-kicker{
+  display:flex!important;visibility:visible!important;
+  color:#9f2f2b!important;z-index:30!important;
+  animation:kjKickerRestore 12.5s ease-in-out infinite both!important;
+}
+#about .kj-kicker-line{
+  display:block!important;background:#9f2f2b!important;
+  animation:kjKickerLineRestore 12.5s ease-in-out infinite both!important;
+}
+@keyframes kjKickerRestore{
+  0%{opacity:0;transform:translate3d(-10px,0,0)}
+  4%{opacity:1;transform:translate3d(0,0,0)}
+  13%{opacity:1;transform:translate3d(0,0,0)}
+  18%,100%{opacity:0;transform:translate3d(0,0,0)}
+}
+@keyframes kjKickerLineRestore{
+  0%{opacity:0;transform:scaleX(0)}
+  4%{opacity:1;transform:scaleX(1)}
+  13%{opacity:1;transform:scaleX(1)}
+  18%,100%{opacity:0;transform:scaleX(0)}
+}
+#representative-teaser .rep-button{
+  padding:7px 10px!important;font-size:11px!important;gap:5px!important;
+  min-width:0!important;min-height:0!important;width:max-content!important;height:auto!important;
+  border:1px solid #222!important;
+}
+#representative-teaser .rep-button span{font-size:14px!important;}
+@media(max-width:700px){
+  #representative-teaser{padding:52px 0 58px!important;overflow:hidden!important;}
+  #representative-teaser::after{
+    content:"KJ\A CRANE"!important;white-space:pre!important;
+    left:48%!important;right:auto!important;top:50%!important;
+    transform:translateY(-50%)!important;
+    width:52%!important;box-sizing:border-box!important;
+    font-size:17vw!important;line-height:.78!important;letter-spacing:-.055em!important;
+    text-align:left!important;color:#f1f2f3!important;overflow:visible!important;
+  }
+  #representative-teaser .rep-button{
+    padding:7px 9px!important;font-size:10px!important;gap:5px!important;
+    width:max-content!important;height:auto!important;min-width:0!important;min-height:0!important;
+  }
+  #representative-teaser .rep-button span{font-size:13px!important;}
+}
+</style>
 </head>
 <body>
 <div aria-label="국제크레인 PC 메인" class="desktop-home">
