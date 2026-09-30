@@ -2116,6 +2116,30 @@ document.addEventListener('DOMContentLoaded', function(){
 <script id="mobile-drawer-nav-js-20260930">
 (()=>{const overlay=document.getElementById('mobileDrawer'),openBtn=document.querySelector('.mobile-menu-btn'),closeBtn=overlay?.querySelector('.mobile-drawer-close');if(!overlay||!openBtn)return;const open=()=>{overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');openBtn.setAttribute('aria-expanded','true');document.body.classList.add('drawer-open')};const close=()=>{overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');openBtn.setAttribute('aria-expanded','false');document.body.classList.remove('drawer-open')};openBtn.addEventListener('click',open);closeBtn?.addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close()});overlay.querySelectorAll('.mobile-drawer-group>button.mobile-drawer-main').forEach(btn=>btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open')));overlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(!a.target)close()}));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})})();
 </script>
+
+<style id="mobile-drawer-vertical-arrow-final-20260930">
+@media(max-width:700px){
+  .mobile-drawer-main{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    gap:5px!important;
+    padding:14px 24px!important;
+    min-height:70px!important;
+  }
+  .mobile-drawer-chevron{
+    display:block!important;
+    margin:0!important;
+    font-size:20px!important;
+    line-height:1!important;
+    color:#999!important;
+    transform:none!important;
+  }
+  .mobile-drawer-group.open .mobile-drawer-chevron{transform:rotate(180deg)!important;}
+  a.mobile-drawer-main{flex-direction:row!important;align-items:center!important;justify-content:space-between!important;}
+}
+</style>
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
