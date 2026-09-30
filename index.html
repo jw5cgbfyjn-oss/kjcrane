@@ -1422,6 +1422,31 @@ img { height:auto; }
  #representative-teaser .rep-button{font-size:10px!important;padding:6px 9px!important;gap:6px!important;border-width:1px!important;}
 }
 </style>
+
+<style id="mobile-hero-rep-clean-final-20260930">
+@media(max-width:700px){
+  /* 메인 01: 중복 오버레이는 숨기고 원본 한 장만 옆에서 등장 */
+  #about .d-crane, #about .hero-crane, #about .crane-layer, #about .hero-visual,
+  #about .hero-slide:first-child > img, #about .hero-slide:first-child::before{display:none!important;}
+  #about .hero-slide:first-child{
+    animation:hero01MobileSingleIn 1.15s cubic-bezier(.22,.61,.36,1) both!important;
+    background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important;background-color:#fff!important;
+  }
+  @keyframes hero01MobileSingleIn{from{transform:translateX(14%);opacity:0}to{transform:translateX(0);opacity:1}}
+  #about .hero-slide-nav,.hero-pagination,.slider-pagination,.slide-indicator{display:none!important;}
+
+  /* 대표소개: 지정 컬러 원본 유지 + 텍스트와 붐 분리 */
+  #representative-teaser{aspect-ratio:16/8.2!important;min-height:0!important;height:auto!important;}
+  #representative-teaser .rep-art{background-size:cover!important;background-position:64% center!important;filter:none!important;-webkit-filter:none!important;opacity:1!important;}
+  #representative-teaser::after{display:block!important;content:""!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none!important;background:linear-gradient(90deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.96) 30%,rgba(255,255,255,.70) 42%,rgba(255,255,255,0) 58%)!important;}
+  #representative-teaser .rep-copy{left:4%!important;top:50%!important;width:39%!important;transform:translateY(-50%)!important;z-index:3!important;}
+  #representative-teaser .rep-copy .kicker{font-size:8px!important;letter-spacing:.22em!important;margin-bottom:4px!important;}
+  #representative-teaser .rep-copy h2{font-size:15px!important;line-height:1.18!important;white-space:nowrap!important;}
+  #representative-teaser .rep-redline{width:24px!important;height:2px!important;margin:7px 0 8px!important;}
+  #representative-teaser .rep-copy p{font-size:10px!important;line-height:1.45!important;margin:0 0 9px!important;}
+  #representative-teaser .rep-button{font-size:9.5px!important;padding:6px 9px!important;gap:5px!important;border:1px solid #111!important;background:rgba(255,255,255,.92)!important;}
+}
+</style>
 </head>
 <body>
 <div class="desktop-home" aria-label="국제크레인 PC 메인">
