@@ -1942,17 +1942,11 @@ img { height:auto; }
 }
 </style>
 
-<style id="mono-crane-smooth-fix-20261001">
-/* 흑백 크레인: 움직임 없이 고정, 페이드만 사용 */
-#about .kj-crane-mono,
-#about .hero-slide.kj-crane-mono,
+<style id="mono-crane-transform-only-fix-20261001">
+/* 흑백 크레인 표시/페이드 로직은 그대로 두고, 끊김을 만드는 이동·확대만 제거 */
 #about .kj-crane-frame.kj-crane-mono{
   transform:none !important;
-  scale:1 !important;
-  animation:none !important;
-  will-change:opacity !important;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
+  -webkit-transform:none !important;
 }
 </style>
 
