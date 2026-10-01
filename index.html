@@ -2527,14 +2527,12 @@ document.addEventListener('DOMContentLoaded', function(){
   #kj-mobile-entrance .kj-intro-quick svg{width:19px;height:19px;fill:none;stroke:#c90012;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   #kj-mobile-entrance .kj-intro-enter{border:0;background:#c90012;color:#fff}
   #kj-mobile-entrance .kj-intro-enter span{font-size:20px;font-weight:300;transform:translateY(-1px)}
-  #kj-mobile-entrance .kj-door{position:absolute;top:0;bottom:0;width:50.2%;background:#fff;z-index:0;transition:transform .72s cubic-bezier(.76,0,.24,1);will-change:transform}
-  #kj-mobile-entrance .kj-door-left{left:0}
-  #kj-mobile-entrance .kj-door-right{right:0}
-  #kj-mobile-entrance .kj-intro-inner{position:relative;z-index:1;transition:opacity .22s ease,transform .22s ease}
-  #kj-mobile-entrance.kj-leave{opacity:1;visibility:visible;background:transparent;pointer-events:none}
-  #kj-mobile-entrance.kj-leave .kj-intro-inner{opacity:0;transform:scale(.985)}
-  #kj-mobile-entrance.kj-leave .kj-door-left{transform:translateX(-101%)}
-  #kj-mobile-entrance.kj-leave .kj-door-right{transform:translateX(101%)}
+  /* 한 장의 흰 인트로가 왼쪽으로 스르륵 밀려나는 전환 */
+  #kj-mobile-entrance{transition:transform .78s cubic-bezier(.76,0,.24,1)!important;will-change:transform}
+  #kj-mobile-entrance .kj-door{display:none!important}
+  #kj-mobile-entrance .kj-intro-inner{position:relative;z-index:1;transition:none!important}
+  #kj-mobile-entrance.kj-leave{opacity:1!important;visibility:visible!important;pointer-events:none;transform:translateX(-101%)}
+  #kj-mobile-entrance.kj-leave .kj-intro-inner{opacity:1!important;transform:none!important}
   #kj-mobile-entrance .kj-intro-features{display:grid;grid-template-columns:repeat(3,1fr);margin-top:55px}
   #kj-mobile-entrance .kj-intro-feature{text-align:center;padding:0 8px;font-size:12px;font-weight:600;letter-spacing:-.035em;position:relative}
   #kj-mobile-entrance .kj-intro-feature+ .kj-intro-feature:before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:1px;background:#e6e6e6}
@@ -2573,7 +2571,7 @@ document.addEventListener('DOMContentLoaded', function(){
   btn.addEventListener('click',function(){
     cover.classList.add('kj-leave');
     document.body.classList.remove('kj-intro-open');
-    window.setTimeout(function(){cover.style.display='none';},760);
+    window.setTimeout(function(){cover.style.display='none';},820);
   });
 })();
 </script>
