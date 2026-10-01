@@ -2343,6 +2343,23 @@ document.addEventListener('DOMContentLoaded', function(){
  #work .work-preview-card:first-child .caption strong{font-size:17px!important;}
 }
 </style>
+
+<style id="work-preview-mobile-visible-fix-20261001">
+/* 작업현장 카드가 스크롤 애니메이션 상태(opacity:0)에 남는 문제 방지 */
+#work .work-preview-card{opacity:1!important;transform:none!important;visibility:visible!important;display:block!important;}
+@media(max-width:700px){
+ #work .work-preview-grid{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:7px!important;}
+ #work .work-preview-card:first-child{grid-column:1 / -1!important;width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:16/10!important;}
+ #work .work-preview-card:nth-child(2),#work .work-preview-card:nth-child(3){width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:1/1!important;}
+ #work .work-preview-card .thumb{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;}
+ #work .work-preview-card .thumb img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;}
+}
+</style>
+
+<style id="work-preview-heading-visible-fix-20261001">
+/* 모바일에서 작업현장 제목/더보기 헤더가 스크롤 애니메이션에 가려지지 않도록 고정 */
+#work .work-preview-head{opacity:1!important;transform:none!important;visibility:visible!important;}
+</style>
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
