@@ -2320,6 +2320,29 @@ document.addEventListener('DOMContentLoaded', function(){
 #representative-teaser .rep-button{margin-top:0!important;}
 @media(max-width:700px){#representative-teaser .rep-redline{margin-bottom:8px!important;}}
 </style>
+
+<style id="work-preview-magazine-20261001">
+/* 메인 작업현장: 대표 1 + 보조 2 매거진형 */
+#work .work-preview-grid{display:grid!important;grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr)!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin-top:24px!important;}
+#work .work-preview-card{position:relative!important;min-width:0!important;aspect-ratio:auto!important;border:0!important;border-radius:0!important;background:#f3f3f3!important;box-shadow:none!important;overflow:hidden!important;}
+#work .work-preview-card:first-child{grid-row:1 / 3!important;min-height:470px!important;}
+#work .work-preview-card:nth-child(2),#work .work-preview-card:nth-child(3){min-height:229px!important;}
+#work .work-preview-card .thumb{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;background:#eee!important;}
+#work .work-preview-card .thumb img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;transition:transform .55s ease!important;}
+#work .work-preview-card .caption{position:absolute!important;z-index:2!important;left:0!important;right:0!important;bottom:0!important;padding:54px 20px 18px!important;background:linear-gradient(0deg,rgba(0,0,0,.66) 0%,rgba(0,0,0,.30) 55%,rgba(0,0,0,0) 100%)!important;color:#fff!important;}
+#work .work-preview-card .caption strong{display:block!important;margin:0!important;font-size:18px!important;line-height:1.3!important;letter-spacing:-.035em!important;color:#fff!important;}
+#work .work-preview-card:first-child .caption strong{font-size:23px!important;}
+#work .work-preview-card .caption p{display:none!important;}
+@media(hover:hover){#work .work-preview-card:hover{box-shadow:none!important}#work .work-preview-card:hover .thumb img{transform:scale(1.025)!important;}}
+@media(max-width:700px){
+ #work .work-preview-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:7px!important;margin-top:18px!important;}
+ #work .work-preview-card:first-child{grid-column:1 / 3!important;grid-row:auto!important;min-height:0!important;aspect-ratio:16/10!important;}
+ #work .work-preview-card:nth-child(2),#work .work-preview-card:nth-child(3){min-height:0!important;aspect-ratio:1/1!important;}
+ #work .work-preview-card .caption{padding:38px 12px 11px!important;}
+ #work .work-preview-card .caption strong{font-size:12px!important;line-height:1.28!important;}
+ #work .work-preview-card:first-child .caption strong{font-size:17px!important;}
+}
+</style>
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
