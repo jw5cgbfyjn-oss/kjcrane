@@ -1827,6 +1827,40 @@ img { height:auto; }
 @keyframes kjLineNoGap{0%{transform:scaleX(0)}5%,44%{transform:scaleX(1)}50%,100%{transform:scaleX(0)}}
 @keyframes kjBrandNoGap{0%,48%{opacity:0}54%{opacity:1}94%{opacity:1}100%{opacity:0}}
 </style>
+
+<style id="rep-spacing-final-20261001">
+/* Representative teaser: tighter spacing after content simplification */
+#representative-teaser{
+  padding:42px 0 46px!important;
+  min-height:0!important;
+}
+#representative-teaser .rep-copy{
+  position:relative!important;
+  left:auto!important;top:auto!important;transform:none!important;
+  width:min(1120px,calc(100% - 48px))!important;
+  margin:0 auto!important;padding:0!important;
+}
+#representative-teaser .rep-copy h2{
+  margin:0!important;
+}
+#representative-teaser .rep-redline{
+  width:42px!important;height:3px!important;
+  margin:14px 0 10px!important;
+}
+#representative-teaser .rep-button{
+  margin-top:0!important;
+  padding:8px 11px!important;
+  min-height:0!important;
+  font-size:11px!important;
+}
+@media(max-width:700px){
+  #representative-teaser{padding:34px 0 38px!important;min-height:0!important;}
+  #representative-teaser .rep-copy{width:calc(100% - 40px)!important;margin:0 20px!important;padding:0!important;}
+  #representative-teaser .rep-copy h2{font-size:21px!important;white-space:nowrap!important;}
+  #representative-teaser .rep-redline{width:34px!important;height:2px!important;margin:11px 0 8px!important;}
+  #representative-teaser .rep-button{margin-top:0!important;padding:7px 9px!important;font-size:10px!important;}
+}
+</style>
 </head>
 <body>
 <div aria-label="국제크레인 PC 메인" class="desktop-home">
@@ -2360,6 +2394,8 @@ document.addEventListener('DOMContentLoaded', function(){
 /* 모바일에서 작업현장 제목/더보기 헤더가 스크롤 애니메이션에 가려지지 않도록 고정 */
 #work .work-preview-head{opacity:1!important;transform:none!important;visibility:visible!important;}
 </style>
+
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
@@ -2576,4 +2612,150 @@ document.addEventListener('DOMContentLoaded', function(){
 <style id="remove-section-english-kickers-20261001">
 /* Remove small English labels above Korean section titles */
 .kicker{display:none!important;}
+</style>
+
+
+<!-- KJ site polish effects - verified 20261001 -->
+<style id="kj-site-polish-effects-verified-20261001">
+/* 1) section reveal: hero excluded so the crane sequence is untouched */
+body.kj-polish-ready main > section:not(#about):not(.quick-links){
+  opacity:0;
+  transform:translate3d(0,24px,0);
+  transition:opacity .72s ease,transform .82s cubic-bezier(.22,.72,.25,1);
+}
+body.kj-polish-ready main > section.kj-polish-visible:not(#about):not(.quick-links){
+  opacity:1;
+  transform:translate3d(0,0,0);
+}
+/* 2) restrained button/arrow feedback */
+.rep-button span,.work-more span,.map-link,.mega-arrow{
+  display:inline-block;
+  transition:transform .25s ease,opacity .25s ease;
+}
+.rep-button,.work-more,.map-link{
+  transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease;
+}
+@media(hover:hover){
+  .rep-button:hover,.work-more:hover,.map-link:hover{transform:translateY(-2px)}
+  .rep-button:hover span,.work-more:hover span,.mega-panel a:hover .mega-arrow{transform:translateX(5px)}
+}
+/* 3) header gains depth after scrolling */
+header{
+  transition:background-color .32s ease,box-shadow .32s ease,border-color .32s ease,-webkit-backdrop-filter .32s ease,backdrop-filter .32s ease!important;
+}
+header.kj-polish-scrolled{
+  background:rgba(255,255,255,.96)!important;
+  border-bottom-color:rgba(0,0,0,.06)!important;
+  box-shadow:0 8px 26px rgba(0,0,0,.08)!important;
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+@media(max-width:760px){
+  body.kj-polish-ready main > section:not(#about):not(.quick-links){transform:translate3d(0,18px,0)}
+  header.kj-polish-scrolled{box-shadow:0 5px 18px rgba(0,0,0,.075)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  body.kj-polish-ready main > section:not(#about):not(.quick-links){opacity:1!important;transform:none!important;transition:none!important}
+  .rep-button,.work-more,.map-link,.rep-button span,.work-more span,.map-link,.mega-arrow,header{transition:none!important}
+}
+</style>
+<script id="kj-site-polish-effects-verified-script-20261001">
+(function(){
+  var targets=[].slice.call(document.querySelectorAll('main > section:not(#about):not(.quick-links)'));
+  document.body.classList.add('kj-polish-ready');
+  function reveal(el){el.classList.add('kj-polish-visible');}
+  if('IntersectionObserver' in window){
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){reveal(entry.target);observer.unobserve(entry.target);}
+      });
+    },{threshold:0.08,rootMargin:'0px 0px -5% 0px'});
+    targets.forEach(function(el){
+      var rect=el.getBoundingClientRect();
+      if(rect.top<window.innerHeight*0.94){reveal(el);}else{observer.observe(el);}
+    });
+  }else{targets.forEach(reveal);}
+  var head=document.querySelector('header');
+  if(head){
+    var syncHeader=function(){head.classList.toggle('kj-polish-scrolled',window.scrollY>24);};
+    syncHeader();
+    window.addEventListener('scroll',syncHeader,{passive:true});
+  }
+})();
+</script>
+
+<style id="work-preview-soft-fade-20261001">
+/* Work photos: no vertical movement or zoom, only a gentle opacity fade. */
+#work .work-preview-card,
+#work .work-preview-card .thumb img {
+  animation:none!important;
+  transform:none!important;
+}
+#work .work-preview-card .thumb img{transition:none!important;}
+#work .work-preview-card:hover .thumb img{transform:none!important;}
+#work .work-preview-card{opacity:1!important;transition:opacity .85s ease!important;}
+#work.kj-work-fade-ready .work-preview-card:not(.kj-work-fade-visible){opacity:0!important;}
+#work.kj-work-fade-ready .work-preview-card.kj-work-fade-visible{opacity:1!important;}
+/* Do not lift the entire work section when it enters the viewport. */
+body.kj-polish-ready main > section#work,
+body.kj-polish-ready main > section#work.kj-polish-visible{
+  transform:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  #work .work-preview-card{opacity:1!important;transition:none!important;}
+}
+</style>
+<script id="work-preview-soft-fade-script-20261001">
+(function(){
+  var section=document.getElementById('work');
+  if(!section || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var cards=[].slice.call(section.querySelectorAll('.work-preview-card'));
+  if(!cards.length)return;
+  var rect=section.getBoundingClientRect();
+  if(rect.top<window.innerHeight*.95 && rect.bottom>0)return;
+  section.classList.add('kj-work-fade-ready');
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting)return;
+      cards.forEach(function(card,index){
+        setTimeout(function(){card.classList.add('kj-work-fade-visible');},index*130);
+      });
+      observer.disconnect();
+    });
+  },{threshold:0.05,rootMargin:'0px 0px -5% 0px'});
+  observer.observe(section);
+  setTimeout(function(){cards.forEach(function(card){card.classList.add('kj-work-fade-visible');});observer.disconnect();},5000);
+})();
+</script>
+
+<!-- Work preview: stationary, subtle fade only (20261001) -->
+<style id="work-preview-stationary-fade-20261001">
+/* Override earlier bounce/zoom animations without changing the gallery layout. */
+#work .work-preview-card,
+#work .work-preview-card.kj-on {
+  animation:none!important;
+  transform:none!important;
+  transition:opacity .65s ease!important;
+  transition-delay:0s!important;
+  visibility:visible!important;
+}
+#work .work-preview-card .thumb img,
+#work .work-preview-card:hover .thumb img {
+  animation:none!important;
+  transform:none!important;
+  transition:none!important;
+}
+/* Existing IntersectionObserver applies kj-on once the card is visible. */
+#work .work-preview-card:not(.kj-on){opacity:0!important;}
+#work .work-preview-card.kj-on{opacity:1!important;}
+#work .work-preview-card:nth-child(2){transition-delay:.10s!important;}
+#work .work-preview-card:nth-child(3){transition-delay:.20s!important;}
+/* Avoid translating the whole work section during the general site reveal. */
+body.kj-polish-ready main > section#work,
+body.kj-polish-ready main > section#work.kj-polish-visible {
+  transform:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  #work .work-preview-card{opacity:1!important;transition:none!important;}
+}
 </style>
