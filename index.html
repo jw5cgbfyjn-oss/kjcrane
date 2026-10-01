@@ -2128,6 +2128,49 @@ img { height:auto; }
 }
 </style>
 
+
+<style id="mobile-inquiry-tune-20261001">
+@media (max-width:700px){
+  /* 작업문의 섹션의 모바일 여백 */
+  #contact,
+  #inquiry{
+    box-sizing:border-box;
+  }
+
+  /* 작업문의 내부 폼/필드가 화면 밖으로 튀어나가지 않게 */
+  #contact form,
+  #inquiry form{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+  #contact form input,
+  #contact form textarea,
+  #contact form select,
+  #inquiry form input,
+  #inquiry form textarea,
+  #inquiry form select{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  /* 특히 date input의 iOS 기본 최소폭 제거 */
+  #contact input[type="date"],
+  #inquiry input[type="date"]{
+    min-width:0!important;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+
+  /* 하단 고정 전화/카카오 바에 접수 버튼이 가리지 않도록 */
+  #contact,
+  #inquiry{
+    padding-bottom:130px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -2249,7 +2292,7 @@ img { height:auto; }
 <div class="wrap kj-rise">
 
 <h2>작업 문의</h2>
-<p class="lead">작업 지역과 작업 내용을 남겨주시면 확인 후 연락드리겠습니다.</p>
+<p class="lead">작업 지역과 작업 내용을 남겨주시면 확인 후 순차적으로 연락드리겠습니다.<br>당일 급한 작업이 필요하실 경우에는 대표번호로 전화 부탁드립니다.</p>
 <div class="online-inquiry" id="online-inquiry">
 <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
 <label><span>작업 지역 <b>*</b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
