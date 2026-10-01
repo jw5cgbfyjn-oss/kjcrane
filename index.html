@@ -1930,8 +1930,8 @@ img { height:auto; }
   will-change:opacity,clip-path;
 }
 @keyframes kjMonoMaskReveal{
-  0%,54%{opacity:0;clip-path:inset(0 100% 0 0);-webkit-clip-path:inset(0 100% 0 0)}
-  56%{opacity:1;clip-path:inset(0 100% 0 0);-webkit-clip-path:inset(0 100% 0 0)}
+  0%,54%{opacity:0;clip-path:inset(0 0 0 100%);-webkit-clip-path:inset(0 100% 0 0)}
+  56%{opacity:1;clip-path:inset(0 0 0 100%);-webkit-clip-path:inset(0 100% 0 0)}
   67%{opacity:1;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
   91%{opacity:1;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
   99%,100%{opacity:0;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
@@ -1942,11 +1942,37 @@ img { height:auto; }
 }
 </style>
 
-<style id="mono-crane-transform-only-fix-20261001">
-/* 흑백 크레인 표시/페이드 로직은 그대로 두고, 끊김을 만드는 이동·확대만 제거 */
+
+<style id="mono-crane-left-reveal-20261001">
+/* 흑백 크레인: 오른쪽에서 스윽 드러나고, 퇴장 시 기존 opacity로 자연스럽게 사라짐 */
 #about .kj-crane-frame.kj-crane-mono{
   transform:none !important;
   -webkit-transform:none !important;
+  animation-name:kjMonoLeftReveal !important;
+  animation-timing-function:cubic-bezier(.22,.61,.36,1) !important;
+}
+@keyframes kjMonoLeftReveal{
+  0%{
+    clip-path:inset(0 0 0 100%);
+    -webkit-clip-path:inset(0 0 0 100%);
+  }
+  14%{
+    clip-path:inset(0 0 0 0);
+    -webkit-clip-path:inset(0 0 0 0);
+  }
+  100%{
+    clip-path:inset(0 0 0 0);
+    -webkit-clip-path:inset(0 0 0 0);
+  }
+}
+</style>
+
+
+<style id="work-section-top-gap-20261001">
+@media (max-width:700px){
+  #work{
+    margin-top:72px !important;
+  }
 }
 </style>
 
@@ -2506,7 +2532,7 @@ document.addEventListener('DOMContentLoaded', function(){
   57%,100%{opacity:0}
 }
 @keyframes kjHeroMonoRevealFinal{
-  0%,49%{opacity:1;clip-path:inset(0 100% 0 0);-webkit-clip-path:inset(0 100% 0 0)}
+  0%,49%{opacity:1;clip-path:inset(0 0 0 100%);-webkit-clip-path:inset(0 100% 0 0)}
   68%,92%{opacity:1;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
   99%,100%{opacity:0;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
 }
@@ -2970,7 +2996,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   53%,100%{opacity:0;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
 }
 @keyframes kjMonoRevealLTR{
-  0%,50%{opacity:1;clip-path:inset(0 100% 0 0);-webkit-clip-path:inset(0 100% 0 0)}
+  0%,50%{opacity:1;clip-path:inset(0 0 0 100%);-webkit-clip-path:inset(0 100% 0 0)}
   66%,92%{opacity:1;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
   99%,100%{opacity:0;clip-path:inset(0 0 0 0);-webkit-clip-path:inset(0 0 0 0)}
 }
