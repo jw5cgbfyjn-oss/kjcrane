@@ -2515,7 +2515,7 @@ document.addEventListener('DOMContentLoaded', function(){
   body.kj-intro-open{overflow:hidden!important}
   #kj-mobile-entrance{position:fixed;inset:0;z-index:2147483000;display:flex;background:#fff;color:#111;align-items:center;justify-content:center;padding:34px 30px calc(30px + env(safe-area-inset-bottom));transition:opacity .55s ease,visibility .55s ease}
   #kj-mobile-entrance.kj-leave{opacity:0;visibility:hidden;pointer-events:none}
-  #kj-mobile-entrance .kj-intro-inner{width:100%;max-width:390px;display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:26px 0 16px;box-sizing:border-box;top:-96px}
+  #kj-mobile-entrance .kj-intro-inner{width:100%;max-width:390px;display:flex;flex-direction:column;justify-content:center;min-height:100%;padding:26px 0 16px;box-sizing:border-box;top:-45px}
   #kj-mobile-entrance .kj-intro-eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:28px;color:#9b9b9b;font-size:10px;letter-spacing:.14em;white-space:nowrap}
   #kj-mobile-entrance .kj-intro-eyebrow:before{content:"";display:block;width:38px;height:1px;background:#aaa}
   #kj-mobile-entrance h1{margin:0 0 19px;font-size:46px;line-height:1.03;letter-spacing:-.065em;font-weight:800;color:#111}
@@ -2528,7 +2528,7 @@ document.addEventListener('DOMContentLoaded', function(){
   #kj-mobile-entrance .kj-intro-enter{border:0;background:#c90012;color:#fff}
   #kj-mobile-entrance .kj-intro-enter span{font-size:20px;font-weight:300;transform:translateY(-1px)}
   /* 한 장의 흰 인트로가 왼쪽으로 스르륵 밀려나는 전환 */
-  #kj-mobile-entrance{transition:transform .78s cubic-bezier(.76,0,.24,1)!important;will-change:transform}
+  #kj-mobile-entrance{transition:transform 1.08s cubic-bezier(.76,0,.24,1)!important;will-change:transform}
   #kj-mobile-entrance .kj-door{display:none!important}
   #kj-mobile-entrance .kj-intro-inner{position:relative;z-index:1;transition:none!important}
   #kj-mobile-entrance.kj-leave{opacity:1!important;visibility:visible!important;pointer-events:none;transform:translateX(-101%)}
@@ -2571,7 +2571,7 @@ document.addEventListener('DOMContentLoaded', function(){
   btn.addEventListener('click',function(){
     cover.classList.add('kj-leave');
     document.body.classList.remove('kj-intro-open');
-    window.setTimeout(function(){cover.style.display='none';},820);
+    window.setTimeout(function(){cover.style.display='none';},1130);
   });
 })();
 </script>
