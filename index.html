@@ -3617,28 +3617,33 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 </style>
 
 
-<style id="kj-mobile-main-fadeup-preview-20261002">
+<style id="kj-mobile-main-reveal-preview2-20261002">
 @media(max-width:700px){
-  /* 인트로가 열려 있는 동안 메인 비주얼은 대기 */
   body.kj-intro-open #about{
-    opacity:0;
-    transform:translate3d(0,18px,0);
+    opacity:0!important;
+    transform:translate3d(70px,0,0) scale(.965)!important;
+    filter:blur(3px)!important;
   }
 
-  /* 홈페이지 이동 후: 아래 18px → 제자리 + 페이드인 */
   body:not(.kj-intro-open) #about{
-    animation:kjMainFadeUp 1.05s cubic-bezier(.22,.61,.36,1) both;
-    will-change:opacity,transform;
+    animation:kjMainRevealStrong 1.15s cubic-bezier(.16,1,.3,1) both!important;
+    will-change:opacity,transform,filter;
   }
 
-  @keyframes kjMainFadeUp{
+  @keyframes kjMainRevealStrong{
     0%{
       opacity:0;
-      transform:translate3d(0,18px,0);
+      transform:translate3d(70px,0,0) scale(.965);
+      filter:blur(3px);
+    }
+    55%{
+      opacity:1;
+      filter:blur(0);
     }
     100%{
       opacity:1;
-      transform:translate3d(0,0,0);
+      transform:translate3d(0,0,0) scale(1);
+      filter:blur(0);
     }
   }
 
@@ -3647,6 +3652,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     body:not(.kj-intro-open) #about{
       opacity:1!important;
       transform:none!important;
+      filter:none!important;
       animation:none!important;
     }
   }
