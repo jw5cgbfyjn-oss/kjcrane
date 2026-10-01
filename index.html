@@ -2171,6 +2171,62 @@ img { height:auto; }
 }
 </style>
 
+
+<style id="mobile-consent-fix-20261001">
+@media (max-width:700px){
+  /* 개인정보 동의 행이 오른쪽으로 빠져나가지 않도록 모바일에서만 고정 */
+  #contact label:has(input[type="checkbox"]),
+  #inquiry label:has(input[type="checkbox"]),
+  #contact .consent,
+  #inquiry .consent,
+  #contact .privacy-consent,
+  #inquiry .privacy-consent{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    gap:12px!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    transform:none!important;
+  }
+
+  #contact label:has(input[type="checkbox"]) input[type="checkbox"],
+  #inquiry label:has(input[type="checkbox"]) input[type="checkbox"],
+  #contact .consent input[type="checkbox"],
+  #inquiry .consent input[type="checkbox"],
+  #contact .privacy-consent input[type="checkbox"],
+  #inquiry .privacy-consent input[type="checkbox"]{
+    flex:0 0 34px!important;
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    margin:0!important;
+  }
+
+  #contact label:has(input[type="checkbox"]) span,
+  #inquiry label:has(input[type="checkbox"]) span,
+  #contact .consent span,
+  #inquiry .consent span,
+  #contact .privacy-consent span,
+  #inquiry .privacy-consent span{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:100%!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    word-break:keep-all!important;
+    text-align:left!important;
+    line-height:1.45!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
