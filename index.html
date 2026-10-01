@@ -1943,31 +1943,6 @@ img { height:auto; }
 </style>
 
 
-<style id="mono-crane-left-reveal-20261001">
-/* 흑백 크레인: 오른쪽에서 스윽 드러나고, 퇴장 시 기존 opacity로 자연스럽게 사라짐 */
-#about .kj-crane-frame.kj-crane-mono{
-  transform:none !important;
-  -webkit-transform:none !important;
-  animation-name:kjMonoLeftReveal !important;
-  animation-timing-function:cubic-bezier(.22,.61,.36,1) !important;
-}
-@keyframes kjMonoLeftReveal{
-  0%{
-    clip-path:inset(0 0 0 100%);
-    -webkit-clip-path:inset(0 0 0 100%);
-  }
-  14%{
-    clip-path:inset(0 0 0 0);
-    -webkit-clip-path:inset(0 0 0 0);
-  }
-  100%{
-    clip-path:inset(0 0 0 0);
-    -webkit-clip-path:inset(0 0 0 0);
-  }
-}
-</style>
-
-
 <style id="work-section-top-gap-20261001">
 @media (max-width:700px){
   #work{
