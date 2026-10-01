@@ -3717,3 +3717,86 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 }
 </style>
+
+
+<style id="mobile-work-reveal-20261002">
+@media(max-width:700px){
+  /* 사진 위 문구 삭제 */
+  #work .work-title,
+  #work .work-caption,
+  #work .caption,
+  #work .work-label,
+  #work .work-item figcaption,
+  #work .work-item .title{
+    display:none!important;
+  }
+
+  /* 실제 작업현장 이미지 카드 */
+  #work .work-item{
+    overflow:hidden!important;
+  }
+
+  #work .work-item{
+    opacity:0;
+    transition:
+      opacity .82s ease,
+      transform .95s cubic-bezier(.16,1,.3,1);
+    will-change:opacity,transform;
+  }
+
+  /* 첫 번째 큰 사진 */
+  #work .work-item:nth-of-type(1){
+    transform:translate3d(0,42px,0);
+  }
+
+  /* 아래 왼쪽 */
+  #work .work-item:nth-of-type(2){
+    transform:translate3d(-58px,0,0);
+    transition-delay:.12s;
+  }
+
+  /* 아래 오른쪽 */
+  #work .work-item:nth-of-type(3){
+    transform:translate3d(58px,0,0);
+    transition-delay:.12s;
+  }
+
+  #work.kj-work-visible .work-item{
+    opacity:1!important;
+    transform:translate3d(0,0,0)!important;
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    #work .work-item{
+      opacity:1!important;
+      transform:none!important;
+      transition:none!important;
+    }
+  }
+}
+</style>
+
+
+<script id="mobile-work-reveal-js-20261002">
+(function(){
+  if(!window.matchMedia('(max-width:700px)').matches) return;
+  var work=document.getElementById('work');
+  if(!work) return;
+
+  if(!('IntersectionObserver' in window)){
+    work.classList.add('kj-work-visible');
+    return;
+  }
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        work.classList.add('kj-work-visible');
+        io.unobserve(work);
+      }
+    });
+  },{threshold:0.18});
+
+  io.observe(work);
+})();
+</script>
