@@ -3802,47 +3802,81 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 </script>
 
 
-<style id="mobile-work-swipe-preview-20261002">
+<style id="kj-mobile-work-swipe-fixed">
 @media(max-width:700px){
-  #work .work-item,#work.kj-work-visible .work-item{
-    opacity:1!important;transform:none!important;transition:none!important;
+  /* 기존 등장 모션 해제 */
+  #work .work-preview-card{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
   }
-  #work .work-gallery{
-    display:flex!important;gap:12px!important;
-    width:calc(100% + 16px)!important;
-    margin-right:-16px!important;
-    overflow-x:auto!important;overflow-y:hidden!important;
+
+  /* 카드들을 담고 있는 실제 부모에 JS가 이 클래스를 붙임 */
+  #work .kj-work-swipe-track{
+    display:flex!important;
+    grid-template-columns:none!important;
+    gap:12px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
     scroll-snap-type:x mandatory!important;
     -webkit-overflow-scrolling:touch!important;
     scrollbar-width:none!important;
-    padding:0 42px 8px 0!important;
+    padding-right:42px!important;
   }
-  #work .work-gallery::-webkit-scrollbar{display:none!important}
-  #work .work-gallery>.work-item{
-    flex:0 0 86%!important;width:86%!important;
-    height:auto!important;aspect-ratio:1.38/1!important;
-    scroll-snap-align:start!important;overflow:hidden!important;
-    background:#f4f4f4!important;
-    grid-column:auto!important;grid-row:auto!important;
+  #work .kj-work-swipe-track::-webkit-scrollbar{display:none!important}
+
+  #work .kj-work-swipe-track > .work-preview-card{
+    flex:0 0 86%!important;
+    width:86%!important;
+    max-width:86%!important;
+    min-width:86%!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    scroll-snap-align:start!important;
+    overflow:hidden!important;
   }
-  #work .work-gallery>.work-item img{
-    display:block!important;width:100%!important;height:100%!important;
+
+  #work .kj-work-swipe-track > .work-preview-card img{
+    width:100%!important;
+    height:100%!important;
     object-fit:cover!important;
   }
-  #work .work-title,#work .work-caption,#work .caption,
-  #work .work-label,#work figcaption{display:none!important}
+
+  /* 사진 위 문구 삭제 */
+  #work .work-preview-card .work-preview-title,
+  #work .work-preview-card .work-title,
+  #work .work-preview-card .caption,
+  #work .work-preview-card figcaption{
+    display:none!important;
+  }
 }
 </style>
 
 
-<script id="mobile-work-swipe-preview-js-20261002">
+<script id="kj-mobile-work-swipe-fixed-js">
 (function(){
-  if(!window.matchMedia('(max-width:700px)').matches) return;
-  var work=document.getElementById('work');
-  if(!work) return;
-  var items=Array.from(work.querySelectorAll('.work-item'));
-  if(items.length<2) return;
-  var parent=items[0].parentElement;
-  if(parent) parent.classList.add('work-gallery');
+  function setup(){
+    if(!window.matchMedia('(max-width:700px)').matches) return;
+    var work=document.getElementById('work');
+    if(!work) return;
+    var cards=Array.from(work.querySelectorAll('.work-preview-card'));
+    if(cards.length<2) return;
+
+    var parent=cards[0].parentElement;
+    if(!parent) return;
+
+    /* 같은 부모에 속한 실제 작업현장 카드인지 확인 */
+    var siblings=Array.from(parent.children).filter(function(el){
+      return el.classList && el.classList.contains('work-preview-card');
+    });
+    if(siblings.length<2) return;
+
+    parent.classList.add('kj-work-swipe-track');
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setup);
+  }else{
+    setup();
+  }
 })();
 </script>
