@@ -3802,78 +3802,155 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 })();
 </script>
 
-
-<style id="kj-mobile-work-swipe-fixed">
+<style id="kj-mobile-work-gallery-20261003">
 @media(max-width:700px){
-  /* 기존 등장 모션 해제 */
+  #work .work-preview-grid{
+    display:block!important;
+    margin-top:18px!important;
+  }
   #work .work-preview-card{
+    display:none!important;
     opacity:1!important;
     transform:none!important;
     transition:none!important;
   }
-
-  /* 카드들을 담고 있는 실제 부모에 JS가 이 클래스를 붙임 */
-  #work .kj-work-swipe-track{
-    display:flex!important;
-    grid-template-columns:none!important;
-    gap:12px!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    scroll-snap-type:x mandatory!important;
-    -webkit-overflow-scrolling:touch!important;
-    scrollbar-width:none!important;
-    padding-right:42px!important;
-  }
-  #work .kj-work-swipe-track::-webkit-scrollbar{display:none!important}
-
-  #work .kj-work-swipe-track > .work-preview-card{
-    flex:0 0 86%!important;
-    width:86%!important;
-    max-width:86%!important;
-    min-width:86%!important;
-    grid-column:auto!important;
-    grid-row:auto!important;
-    scroll-snap-align:start!important;
+  #work .work-preview-card:first-child{
+    display:block!important;
+    width:100%!important;
+    aspect-ratio:16/10!important;
+    min-height:0!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
     overflow:hidden!important;
+    background:#f4f4f4!important;
+    pointer-events:none!important;
   }
+  #work .work-preview-card:first-child .thumb{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+  }
+  #work .work-preview-card:first-child .thumb img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    display:block!important;
+  }
+  #work .work-preview-card .caption{display:none!important}
 
-  #work .kj-work-swipe-track > .work-preview-card img{
+  #work .kj-gallery-bottom{
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:14px!important;
+    margin-top:10px!important;
+  }
+  #work .kj-gallery-thumbs{
+    display:grid!important;
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:7px!important;
+    flex:1 1 auto!important;
+    min-width:0!important;
+  }
+  #work .kj-gallery-thumb{
+    appearance:none!important;
+    -webkit-appearance:none!important;
+    display:block!important;
+    width:100%!important;
+    padding:0!important;
+    border:0!important;
+    background:#eee!important;
+    aspect-ratio:1/1!important;
+    overflow:hidden!important;
+    opacity:.58!important;
+    cursor:pointer!important;
+  }
+  #work .kj-gallery-thumb img{
+    display:block!important;
     width:100%!important;
     height:100%!important;
     object-fit:cover!important;
   }
-
-  /* 사진 위 문구 삭제 */
-  #work .work-preview-card .work-preview-title,
-  #work .work-preview-card .work-title,
-  #work .work-preview-card .caption,
-  #work .work-preview-card figcaption{
-    display:none!important;
+  #work .kj-gallery-thumb.is-active{
+    opacity:1!important;
+    outline:2px solid #b72b27!important;
+    outline-offset:-2px!important;
+  }
+  #work .kj-gallery-count{
+    flex:0 0 auto!important;
+    padding:0 1px 3px!important;
+    color:#9a9a9a!important;
+    font-size:11px!important;
+    line-height:1!important;
+    letter-spacing:.12em!important;
+    white-space:nowrap!important;
   }
 }
 </style>
 
-
-<script id="kj-mobile-work-swipe-fixed-js">
+<script id="kj-mobile-work-gallery-20261003-js">
 (function(){
   function setup(){
     if(!window.matchMedia('(max-width:700px)').matches) return;
     var work=document.getElementById('work');
-    if(!work) return;
-    var cards=Array.from(work.querySelectorAll('.work-preview-card'));
+    if(!work || work.dataset.kjGalleryReady==='1') return;
+
+    var grid=work.querySelector('.work-preview-grid');
+    if(!grid) return;
+    var cards=Array.from(grid.querySelectorAll(':scope > .work-preview-card'));
     if(cards.length<2) return;
 
-    var parent=cards[0].parentElement;
-    if(!parent) return;
+    var sources=cards.map(function(card){
+      var img=card.querySelector('.thumb img');
+      return img ? {src:img.getAttribute('src'), alt:img.getAttribute('alt')||'국제크레인 작업현장'} : null;
+    }).filter(Boolean);
+    if(sources.length<2) return;
 
-    /* 같은 부모에 속한 실제 작업현장 카드인지 확인 */
-    var siblings=Array.from(parent.children).filter(function(el){
-      return el.classList && el.classList.contains('work-preview-card');
+    var mainImg=cards[0].querySelector('.thumb img');
+    if(!mainImg) return;
+
+    var bottom=document.createElement('div');
+    bottom.className='kj-gallery-bottom';
+
+    var thumbs=document.createElement('div');
+    thumbs.className='kj-gallery-thumbs';
+
+    var count=document.createElement('div');
+    count.className='kj-gallery-count';
+    count.setAttribute('aria-live','polite');
+
+    function select(index){
+      mainImg.src=sources[index].src;
+      mainImg.alt=sources[index].alt;
+      Array.from(thumbs.children).forEach(function(btn,i){
+        btn.classList.toggle('is-active',i===index);
+        btn.setAttribute('aria-pressed',i===index?'true':'false');
+      });
+      count.textContent=String(index+1).padStart(2,'0')+' / '+String(sources.length).padStart(2,'0');
+    }
+
+    sources.forEach(function(item,index){
+      var btn=document.createElement('button');
+      btn.type='button';
+      btn.className='kj-gallery-thumb';
+      btn.setAttribute('aria-label','작업현장 사진 '+(index+1)+' 보기');
+      var img=document.createElement('img');
+      img.src=item.src;
+      img.alt='';
+      btn.appendChild(img);
+      btn.addEventListener('click',function(){select(index);});
+      thumbs.appendChild(btn);
     });
-    if(siblings.length<2) return;
 
-    parent.classList.add('kj-work-swipe-track');
+    bottom.appendChild(thumbs);
+    bottom.appendChild(count);
+    grid.appendChild(bottom);
+    work.dataset.kjGalleryReady='1';
+    select(0);
   }
+
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',setup);
   }else{
@@ -3881,3 +3958,4 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 })();
 </script>
+
