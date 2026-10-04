@@ -2397,6 +2397,19 @@ body.kj-lightbox-lock{overflow:hidden!important}
 }
 </style>
 
+
+<style id="kj-kakao-marker-image-fix-20261004">
+/* 카카오맵 내부 이미지에는 기존 정적지도 img 규칙을 적용하지 않음 */
+#kj-kakao-map img{
+  width:auto!important;
+  height:auto!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:initial!important;
+  border:0!important;
+}
+</style>
+
 </head>
 <body>
 
@@ -3164,6 +3177,13 @@ document.addEventListener('DOMContentLoaded', function(){
   var intro=document.querySelector('#kj-mobile-entrance, .kj-mobile-entrance');
 
   function startCrane(){
+    /* 인트로가 닫힌 뒤 항상 홈페이지 맨 위(메인)부터 보이게 고정 */
+    try{
+      history.replaceState(null, '', location.pathname + location.search);
+    }catch(e){}
+    window.scrollTo(0,0);
+    var mainSection=document.getElementById('about');
+    if(mainSection){ mainSection.scrollIntoView({block:'start',behavior:'auto'}); }
     if(body.classList.contains('kj-crane-go')) return;
     body.classList.add('kj-crane-go');
   }
@@ -3300,6 +3320,18 @@ document.addEventListener('DOMContentLoaded', function(){
  document.addEventListener('keydown',function(e){if(!box.classList.contains('kj-open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
  box.addEventListener('touchstart',function(e){if(e.touches.length){startX=e.touches[0].clientX;startY=e.touches[0].clientY}}, {passive:true});
  box.addEventListener('touchend',function(e){if(!e.changedTouches.length)return;var dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.15)go(dx<0?1:-1)}, {passive:true});
+})();
+</script>
+
+
+<script id="kj-home-scroll-reset-20261004">
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  window.addEventListener('pageshow',function(){
+    if(location.hash==='' && document.body.classList.contains('kj-intro-open')){
+      window.scrollTo(0,0);
+    }
+  });
 })();
 </script>
 
