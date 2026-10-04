@@ -2778,6 +2778,42 @@ footer .privacy{
 }
 </style>
 
+
+<style id="kj-floating-menu-hardfix-20261004">
+@media(max-width:760px){
+  body > .mobile-menu-btn.kj-floating-detached{
+    position:fixed!important;
+    top:18px!important;
+    right:16px!important;
+    left:auto!important;
+    bottom:auto!important;
+    z-index:2147483000!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-width:58px!important;
+    width:auto!important;
+    height:38px!important;
+    margin:0!important;
+    padding:0 12px!important;
+    transform:none!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  body.kj-scrolled > .mobile-menu-btn.kj-floating-detached{
+    background:rgba(255,255,255,.92)!important;
+    border:1px solid rgba(0,0,0,.06)!important;
+    border-radius:999px!important;
+    box-shadow:0 3px 16px rgba(0,0,0,.10)!important;
+    -webkit-backdrop-filter:blur(10px)!important;
+    backdrop-filter:blur(10px)!important;
+  }
+  body.kj-menu-open > .mobile-menu-btn.kj-floating-detached{
+    opacity:0!important;pointer-events:none!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -3765,6 +3801,39 @@ document.addEventListener('DOMContentLoaded',function(){
     }
   });
 })();
+</script>
+
+
+<script id="kj-floating-menu-hardfix-js-20261004">
+document.addEventListener('DOMContentLoaded',function(){
+  if(!window.matchMedia('(max-width:760px)').matches) return;
+  const btn=document.querySelector('.mobile-menu-btn');
+  if(!btn) return;
+
+  /* transform이 걸린 헤더에서 분리 → body 직속 fixed */
+  document.body.appendChild(btn);
+  btn.classList.add('kj-floating-detached');
+
+  const drawer=document.querySelector('.mobile-drawer');
+  const close=document.querySelector('.mobile-drawer-close');
+
+  function sync(){ document.body.classList.toggle('kj-scrolled', window.scrollY > 70); }
+  sync();
+  window.addEventListener('scroll',sync,{passive:true});
+
+  btn.addEventListener('click',function(){
+    if(drawer) drawer.classList.add('open');
+    document.body.classList.add('kj-menu-open');
+    document.documentElement.style.overflow='hidden';
+    document.body.style.overflow='hidden';
+  });
+  if(close) close.addEventListener('click',function(){
+    if(drawer) drawer.classList.remove('open');
+    document.body.classList.remove('kj-menu-open');
+    document.documentElement.style.overflow='';
+    document.body.style.overflow='';
+  });
+});
 </script>
 
 </body></html><style id="mobile-lower-fixed-layout">
