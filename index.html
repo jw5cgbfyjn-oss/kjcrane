@@ -2871,31 +2871,30 @@ footer .privacy{
 </style>
 
 
-<script id="kj-direct-home-skip-intro-20261005">
+<style id="kj-return-home-intro-fix">
+html.kj-skip-intro #kj-pc-entrance,
+html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!important;pointer-events:none!important}
+</style>
+<script id="kj-return-home-intro-fix-js">
 (function(){
-  const q=new URLSearchParams(location.search);
-  if(q.get('home')!=='1') return;
-  document.documentElement.classList.add('kj-direct-home');
+  var skip=false;
+  try{skip=sessionStorage.getItem('kj_home_entered')==='1'}catch(e){}
+  if(location.hash || /(?:\?|&)home=1(?:&|$)/.test(location.search)) skip=true;
+  if(skip) document.documentElement.classList.add('kj-skip-intro');
+
   document.addEventListener('DOMContentLoaded',function(){
-    const intro=document.querySelector('#kj-pc-entrance, .kj-intro, .intro-screen, .mobile-intro, [data-intro]');
-    document.querySelectorAll('#kj-pc-entrance, .kj-intro, .intro-screen, .mobile-intro, [data-intro]').forEach(function(el){
-      el.style.setProperty('display','none','important');
-      el.style.setProperty('visibility','hidden','important');
-      el.style.setProperty('pointer-events','none','important');
+    if(document.documentElement.classList.contains('kj-skip-intro')){
+      document.querySelectorAll('#kj-pc-entrance,#kj-mobile-entrance').forEach(function(el){el.style.display='none'});
+      document.body.classList.remove('kj-intro-open');
+    }
+    document.querySelectorAll('#kj-mobile-entrance .kj-intro-enter,#kj-pc-entrance button,#kj-pc-entrance a').forEach(function(el){
+      el.addEventListener('click',function(){
+        try{sessionStorage.setItem('kj_home_entered','1')}catch(e){}
+      },true);
     });
-    document.body.classList.add('intro-done','home-entered','kj-home-entered');
-    window.scrollTo(0,0);
-    history.replaceState(null,'',location.pathname);
   });
 })();
 </script>
-<style id="kj-direct-home-skip-intro-css">
-html.kj-direct-home #kj-pc-entrance,
-html.kj-direct-home .kj-intro,
-html.kj-direct-home .intro-screen,
-html.kj-direct-home .mobile-intro,
-html.kj-direct-home [data-intro]{display:none!important;visibility:hidden!important;pointer-events:none!important}
-</style>
 
 </head>
 <body>
