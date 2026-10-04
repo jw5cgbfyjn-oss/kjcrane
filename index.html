@@ -2376,7 +2376,7 @@ img { height:auto; }
   font-size:13px;color:#777;background:#f7f7f7;z-index:0
 }
 #kj-kakao-map .kj-map-label{
-  position:relative;bottom:48px;left:-50%;
+  position:relative;left:-50%;transform:translateY(-52px);
   padding:7px 10px;background:#fff;border:1px solid #d9d9d9;border-radius:3px;
   box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:12px;font-weight:700;
   color:#222;white-space:nowrap
@@ -3232,7 +3232,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var overlay = new kakao.maps.CustomOverlay({
         position: position,
         content: content,
-        yAnchor: 1
+        yAnchor: 0
       });
       overlay.setMap(map);
 
