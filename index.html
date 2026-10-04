@@ -222,7 +222,7 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 <meta content="website" property="og:type"/>
 <meta content="https://kjcrane.kr/" property="og:url"/>
 <meta content="춘천 크레인 작업 | 국제크레인" property="og:title"/>
-<meta content="춘천을 중심으로 강원 전 지역 크레인 작업을 진행합니다. 13T부터 100T까지 장비 보유, 구조물·자재·수목·정자·공장 및 설비 작업 문의." property="og:description"/>
+<meta content="춘천을 중심으로 강원 전 지역 크레인 작업을 진행합니다. 13T부터 100T까지 장비 보유, 구조물·자재·수목·정자·공장 및 설비 문의 접수하기." property="og:description"/>
 <style>
 .location-preview{padding:72px 0 24px;border-top:1px solid #eee}
 .location-preview .map-address{margin:10px 0 22px;font-size:15px;color:#555}
@@ -2403,6 +2403,35 @@ body.kj-lightbox-lock{overflow:hidden!important}
 #kj-kakao-map > div{max-width:none!important}
 </style>
 
+
+<style id="kj-inquiry-accordion-style-20261004">
+.kj-inquiry-accordion{width:100%;margin-top:22px;border-top:1px solid #dedede;border-bottom:1px solid #dedede}
+.kj-inquiry-toggle{
+  width:100%;min-height:72px;padding:0 4px;border:0;background:#fff;color:#111;
+  display:flex;align-items:center;justify-content:space-between;
+  font:inherit;font-size:17px;font-weight:700;text-align:left;cursor:pointer
+}
+.kj-inquiry-plus{position:relative;width:22px;height:22px;flex:0 0 22px;margin-left:18px}
+.kj-inquiry-plus:before,.kj-inquiry-plus:after{
+  content:"";position:absolute;left:50%;top:50%;background:#111;transform:translate(-50%,-50%);
+  transition:transform .28s ease,opacity .28s ease
+}
+.kj-inquiry-plus:before{width:18px;height:1.5px}
+.kj-inquiry-plus:after{width:1.5px;height:18px}
+.kj-inquiry-toggle[aria-expanded="true"] .kj-inquiry-plus:after{opacity:0;transform:translate(-50%,-50%) rotate(90deg)}
+.kj-inquiry-panel{
+  display:grid;grid-template-rows:0fr;opacity:0;
+  transition:grid-template-rows .42s cubic-bezier(.22,.72,.25,1),opacity .28s ease;
+  overflow:hidden
+}
+.kj-inquiry-panel-inner{min-height:0;overflow:hidden}
+.kj-inquiry-accordion.kj-open .kj-inquiry-panel{grid-template-rows:1fr;opacity:1}
+.kj-inquiry-accordion.kj-open .kj-inquiry-panel-inner{padding-bottom:24px}
+@media(max-width:700px){
+  .kj-inquiry-toggle{min-height:66px;font-size:16px}
+}
+</style>
+
 </head>
 <body>
 
@@ -2545,7 +2574,15 @@ body.kj-lightbox-lock{overflow:hidden!important}
 <h2>작업 문의</h2>
 <p class="lead">작업 지역과 작업 내용을 남겨주시면 확인 후 순차적으로 연락드리겠습니다.<br>당일 급한 작업이 필요하실 경우에는 대표번호로 전화 부탁드립니다.</p>
 <div class="online-inquiry" id="online-inquiry">
-<form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
+
+<div class="kj-inquiry-accordion" id="kj-inquiry-accordion">
+  <button class="kj-inquiry-toggle" type="button" aria-expanded="false" aria-controls="kj-inquiry-form-panel">
+    <span>문의 접수하기</span>
+    <span class="kj-inquiry-plus" aria-hidden="true"></span>
+  </button>
+  <div class="kj-inquiry-panel" id="kj-inquiry-form-panel" aria-hidden="true">
+    <div class="kj-inquiry-panel-inner">
+      <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
 <label><span>작업 지역 <b>*</b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
 <label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
 <label><span>희망 작업일</span><input name="date" type="date"/></label>
@@ -2555,6 +2592,10 @@ body.kj-lightbox-lock{overflow:hidden!important}
 <label class="privacy-check"><input required="" type="checkbox"/><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
 <button class="inquiry-submit" type="submit">문의 접수하기</button>
 </form>
+    </div>
+  </div>
+</div>
+
 </div>
 </div>
 </section>
@@ -3338,6 +3379,22 @@ document.addEventListener('DOMContentLoaded', function(){
       requestAnimationFrame(pinMain);
     }
   },true);
+})();
+</script>
+
+
+<script id="kj-inquiry-accordion-script-20261004">
+(function(){
+  var wrap=document.getElementById('kj-inquiry-accordion');
+  if(!wrap)return;
+  var btn=wrap.querySelector('.kj-inquiry-toggle');
+  var panel=wrap.querySelector('.kj-inquiry-panel');
+  btn.addEventListener('click',function(){
+    var open=!wrap.classList.contains('kj-open');
+    wrap.classList.toggle('kj-open',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    panel.setAttribute('aria-hidden',open?'false':'true');
+  });
 })();
 </script>
 
