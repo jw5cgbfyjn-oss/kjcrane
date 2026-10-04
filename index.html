@@ -2337,6 +2337,45 @@ img { height:auto; }
 }
 </style>
 
+
+<style id="kj-main-crane-drivein-20261004">
+/* 모바일 메인: 크레인이 오른쪽에서 묵직하게 들어와 정차 */
+@media (max-width:760px){
+  #about > .kj-mobile-main-exact{
+    animation:kjCraneDriveIn 1.75s cubic-bezier(.16,.84,.28,1) both!important;
+    transform-origin:center bottom!important;
+    will-change:transform,opacity;
+  }
+  @keyframes kjCraneDriveIn{
+    0%{
+      opacity:0;
+      transform:translate3d(110px,0,0) scale(.985);
+    }
+    72%{
+      opacity:1;
+      transform:translate3d(-5px,0,0) scale(1);
+    }
+    86%{
+      transform:translate3d(2px,0,0) scale(1);
+    }
+    94%{
+      transform:translate3d(-1px,0,0) scale(1);
+    }
+    100%{
+      opacity:1;
+      transform:translate3d(0,0,0) scale(1);
+    }
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #about > .kj-mobile-main-exact{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
