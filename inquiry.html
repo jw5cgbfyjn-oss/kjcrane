@@ -2884,6 +2884,36 @@ body{overflow:auto!important}
 @media(max-width:760px){.kj-inquiry-page{padding-top:38px}.kj-inquiry-page-top h1{font-size:25px}}
 </style>
 <script>try{sessionStorage.setItem('kj_home_entered','1')}catch(e){}</script>
+
+<style id="kj-inquiry-always-open-20261005">
+.kj-inquiry-page #inquiry .kj-inquiry-head,
+.kj-inquiry-page #inquiry .kj-inquiry-toggle,
+.kj-inquiry-page #inquiry summary,
+.kj-inquiry-page #inquiry .accordion-header{
+  display:none!important;
+}
+.kj-inquiry-page #inquiry details,
+.kj-inquiry-page #inquiry .kj-inquiry-accordion,
+.kj-inquiry-page #inquiry .kj-inquiry-body,
+.kj-inquiry-page #inquiry .accordion-content,
+.kj-inquiry-page #inquiry form{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  transform:none!important;
+}
+</style>
+<script id="kj-inquiry-always-open-js-20261005">
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.kj-inquiry-page #inquiry details').forEach(function(el){el.open=true;});
+  document.querySelectorAll('.kj-inquiry-page #inquiry [hidden]').forEach(function(el){el.hidden=false;});
+  document.querySelectorAll('.kj-inquiry-page #inquiry [aria-expanded]').forEach(function(el){el.setAttribute('aria-expanded','true');});
+});
+</script>
+
 </head>
 <body><header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
