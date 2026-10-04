@@ -2368,6 +2368,24 @@ img { height:auto; }
 }
 </style>
 
+
+<style id="kj-kakao-live-map-style">
+#kj-kakao-map{position:relative;width:100%;height:340px;background:#f7f7f7}
+#kj-kakao-map .kj-map-loading{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:#777;background:#f7f7f7;z-index:0
+}
+#kj-kakao-map .kj-map-label{
+  position:relative;bottom:48px;left:-50%;
+  padding:7px 10px;background:#fff;border:1px solid #d9d9d9;border-radius:3px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:12px;font-weight:700;
+  color:#222;white-space:nowrap
+}
+@media(max-width:700px){
+  #kj-kakao-map{height:290px}
+}
+</style>
+
 </head>
 <body>
 
@@ -2580,7 +2598,7 @@ img { height:auto; }
 })();
 </script>
 <!-- 3 -->
-<section class="location-preview" id="location"><div class="wrap kj-rise"><h2>찾아오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div class="map-box"><img alt="국제크레인 찾아오시는 길 지도" decoding="async" fetchpriority="low" loading="lazy" src="img-027.jpg"/></div><a class="map-link" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section>
+<section class="location-preview" id="location"><div class="wrap kj-rise"><h2>찾아오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div class="map-box" id="kj-kakao-map" role="region" aria-label="국제크레인 위치 지도"><div class="kj-map-loading">지도를 불러오는 중입니다.</div></div><a class="map-link" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section>
 <!-- FAQ -->
 <section class="section faq-section-last kj-rise">
 <div class="wrap">
@@ -3170,6 +3188,68 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0292e926fc0f57c4afe4ec663c0612b7&autoload=false&libraries=services"></script>
+<script id="kj-kakao-live-map-script">
+(function(){
+  var ADDRESS = '강원특별자치도 춘천시 동내면 학곡서3길 20-31';
+  var mapNode = document.getElementById('kj-kakao-map');
+  if (!mapNode) return;
+
+  function showError(msg){
+    mapNode.innerHTML = '<div class="kj-map-loading">' + msg + '</div>';
+  }
+
+  if (!window.kakao || !kakao.maps){
+    showError('지도를 불러오지 못했습니다.');
+    return;
+  }
+
+  kakao.maps.load(function(){
+    var geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(ADDRESS, function(result, status){
+      if (status !== kakao.maps.services.Status.OK || !result.length){
+        showError('위치를 불러오지 못했습니다.');
+        return;
+      }
+
+      var position = new kakao.maps.LatLng(Number(result[0].y), Number(result[0].x));
+      mapNode.innerHTML = '';
+
+      var map = new kakao.maps.Map(mapNode, {
+        center: position,
+        level: 4
+      });
+
+      map.setDraggable(true);
+      map.setZoomable(true);
+
+      var marker = new kakao.maps.Marker({
+        position: position,
+        map: map
+      });
+
+      var content = '<div class="kj-map-label">국제크레인</div>';
+      var overlay = new kakao.maps.CustomOverlay({
+        position: position,
+        content: content,
+        yAnchor: 1
+      });
+      overlay.setMap(map);
+
+      /* 모바일/PC 레이아웃 확정 후 중심점 재계산 */
+      setTimeout(function(){
+        map.relayout();
+        map.setCenter(position);
+      }, 250);
+
+      window.addEventListener('resize', function(){
+        map.relayout();
+        map.setCenter(position);
+      });
+    });
+  });
+})();
+</script>
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
