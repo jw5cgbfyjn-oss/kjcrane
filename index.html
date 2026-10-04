@@ -2337,41 +2337,46 @@ img { height:auto; }
 }
 </style>
 
-
-<style id="kj-main-crane-drivein-20261004">
-/* 모바일 메인: 크레인이 오른쪽에서 묵직하게 들어와 정차 */
+<style id="kj-main-crane-drivein-fixed-20261004">
 @media (max-width:760px){
-  #about > .kj-mobile-main-exact{
-    animation:kjCraneDriveIn 1.75s cubic-bezier(.16,.84,.28,1) both!important;
+  body.kj-intro-open #about > .kj-mobile-main-exact{
+    opacity:0!important;
+    transform:translate3d(150px,0,0) scale(.98)!important;
+    animation:none!important;
+  }
+
+  body:not(.kj-intro-open) #about > .kj-mobile-main-exact{
+    animation:kjCraneDriveInFixed 2.05s cubic-bezier(.16,.84,.28,1) both!important;
     transform-origin:center bottom!important;
     will-change:transform,opacity;
   }
-  @keyframes kjCraneDriveIn{
+
+  @keyframes kjCraneDriveInFixed{
     0%{
       opacity:0;
-      transform:translate3d(110px,0,0) scale(.985);
+      transform:translate3d(150px,0,0) scale(.98);
     }
-    72%{
+    58%{
       opacity:1;
-      transform:translate3d(-5px,0,0) scale(1);
+      transform:translate3d(-10px,0,0) scale(1);
     }
-    86%{
-      transform:translate3d(2px,0,0) scale(1);
-    }
-    94%{
-      transform:translate3d(-1px,0,0) scale(1);
-    }
+    76%{transform:translate3d(5px,0,0) scale(1)}
+    88%{transform:translate3d(-2px,0,0) scale(1)}
     100%{
       opacity:1;
       transform:translate3d(0,0,0) scale(1);
     }
   }
 }
+
 @media (prefers-reduced-motion:reduce){
-  #about > .kj-mobile-main-exact{
-    animation:none!important;
+  body.kj-intro-open #about > .kj-mobile-main-exact{
+    opacity:0!important;
+  }
+  body:not(.kj-intro-open) #about > .kj-mobile-main-exact{
     opacity:1!important;
     transform:none!important;
+    animation:none!important;
   }
 }
 </style>
