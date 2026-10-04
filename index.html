@@ -2337,46 +2337,33 @@ img { height:auto; }
 }
 </style>
 
-<style id="kj-main-crane-drivein-fixed-20261004">
-@media (max-width:760px){
+<style id="kj-crane-after-intro-20261004">
+@media(max-width:760px){
+  /* 인트로가 열려 있는 동안 크레인은 대기 */
   body.kj-intro-open #about > .kj-mobile-main-exact{
     opacity:0!important;
     transform:translate3d(150px,0,0) scale(.98)!important;
     animation:none!important;
   }
 
-  body:not(.kj-intro-open) #about > .kj-mobile-main-exact{
-    animation:kjCraneDriveInFixed 2.05s cubic-bezier(.16,.84,.28,1) both!important;
+  /* JS가 인트로 종료를 확인한 뒤에만 시작 */
+  body.kj-crane-go #about > .kj-mobile-main-exact{
+    animation:kjCraneAfterIntro 1.9s cubic-bezier(.16,.84,.28,1) both!important;
     transform-origin:center bottom!important;
     will-change:transform,opacity;
   }
 
-  @keyframes kjCraneDriveInFixed{
-    0%{
-      opacity:0;
-      transform:translate3d(150px,0,0) scale(.98);
-    }
-    58%{
-      opacity:1;
-      transform:translate3d(-10px,0,0) scale(1);
-    }
-    76%{transform:translate3d(5px,0,0) scale(1)}
-    88%{transform:translate3d(-2px,0,0) scale(1)}
-    100%{
-      opacity:1;
-      transform:translate3d(0,0,0) scale(1);
-    }
+  @keyframes kjCraneAfterIntro{
+    0%{opacity:0;transform:translate3d(150px,0,0) scale(.98)}
+    60%{opacity:1;transform:translate3d(-9px,0,0) scale(1)}
+    78%{transform:translate3d(4px,0,0) scale(1)}
+    90%{transform:translate3d(-2px,0,0) scale(1)}
+    100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
   }
 }
-
-@media (prefers-reduced-motion:reduce){
-  body.kj-intro-open #about > .kj-mobile-main-exact{
-    opacity:0!important;
-  }
-  body:not(.kj-intro-open) #about > .kj-mobile-main-exact{
-    opacity:1!important;
-    transform:none!important;
-    animation:none!important;
+@media(prefers-reduced-motion:reduce){
+  body.kj-crane-go #about > .kj-mobile-main-exact{
+    opacity:1!important;transform:none!important;animation:none!important;
   }
 }
 </style>
@@ -3139,6 +3126,49 @@ document.addEventListener('DOMContentLoaded', function(){
   #about > .kj-mobile-main-exact{display:none!important}
 }
 </style>
+
+<script id="kj-crane-after-intro-20261004-js">
+(function(){
+  if(!window.matchMedia('(max-width:760px)').matches) return;
+
+  var body=document.body;
+  var intro=document.querySelector('#kj-mobile-entrance, .kj-mobile-entrance');
+
+  function startCrane(){
+    if(body.classList.contains('kj-crane-go')) return;
+    body.classList.add('kj-crane-go');
+  }
+
+  function waitUntilIntroFullyClosed(){
+    /* 기존 인트로 슬라이드 1.08초가 완전히 끝난 다음 여유 0.08초 */
+    setTimeout(startCrane,1160);
+  }
+
+  /* 홈페이지 이동 버튼 클릭을 잡아서, 클릭 시점이 아니라 슬라이드 종료 후 실행 */
+  var buttons=document.querySelectorAll(
+    '#kj-mobile-entrance a, #kj-mobile-entrance button, .kj-mobile-entrance a, .kj-mobile-entrance button'
+  );
+  buttons.forEach(function(btn){
+    var txt=(btn.textContent||'').replace(/\s+/g,'');
+    if(txt.indexOf('홈페이지이동')!==-1){
+      btn.addEventListener('click',waitUntilIntroFullyClosed,{once:true});
+    }
+  });
+
+  /* 혹시 기존 코드가 intro class를 직접 제거하는 경우도 감시 */
+  var observer=new MutationObserver(function(){
+    if(!body.classList.contains('kj-intro-open') && !body.classList.contains('kj-crane-go')){
+      setTimeout(startCrane,1080);
+    }
+  });
+  observer.observe(body,{attributes:true,attributeFilter:['class']});
+
+  /* 인트로가 애초에 없는 직접 진입 상황 */
+  if(!body.classList.contains('kj-intro-open')){
+    setTimeout(startCrane,100);
+  }
+})();
+</script>
 
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
