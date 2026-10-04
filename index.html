@@ -2375,14 +2375,25 @@ img { height:auto; }
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-size:13px;color:#777;background:#f7f7f7;z-index:0
 }
-#kj-kakao-map .kj-map-label{
-  position:relative;left:-50%;transform:translateY(-52px);
-  padding:7px 10px;background:#fff;border:1px solid #d9d9d9;border-radius:3px;
-  box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:12px;font-weight:700;
-  color:#222;white-space:nowrap
-}
 @media(max-width:700px){
   #kj-kakao-map{height:290px}
+}
+</style>
+
+
+<style id="kj-work-lightbox-style-20261004">
+#kj-work-lightbox{display:none;position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.94)}
+#kj-work-lightbox.kj-open{display:flex;align-items:center;justify-content:center}
+#kj-work-lightbox .kj-lb-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#kj-work-lightbox .kj-lb-img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;transition:opacity .14s ease}
+#kj-work-lightbox .kj-lb-close{position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;z-index:3;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.13);color:#fff;font-size:29px;line-height:42px}
+#kj-work-lightbox .kj-lb-count{position:absolute;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;color:#fff;font-size:13px;letter-spacing:.08em;padding:7px 11px;border-radius:18px;background:rgba(0,0,0,.4)}
+#kj-work-lightbox .kj-lb-prev,#kj-work-lightbox .kj-lb-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:64px;border:0;background:rgba(0,0,0,.18);color:#fff;font-size:34px}
+#kj-work-lightbox .kj-lb-prev{left:8px} #kj-work-lightbox .kj-lb-next{right:8px}
+body.kj-lightbox-lock{overflow:hidden!important}
+@media(max-width:760px){
+ #kj-work-lightbox .kj-lb-prev,#kj-work-lightbox .kj-lb-next{display:none}
+ #work .work-preview-card:first-child .thumb img,#work .kj-gallery-thumb img{cursor:zoom-in}
 }
 </style>
 
@@ -3225,16 +3236,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
       var marker = new kakao.maps.Marker({
         position: position,
-        map: map
+        map: map,
+        title: '국제크레인'
       });
-
-      var content = '<div class="kj-map-label">국제크레인</div>';
-      var overlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-        yAnchor: 0
-      });
-      overlay.setMap(map);
 
       /* 모바일/PC 레이아웃 확정 후 중심점 재계산 */
       setTimeout(function(){
@@ -3250,6 +3254,55 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 })();
 </script>
+
+<div id="kj-work-lightbox" aria-hidden="true">
+ <div class="kj-lb-stage"><img class="kj-lb-img" alt="국제크레인 작업현장 확대사진"></div>
+ <button class="kj-lb-close" type="button" aria-label="닫기">×</button>
+ <button class="kj-lb-prev" type="button" aria-label="이전 사진">‹</button>
+ <button class="kj-lb-next" type="button" aria-label="다음 사진">›</button>
+ <div class="kj-lb-count">1 / 5</div>
+</div>
+
+
+<script id="kj-work-lightbox-script-20261004">
+(function(){
+ var box=document.getElementById('kj-work-lightbox'); if(!box)return;
+ var img=box.querySelector('.kj-lb-img'), count=box.querySelector('.kj-lb-count');
+ var current=0, startX=0, startY=0;
+
+ function gallery(){
+   return Array.from(document.querySelectorAll('#work .kj-gallery-thumbs-five .kj-gallery-thumb img')).map(function(x){return x.src});
+ }
+ function render(){
+   var a=gallery(); if(!a.length)return;
+   current=(current+a.length)%a.length; img.src=a[current]; count.textContent=(current+1)+' / '+a.length;
+ }
+ function openAt(i){current=i;render();box.classList.add('kj-open');box.setAttribute('aria-hidden','false');document.body.classList.add('kj-lightbox-lock')}
+ function close(){box.classList.remove('kj-open');box.setAttribute('aria-hidden','true');document.body.classList.remove('kj-lightbox-lock')}
+ function go(n){var a=gallery();if(!a.length)return;current=(current+n+a.length)%a.length;img.style.opacity='.25';setTimeout(function(){render();img.style.opacity='1'},80)}
+
+ /* 갤러리가 JS로 생성되므로 이벤트 위임 사용 */
+ document.addEventListener('click',function(e){
+   var thumb=e.target.closest && e.target.closest('#work .kj-gallery-thumbs-five .kj-gallery-thumb');
+   if(thumb){
+     var all=Array.from(document.querySelectorAll('#work .kj-gallery-thumbs-five .kj-gallery-thumb'));
+     openAt(all.indexOf(thumb)); return;
+   }
+   var main=e.target.closest && e.target.closest('#work .work-preview-card:first-child .thumb img');
+   if(main){
+     var a=gallery(), i=a.indexOf(main.src); openAt(i>=0?i:0);
+   }
+ });
+ box.querySelector('.kj-lb-close').addEventListener('click',close);
+ box.querySelector('.kj-lb-prev').addEventListener('click',function(){go(-1)});
+ box.querySelector('.kj-lb-next').addEventListener('click',function(){go(1)});
+ box.querySelector('.kj-lb-stage').addEventListener('click',close);
+ document.addEventListener('keydown',function(e){if(!box.classList.contains('kj-open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+ box.addEventListener('touchstart',function(e){if(e.touches.length){startX=e.touches[0].clientX;startY=e.touches[0].clientY}}, {passive:true});
+ box.addEventListener('touchend',function(e){if(!e.changedTouches.length)return;var dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.15)go(dx<0?1:-1)}, {passive:true});
+})();
+</script>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
