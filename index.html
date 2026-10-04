@@ -2657,6 +2657,67 @@ footer .privacy{
 }
 </style>
 
+
+<style id="kj-fullscreen-menu-20261004">
+@media (max-width:760px){
+  .mobile-menu-btn{
+    width:auto!important;height:42px!important;padding:0 2px!important;
+    border:0!important;background:transparent!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+  }
+  .kj-menu-word{
+    display:block!important;font-size:11px!important;font-weight:700!important;
+    letter-spacing:.16em!important;color:#111!important;line-height:1!important;
+  }
+
+  .mobile-drawer{
+    position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;
+    max-width:none!important;background:#fff!important;z-index:9998!important;
+    transform:translateX(100%)!important;transition:transform .55s cubic-bezier(.76,0,.24,1)!important;
+    overflow-y:auto!important;
+  }
+  .mobile-drawer.open{transform:translateX(0)!important;}
+  .mobile-drawer-backdrop{display:none!important;}
+
+  .mobile-drawer-inner{
+    min-height:100dvh!important;padding:86px 30px 110px!important;
+    display:block!important;background:#fff!important;
+  }
+  .mobile-drawer-close{
+    position:fixed!important;top:22px!important;right:24px!important;
+    width:42px!important;height:42px!important;border:0!important;background:transparent!important;
+    font-size:0!important;z-index:10000!important;
+  }
+  .mobile-drawer-close:before,.mobile-drawer-close:after{
+    content:""!important;position:absolute!important;left:10px!important;top:20px!important;
+    width:23px!important;height:1px!important;background:#111!important;
+  }
+  .mobile-drawer-close:before{transform:rotate(45deg)!important}
+  .mobile-drawer-close:after{transform:rotate(-45deg)!important}
+
+  .mobile-drawer-nav{padding:0!important;margin:0!important;}
+  .mobile-drawer-group{border-bottom:1px solid #ececec!important;}
+  .mobile-drawer-main{
+    min-height:72px!important;padding:0!important;width:100%!important;
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    background:none!important;border:0!important;text-align:left!important;
+    font-size:23px!important;font-weight:700!important;letter-spacing:-.04em!important;color:#111!important;
+  }
+  .mobile-drawer-main .mobile-drawer-chevron{
+    font-size:18px!important;font-weight:300!important;color:#aaa!important;
+  }
+  .mobile-drawer-sub{
+    padding:0 0 20px!important;
+  }
+  .mobile-drawer-sub a{
+    min-height:38px!important;padding:7px 2px!important;border:0!important;
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    font-size:13px!important;color:#666!important;background:none!important;
+  }
+  .mobile-drawer-sub a span:last-child{color:#bbb!important;font-size:15px!important}
+}
+</style>
+
 </head>
 <body>
 
@@ -2722,7 +2783,7 @@ footer .privacy{
 <div class="mega-item"><a class="mega-trigger" href="#work">작업현장</a><div class="mega-panel"><a href="work.html"><span class="mega-label">전체 작업현장</span><span class="mega-arrow">›</span></a><a href="work.html?category=structure"><span class="mega-label">구조물 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=landscape"><span class="mega-label">수목·조경 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=material"><span class="mega-label">자재 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=factory"><span class="mega-label">공장·설비 작업</span><span class="mega-arrow">›</span></a></div></div>
 <div class="mega-item"><a class="mega-trigger" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">오시는 길</a></div>
 </nav>
-<button class="mobile-menu-btn" type="button" aria-label="메뉴 열기" aria-controls="mobileDrawer" aria-expanded="false"><span></span><span></span><span></span></button>
+<button class="mobile-menu-btn" type="button" aria-label="메뉴 열기" aria-controls="mobileDrawer" aria-expanded="false"><span class="kj-menu-word">MENU</span></button>
 </div></header>
 
 
@@ -3598,6 +3659,31 @@ document.addEventListener('DOMContentLoaded', function(){
    slides[current].classList.add('is-active');
  },4200);
 })();
+</script>
+
+
+<script id="kj-fullscreen-menu-bridge-20261004">
+document.addEventListener('DOMContentLoaded',function(){
+  const btn=document.querySelector('.mobile-menu-btn');
+  const drawer=document.querySelector('.mobile-drawer');
+  const close=document.querySelector('.mobile-drawer-close');
+  if(!btn||!drawer) return;
+  function openMenu(){
+    drawer.classList.add('open');
+    document.documentElement.style.overflow='hidden';
+    document.body.style.overflow='hidden';
+  }
+  function closeMenu(){
+    drawer.classList.remove('open');
+    document.documentElement.style.overflow='';
+    document.body.style.overflow='';
+  }
+  btn.addEventListener('click',openMenu);
+  if(close) close.addEventListener('click',closeMenu);
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    if(!a.closest('.mobile-drawer-sub') || a.getAttribute('href')!=='#') closeMenu();
+  }));
+});
 </script>
 
 </body></html><style id="mobile-lower-fixed-layout">
