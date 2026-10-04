@@ -2397,17 +2397,10 @@ body.kj-lightbox-lock{overflow:hidden!important}
 }
 </style>
 
-
-<style id="kj-kakao-marker-image-fix-20261004">
-/* 카카오맵 내부 이미지에는 기존 정적지도 img 규칙을 적용하지 않음 */
-#kj-kakao-map img{
-  width:auto!important;
-  height:auto!important;
-  max-width:none!important;
-  max-height:none!important;
-  object-fit:initial!important;
-  border:0!important;
-}
+<style id="kj-kakao-map-safe-fix-20261004">
+/* 기존 .map-box img 규칙이 카카오 지도 내부에 침범하지 않도록 지도 컨테이너 자체를 분리 */
+#kj-kakao-map{overflow:hidden!important}
+#kj-kakao-map > div{max-width:none!important}
 </style>
 
 </head>
@@ -2417,7 +2410,7 @@ body.kj-lightbox-lock{overflow:hidden!important}
   <div class="kjpc-wrap">
     <div class="kjpc-kicker">KJ CRANE</div>
     <h1 class="kjpc-title">국제크레인</h1>
-    <div class="kjpc-area">춘천 중심 · 강원 전 지역</div>
+    
     <div class="kjpc-desc">국제크레인은<br>안전하고 정확한 크레인 작업을 약속드립니다.</div>
 
     <div class="kjpc-actions">
@@ -3177,13 +3170,6 @@ document.addEventListener('DOMContentLoaded', function(){
   var intro=document.querySelector('#kj-mobile-entrance, .kj-mobile-entrance');
 
   function startCrane(){
-    /* 인트로가 닫힌 뒤 항상 홈페이지 맨 위(메인)부터 보이게 고정 */
-    try{
-      history.replaceState(null, '', location.pathname + location.search);
-    }catch(e){}
-    window.scrollTo(0,0);
-    var mainSection=document.getElementById('about');
-    if(mainSection){ mainSection.scrollIntoView({block:'start',behavior:'auto'}); }
     if(body.classList.contains('kj-crane-go')) return;
     body.classList.add('kj-crane-go');
   }
@@ -3323,15 +3309,35 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
-
-<script id="kj-home-scroll-reset-20261004">
+<script id="kj-intro-stable-main-20261004">
 (function(){
   if('scrollRestoration' in history) history.scrollRestoration='manual';
-  window.addEventListener('pageshow',function(){
-    if(location.hash==='' && document.body.classList.contains('kj-intro-open')){
-      window.scrollTo(0,0);
+
+  function pinMain(){
+    window.scrollTo({top:0,left:0,behavior:'auto'});
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+  }
+
+  /* 첫 로드부터 본문은 메인 최상단에 대기 */
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',pinMain,{once:true});
+  }else{
+    pinMain();
+  }
+
+  /* 홈페이지 이동을 누르는 바로 그 순간에도 메인 최상단 고정 */
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest && e.target.closest(
+      '#kj-mobile-entrance a,#kj-mobile-entrance button,.kj-mobile-entrance a,.kj-mobile-entrance button,#kj-pc-entrance a,#kj-pc-entrance button'
+    );
+    if(!btn) return;
+    var txt=(btn.textContent||'').replace(/\s+/g,'');
+    if(txt.indexOf('홈페이지이동')!==-1){
+      pinMain();
+      requestAnimationFrame(pinMain);
     }
-  });
+  },true);
 })();
 </script>
 
