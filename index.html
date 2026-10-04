@@ -2753,6 +2753,31 @@ footer .privacy{
 }
 </style>
 
+
+<style id="kj-floating-menu-20261004">
+@media(max-width:760px){
+  .mobile-menu-btn{
+    position:fixed!important;
+    top:calc(env(safe-area-inset-top, 0px) + 18px)!important;
+    right:18px!important;
+    z-index:9997!important;
+    min-width:58px!important;
+    height:38px!important;
+    padding:0 12px!important;
+    border-radius:999px!important;
+    transition:background .25s ease,box-shadow .25s ease,backdrop-filter .25s ease!important;
+  }
+  body.kj-scrolled .mobile-menu-btn{
+    background:rgba(255,255,255,.88)!important;
+    box-shadow:0 2px 14px rgba(0,0,0,.08)!important;
+    -webkit-backdrop-filter:blur(10px)!important;
+    backdrop-filter:blur(10px)!important;
+  }
+  /* 메뉴가 열린 동안 떠있는 MENU 버튼은 숨김 */
+  body.kj-menu-open .mobile-menu-btn{opacity:0!important;pointer-events:none!important}
+}
+</style>
+
 </head>
 <body>
 
@@ -3719,6 +3744,27 @@ document.addEventListener('DOMContentLoaded',function(){
     if(!a.closest('.mobile-drawer-sub') || a.getAttribute('href')!=='#') closeMenu();
   }));
 });
+</script>
+
+
+<script id="kj-floating-menu-js-20261004">
+(function(){
+  function syncFloatingMenu(){
+    document.body.classList.toggle('kj-scrolled', window.scrollY > 70);
+  }
+  window.addEventListener('scroll',syncFloatingMenu,{passive:true});
+  document.addEventListener('DOMContentLoaded',function(){
+    syncFloatingMenu();
+    const btn=document.querySelector('.mobile-menu-btn');
+    const drawer=document.querySelector('.mobile-drawer');
+    const close=document.querySelector('.mobile-drawer-close');
+    if(btn) btn.addEventListener('click',()=>document.body.classList.add('kj-menu-open'));
+    if(close) close.addEventListener('click',()=>document.body.classList.remove('kj-menu-open'));
+    if(drawer){
+      drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('kj-menu-open')));
+    }
+  });
+})();
 </script>
 
 </body></html><style id="mobile-lower-fixed-layout">
