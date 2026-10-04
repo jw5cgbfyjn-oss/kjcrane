@@ -2520,6 +2520,49 @@ body.kj-lightbox-lock{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){.kj-work-fade-slide{transition:none}}
 </style>
 
+
+<style id="kj-mobile-tight-form-20261004">
+@media(max-width:760px){
+  /* 전체 흐름 15~20% 추가 압축 */
+  main .section{padding-top:14px!important;padding-bottom:14px!important}
+  #work.work-preview-section{margin-top:-16px!important;padding:0!important}
+  #inquiry{padding-top:8px!important;padding-bottom:8px!important}
+  .location-preview{padding-top:16px!important;padding-bottom:12px!important}
+  #representative-teaser.rep-teaser{padding-top:16px!important;padding-bottom:16px!important}
+
+  /* 문의 아코디언 한 줄도 조금 더 슬림하게 */
+  #inquiry .kj-inquiry-toggle{min-height:50px!important}
+
+  /* 펼친 문의폼: 바깥 큰 박스 느낌 제거 */
+  #inquiry .online-inquiry,
+  #inquiry .kj-inquiry-body,
+  #inquiry .inquiry-form,
+  #inquiry form{
+    border:0!important;
+    box-shadow:none!important;
+    border-radius:0!important;
+  }
+  #inquiry .kj-inquiry-body{padding:12px 0 2px!important}
+  #inquiry form{padding:0!important;margin:0!important}
+
+  /* 입력칸과 항목 간격 축소 */
+  #inquiry form label{margin-bottom:10px!important}
+  #inquiry form input:not([type="checkbox"]):not([type="file"]),
+  #inquiry form select{
+    min-height:44px!important;
+    height:44px!important;
+    padding:9px 12px!important;
+  }
+  #inquiry form textarea{
+    min-height:88px!important;
+    padding:10px 12px!important;
+  }
+  #inquiry form input[type="file"]{padding:8px 0!important}
+  #inquiry .privacy-check{margin-top:10px!important;margin-bottom:12px!important}
+  #inquiry .inquiry-submit{min-height:48px!important;margin-top:6px!important}
+}
+</style>
+
 </head>
 <body>
 
