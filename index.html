@@ -4438,6 +4438,118 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 }
 </style>
 
+
+
+<style id="kj-mobile-hero-sequence-20261006">
+@media(max-width:760px){
+  /* JS가 준비된 경우에만 숨겨두므로, 오류가 나도 콘텐츠는 기본 표시됨 */
+  body.kjr-seq-ready .kjr-hero-copy{
+    opacity:0!important;
+    transform:translate3d(0,18px,0)!important;
+  }
+
+  body.kjr-seq-ready .kjr-crane-wrap{
+    opacity:0!important;
+    transform:translate3d(42px,0,0)!important;
+  }
+
+  /* 1. 글자 먼저 */
+  body.kjr-seq-play .kjr-hero-copy{
+    animation:kjrCopyIn .72s cubic-bezier(.22,.61,.36,1) forwards!important;
+  }
+
+  /* 2. 글자 들어온 뒤 크레인 */
+  body.kjr-seq-play .kjr-crane-wrap{
+    animation:kjrCraneIn .95s cubic-bezier(.22,.61,.36,1) .62s forwards!important;
+  }
+
+  @keyframes kjrCopyIn{
+    from{opacity:0;transform:translate3d(0,18px,0)}
+    to{opacity:1;transform:translate3d(0,0,0)}
+  }
+
+  @keyframes kjrCraneIn{
+    from{opacity:0;transform:translate3d(42px,0,0)}
+    to{opacity:1;transform:translate3d(0,0,0)}
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .kjr-hero-copy,
+  .kjr-crane-wrap{
+    opacity:1!important;
+    transform:none!important;
+    animation:none!important;
+  }
+}
+</style>
+
+
+<script id="kj-mobile-hero-sequence-js-20261006">
+(function(){
+  if(!window.matchMedia('(max-width:760px)').matches) return;
+
+  var body=document.body;
+  var played=false;
+
+  function play(){
+    if(played) return;
+    played=true;
+    body.classList.add('kjr-seq-ready');
+
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        body.classList.add('kjr-seq-play');
+      });
+    });
+  }
+
+  function introVisible(){
+    var intro=document.getElementById('kj-mobile-entrance');
+    if(!intro) return false;
+    var cs=getComputedStyle(intro);
+    return cs.display!=='none' && cs.visibility!=='hidden' &&
+           !intro.classList.contains('kj-leave');
+  }
+
+  function init(){
+    body.classList.add('kjr-seq-ready');
+
+    var intro=document.getElementById('kj-mobile-entrance');
+
+    if(intro && introVisible()){
+      var done=function(e){
+        if(e.target===intro && (!e.propertyName || e.propertyName==='transform')){
+          intro.removeEventListener('transitionend',done);
+          setTimeout(play,80);
+        }
+      };
+      intro.addEventListener('transitionend',done);
+
+      /* transitionend 누락 대비 */
+      var observer=new MutationObserver(function(){
+        if(!introVisible()){
+          observer.disconnect();
+          setTimeout(play,80);
+        }
+      });
+      observer.observe(intro,{attributes:true,attributeFilter:['class','style']});
+      setTimeout(function(){
+        if(!introVisible()) play();
+      },1600);
+    }else{
+      setTimeout(play,90);
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init,{once:true});
+  }else{
+    init();
+  }
+})();
+</script>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
