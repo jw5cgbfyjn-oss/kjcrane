@@ -2954,6 +2954,148 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
+
+<style id="kj-standalone-inquiry-form-final">
+.kj-standalone-inquiry-form{
+  display:block!important;
+  width:100%!important;
+  padding:28px 0 0!important;
+  margin:0!important;
+}
+.kj-standalone-form-inner,
+.kj-standalone-inquiry-form #online-inquiry-form{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.kj-standalone-inquiry-form #online-inquiry-form{
+  width:100%!important;
+}
+.kj-standalone-inquiry-form label{
+  display:block!important;
+}
+@media(max-width:760px){
+  .kj-standalone-inquiry-form{padding-top:24px!important}
+}
+</style>
+
+
+<style id="kj-inquiry-clean-design-final">
+@media(max-width:760px){
+  .kj-inquiry-page{
+    width:calc(100% - 40px)!important;
+    padding:42px 0 90px!important;
+  }
+}
+.kj-standalone-form-inner{padding-top:4px!important}
+.kj-standalone-inquiry-form #online-inquiry-form{
+  display:grid!important;
+  gap:18px!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif!important;
+  color:#111!important;
+}
+.kj-standalone-inquiry-form .field,
+.kj-standalone-inquiry-form .form-field,
+.kj-standalone-inquiry-form .online-field{
+  display:block!important;
+  margin:0!important;
+}
+.kj-standalone-inquiry-form label{
+  display:block!important;
+  margin:0 0 8px!important;
+  font-size:14px!important;
+  line-height:1.4!important;
+  font-weight:700!important;
+  color:#222!important;
+}
+.kj-standalone-inquiry-form input[type="text"],
+.kj-standalone-inquiry-form input[type="tel"],
+.kj-standalone-inquiry-form input[type="date"],
+.kj-standalone-inquiry-form textarea{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  height:48px!important;
+  padding:0 14px!important;
+  border:1px solid #dedede!important;
+  border-radius:0!important;
+  background:#fff!important;
+  color:#111!important;
+  font:inherit!important;
+  font-size:14px!important;
+  outline:none!important;
+  box-shadow:none!important;
+  -webkit-appearance:none!important;
+}
+.kj-standalone-inquiry-form textarea{
+  height:108px!important;
+  padding:13px 14px!important;
+  line-height:1.6!important;
+  resize:vertical!important;
+}
+.kj-standalone-inquiry-form input:focus,
+.kj-standalone-inquiry-form textarea:focus{border-color:#777!important}
+.kj-standalone-inquiry-form input::placeholder,
+.kj-standalone-inquiry-form textarea::placeholder{color:#aaa!important;opacity:1!important}
+
+.kj-standalone-inquiry-form input[type="file"]{
+  display:block!important;
+  width:100%!important;
+  margin:2px 0 7px!important;
+  padding:10px!important;
+  border:1px solid #dedede!important;
+  background:#fff!important;
+  font-size:12px!important;
+}
+.kj-standalone-inquiry-form .photo-help,
+.kj-standalone-inquiry-form .file-help,
+.kj-standalone-inquiry-form small{
+  display:block!important;
+  margin-top:7px!important;
+  color:#888!important;
+  font-size:12px!important;
+  line-height:1.55!important;
+}
+.kj-standalone-inquiry-form .privacy-agree,
+.kj-standalone-inquiry-form .agree-row{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:9px!important;
+  margin-top:4px!important;
+  font-size:13px!important;
+  line-height:1.55!important;
+}
+.kj-standalone-inquiry-form input[type="checkbox"]{
+  width:18px!important;height:18px!important;min-width:18px!important;
+  margin:1px 0 0!important;accent-color:#111!important;
+}
+.kj-standalone-inquiry-form button[type="submit"],
+.kj-standalone-inquiry-form input[type="submit"]{
+  display:block!important;
+  width:100%!important;
+  height:52px!important;
+  margin-top:4px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#111!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  letter-spacing:-.01em!important;
+  cursor:pointer!important;
+  -webkit-appearance:none!important;
+}
+</style>
+
+
+<style id="kj-required-optional-style">
+.kj-required{color:#e32626!important;font-weight:800!important}
+.kj-optional{color:#999!important;font-size:.88em!important;font-weight:500!important;margin-left:4px!important}
+</style>
+
 </head>
 <body><header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
@@ -2970,34 +3112,22 @@ document.addEventListener('DOMContentLoaded',function(){
     <div><div class="kj-inquiry-page-kicker">KJ CRANE</div><h1>문의접수</h1></div>
     <a href="index.html?home=1" class="kj-inquiry-home">홈으로 ›</a>
   </div>
-  <section class="kj-main-inquiry-to-hide" class="section" id="inquiry">
-<div class="wrap kj-rise">
-<div class="online-inquiry" id="online-inquiry">
-
-<div class="kj-inquiry-accordion" id="kj-inquiry-accordion">
-  <button class="kj-inquiry-toggle" type="button" aria-expanded="false" aria-controls="kj-inquiry-form-panel">
-    <span class="kj-inquiry-toggle-label">문의접수하기</span>
-    <span class="kj-inquiry-plus" aria-hidden="true"></span>
-  </button>
-  <div class="kj-inquiry-panel" id="kj-inquiry-form-panel" aria-hidden="true">
-    <div class="kj-inquiry-panel-inner">
-      <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
-<label><span>작업 지역 <b>*</b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
-<label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
+  
+<section class="kj-standalone-inquiry-form">
+  <div class="kj-standalone-form-inner">
+    <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
+<label><span>작업 지역 <b><span class="kj-required">*</span></b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
+<label><span>작업 내용 <b><span class="kj-required">*</span></b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
 <label><span>희망 작업일</span><input name="date" type="date"/></label>
-<label><span>연락처 <b>*</b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
-<label><span>현장 사진 첨부</span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
+<label><span>연락처 <b><span class="kj-required">*</span></b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
+<label><span>현장 사진 첨부 <span class="kj-optional">(선택)</span></span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
 <p class="file-help">현장 사진이 있으시면 함께 보내주세요. (최대 5장 / JPG, PNG, HEIC)</p>
 <label class="privacy-check"><input required="" type="checkbox"/><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
 <button class="inquiry-submit" type="submit">문의 접수하기</button>
 </form>
-    </div>
   </div>
-</div>
-
-</div>
-</div>
 </section>
+
 </main>
 <footer><div class="wrap footer-info">
 <div><span class="footer-label">대표자</span><span class="sep">|</span>김선원</div>
