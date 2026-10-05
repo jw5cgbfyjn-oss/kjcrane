@@ -4803,6 +4803,137 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 })();
 </script>
 
+
+
+<style id="kj-pc-force-mobile-layout-20261006">
+@media(min-width:761px){
+  /* 1) 예전 PC 헤더/메인 완전히 숨김 */
+  body > header,
+  #kj-pc-simple-main,
+  #about,
+  .pc-main,
+  .pc-hero,
+  .main-visual,
+  .mainVisual{
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  /* 2) 새 리디자인 구조는 위치와 상관없이 강제로 표시 */
+  .kj-mobile-redesign{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    position:relative!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    background:#fff!important;
+    overflow:hidden!important;
+    z-index:1!important;
+  }
+
+  .kjr-top{
+    display:flex!important;
+    width:min(1180px,calc(100% - 64px))!important;
+    min-height:96px!important;
+    margin:0 auto!important;
+    padding:18px 0!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    background:#fff!important;
+  }
+
+  .kjr-hero{
+    display:block!important;
+    position:relative!important;
+    width:min(1180px,calc(100% - 64px))!important;
+    min-height:610px!important;
+    margin:0 auto!important;
+    padding:76px 0 0!important;
+    overflow:hidden!important;
+    background:linear-gradient(145deg,#fff 0%,#fff 42%,#f7f8f9 100%)!important;
+  }
+
+  .kjr-work,
+  .kjr-location,
+  .kjr-footer{
+    visibility:visible!important;
+    opacity:1!important;
+  }
+
+  /* 3) PC 하단 고정바 아이콘 크기 명시 — 검은 큰 원 제거 */
+  body > .kjr-fixed-contact svg,
+  .kjr-fixed-contact svg{
+    width:26px!important;
+    height:26px!important;
+    max-width:26px!important;
+    max-height:26px!important;
+    display:block!important;
+    flex:0 0 26px!important;
+    fill:currentColor!important;
+  }
+
+  body > .kjr-fixed-contact{
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    width:100vw!important;
+    height:70px!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    z-index:2147483647!important;
+  }
+
+  body > .kjr-fixed-contact a{
+    height:70px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:12px!important;
+    margin:0!important;
+    padding:0 24px!important;
+    box-sizing:border-box!important;
+    font-size:17px!important;
+    font-weight:850!important;
+  }
+
+  body > .kjr-fixed-contact .kjr-call{
+    background:#111!important;
+    color:#fff!important;
+  }
+
+  body > .kjr-fixed-contact .kjr-kakao{
+    background:#ffe500!important;
+    color:#111!important;
+  }
+}
+</style>
+
+
+
+<style id="kj-pc-hide-bottom-contact-20261006">
+@media(min-width:761px){
+  body > .kjr-fixed-contact,
+  .kjr-fixed-contact{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    pointer-events:none!important;
+  }
+  body{
+    padding-bottom:0!important;
+  }
+  .kjr-footer{
+    padding-bottom:34px!important;
+  }
+}
+</style>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
