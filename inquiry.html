@@ -2876,7 +2876,7 @@ body{overflow:auto!important}
 .kj-inquiry-page{width:min(760px,calc(100% - 36px));margin:0 auto;padding:72px 0 110px}
 .kj-inquiry-page-top{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid #eee}
 .kj-inquiry-page-kicker{font-size:10px;font-weight:800;letter-spacing:.18em;color:#aaa;margin-bottom:8px}
-.kj-inquiry-page-top h1{margin:0;font-size:30px;letter-spacing:-.045em}
+.kj-inquiry-page-top h1{margin:0;font-size:30px;letter-spacing:-.045em}.kj-page-redline{width:34px;height:2px;background:#d71920;margin-top:16px}
 .kj-inquiry-home{font-size:13px;font-weight:650;color:#555}
 .kj-inquiry-page #inquiry{display:block!important;padding:24px 0!important}
 .kj-inquiry-page #inquiry .kj-inquiry-body,
@@ -3090,12 +3090,6 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-
-<style id="kj-required-optional-style">
-.kj-required{color:#e32626!important;font-weight:800!important}
-.kj-optional{color:#999!important;font-size:.88em!important;font-weight:500!important;margin-left:4px!important}
-</style>
-
 </head>
 <body><header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
@@ -3109,18 +3103,18 @@ document.addEventListener('DOMContentLoaded',function(){
 </div></header>
 <main class="kj-inquiry-page">
   <div class="kj-inquiry-page-top">
-    <div><div class="kj-inquiry-page-kicker">KJ CRANE</div><h1>문의접수</h1></div>
+    <div><div class="kj-inquiry-page-kicker">KJ CRANE</div><h1>문의접수</h1><div class="kj-page-redline"></div></div>
     <a href="index.html?home=1" class="kj-inquiry-home">홈으로 ›</a>
   </div>
   
 <section class="kj-standalone-inquiry-form">
   <div class="kj-standalone-form-inner">
     <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
-<label><span>작업 지역 <b><span class="kj-required">*</span></b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
-<label><span>작업 내용 <b><span class="kj-required">*</span></b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
+<label><span>작업 지역 <b>*</b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
+<label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
 <label><span>희망 작업일</span><input name="date" type="date"/></label>
-<label><span>연락처 <b><span class="kj-required">*</span></b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
-<label><span>현장 사진 첨부 <span class="kj-optional">(선택)</span></span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
+<label><span>연락처 <b>*</b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
+<label><span>현장 사진 첨부</span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
 <p class="file-help">현장 사진이 있으시면 함께 보내주세요. (최대 5장 / JPG, PNG, HEIC)</p>
 <label class="privacy-check"><input required="" type="checkbox"/><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
 <button class="inquiry-submit" type="submit">문의 접수하기</button>
