@@ -2914,6 +2914,46 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
+
+<style id="kj-inquiry-panel-force-visible-20261005">
+/* 문의 전용 페이지: + 버튼 없이 폼 자체를 즉시 표시 */
+.kj-inquiry-page #inquiry .kj-inquiry-toggle{display:none!important}
+.kj-inquiry-page #inquiry .kj-inquiry-accordion{
+  display:block!important;
+  margin-top:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+}
+.kj-inquiry-page #inquiry .kj-inquiry-panel{
+  display:block!important;
+  grid-template-rows:1fr!important;
+  opacity:1!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.kj-inquiry-page #inquiry .kj-inquiry-panel-inner{
+  display:block!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+  padding:24px 0 0!important;
+}
+.kj-inquiry-page #inquiry .online-inquiry-form{
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var acc=document.querySelector('.kj-inquiry-page #kj-inquiry-accordion');
+  var panel=document.querySelector('.kj-inquiry-page #kj-inquiry-form-panel');
+  if(acc) acc.classList.add('kj-open');
+  if(panel){ panel.setAttribute('aria-hidden','false'); panel.style.display='block'; }
+});
+</script>
+
 </head>
 <body><header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
