@@ -3199,7 +3199,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
 <label><span>희망 작업일</span><input name="date" type="date"/></label>
 <label><span>연락처 <b>*</b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
-<label><span>현장 사진 첨부</span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
+<label><span>현장 사진 첨부 <em class="kj-optional">(선택)</em></span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
 <p class="file-help">현장 사진이 있으시면 함께 보내주세요. (최대 5장 / JPG, PNG, HEIC)</p>
 <label class="privacy-check"><input required="" type="checkbox"/><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
 <button class="inquiry-submit" type="submit">문의 접수하기</button>
@@ -3343,6 +3343,67 @@ document.addEventListener('DOMContentLoaded',function(){
 <b>카카오톡 문의</b><span>→</span>
 </a>
 </div>
+
+
+<style id="kj-inquiry-final-visual-fix-20261006">
+/* 필수 *는 빨간색 */
+.kj-standalone-inquiry-form label > span b,
+.online-inquiry-form label > span b{
+  color:#d71920!important;
+  font-weight:800!important;
+}
+
+/* 사진첨부 선택 문구 */
+.kj-optional{
+  color:#8f8f8f!important;
+  font-style:normal!important;
+  font-size:.88em!important;
+  font-weight:500!important;
+  margin-left:3px!important;
+}
+
+/* 이 페이지 푸터만 메인과 동일한 검정색으로 확실히 고정 */
+body .kj-unified-footer{
+  background:#151515!important;
+  background-color:#151515!important;
+  color:#d5d5d5!important;
+  border:0!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+body .kj-unified-footer-info b{
+  color:#fff!important;
+}
+body .kj-unified-footer-info i{
+  color:#777!important;
+}
+body .kj-unified-footer-info span{
+  color:#c9c9c9!important;
+}
+body .kj-unified-privacy{
+  color:#9b9b9b!important;
+  background:transparent!important;
+}
+body .kj-unified-footer-logo img{
+  filter:brightness(0) invert(1)!important;
+  opacity:.95!important;
+}
+
+@media(max-width:700px){
+  body .kj-unified-footer{
+    display:grid!important;
+    grid-template-columns:72px minmax(0,1fr) 74px!important;
+    gap:12px!important;
+    align-items:center!important;
+    width:100%!important;
+    min-height:140px!important;
+    margin:0!important;
+    padding:24px 16px 28px!important;
+    box-sizing:border-box!important;
+  }
+}
+</style>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
