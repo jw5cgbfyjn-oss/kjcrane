@@ -4236,6 +4236,93 @@ footer .privacy{
   }
 }
 </style>
+
+
+<style id="kj-mobile-scroll-unlock-css-20261006">
+@media(max-width:760px){
+  html,body{
+    min-height:100%!important;
+    height:auto!important;
+  }
+  body:not(.kj-menu-open):not(.kj-intro-open){
+    position:static!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    touch-action:pan-y!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+}
+</style>
+
+
+<script id="kj-mobile-scroll-unlock-js-20261006">
+(function(){
+  if(!window.matchMedia('(max-width:760px)').matches) return;
+
+  function drawerIsOpen(){
+    var d=document.querySelector('.mobile-drawer');
+    return !!(d && d.classList.contains('open'));
+  }
+
+  function introIsActuallyOpen(){
+    var c=document.getElementById('kj-mobile-entrance');
+    if(!c) return false;
+    var cs=window.getComputedStyle(c);
+    return document.body.classList.contains('kj-intro-open') &&
+           cs.display!=='none' && cs.visibility!=='hidden' &&
+           !c.classList.contains('kj-leave');
+  }
+
+  function unlockIfSafe(){
+    if(drawerIsOpen() || introIsActuallyOpen()) return;
+
+    document.body.classList.remove('kj-menu-open');
+    document.body.classList.remove('kj-intro-open');
+    document.documentElement.style.removeProperty('overflow');
+    document.body.style.removeProperty('overflow');
+    document.documentElement.style.removeProperty('position');
+    document.body.style.removeProperty('position');
+    document.documentElement.style.removeProperty('height');
+    document.body.style.removeProperty('height');
+
+    // iOS Safari가 첫 프레임에서 스크롤 범위를 다시 계산하도록 유도
+    void document.body.offsetHeight;
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(unlockIfSafe);
+      });
+    },{once:true});
+  }else{
+    requestAnimationFrame(function(){
+      requestAnimationFrame(unlockIfSafe);
+    });
+  }
+
+  // 뒤로가기/BFCache 복원 때 남아 있는 overflow:hidden도 제거
+  window.addEventListener('pageshow',function(){
+    setTimeout(unlockIfSafe,0);
+    setTimeout(unlockIfSafe,180);
+  });
+
+  // 인트로가 닫힌 직후에도 즉시 스크롤 복구
+  document.addEventListener('click',function(e){
+    var enter=e.target.closest && e.target.closest('#kj-mobile-entrance .kj-intro-enter');
+    if(enter){
+      setTimeout(unlockIfSafe,1350);
+    }
+  },true);
+
+  // 메뉴가 닫히면 무조건 복구
+  document.addEventListener('click',function(e){
+    var close=e.target.closest && e.target.closest('.mobile-drawer-close');
+    if(close) setTimeout(unlockIfSafe,30);
+  },true);
+})();
+</script>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
