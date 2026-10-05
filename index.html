@@ -3952,10 +3952,10 @@ footer .privacy{
 <footer class="kjr-footer">
 <div class="kjr-footer-logo"><img alt="국제크레인" src="kj-logo-new.png"/></div>
 <div class="kjr-footer-info">
-<div><b>대표자</b><span>김선원</span></div>
-<div><b>사업자등록번호</b><span>221-08-87838</span></div>
-<div><b>소재지</b><span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div>
-<div><b>전화문의</b><span>010-6379-8692</span></div>
+\1<i>|</i><span>김선원</span></div>
+\1<i>|</i><span>221-08-87838</span></div>
+\1<i>|</i><span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div>
+\1<i>|</i><span>010-6379-8692</span></div>
 </div>
 <button class="kjr-privacy" type="button">개인정보처리방침</button>
 </footer>
@@ -4930,6 +4930,69 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
   }
   .kjr-footer{
     padding-bottom:34px!important;
+  }
+}
+</style>
+
+
+
+<style id="kj-mobile-footer-alignment-20261006">
+@media(max-width:760px){
+  .kjr-footer{
+    grid-template-columns:76px minmax(0,1fr) 78px!important;
+    gap:12px!important;
+    align-items:center!important;
+  }
+
+  .kjr-footer-info{
+    display:block!important;
+    min-width:0!important;
+    font-size:8.7px!important;
+    line-height:1.65!important;
+    text-align:left!important;
+  }
+
+  .kjr-footer-info > div{
+    display:grid!important;
+    grid-template-columns:68px 7px minmax(0,1fr)!important;
+    column-gap:3px!important;
+    align-items:start!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .kjr-footer-info b{
+    display:block!important;
+    color:#fff!important;
+    font-weight:700!important;
+    white-space:nowrap!important;
+    text-align:left!important;
+  }
+
+  .kjr-footer-info b::after{
+    content:""!important;
+  }
+
+  .kjr-footer-info i{
+    display:block!important;
+    color:#777!important;
+    font-style:normal!important;
+    text-align:center!important;
+  }
+
+  .kjr-footer-info span{
+    display:block!important;
+    min-width:0!important;
+    color:#c9c9c9!important;
+    line-height:1.65!important;
+    text-align:left!important;
+    word-break:keep-all!important;
+  }
+
+  .kjr-privacy{
+    align-self:center!important;
+    justify-self:end!important;
+    text-align:right!important;
   }
 }
 </style>
