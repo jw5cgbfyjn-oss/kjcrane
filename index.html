@@ -3921,10 +3921,18 @@ footer .privacy{
 <a class="kjr-work-main" href="work.html"><img alt="국제크레인 작업현장" id="kjr-work-main-img"/></a>
 <div class="kjr-thumbs" id="kjr-thumbs"></div>
 <nav class="kjr-quick">
-<a href="greeting.html"><span class="kjr-ico">▥</span><b>회사소개</b><small>→</small></a>
-<a href="inquiry.html"><span class="kjr-ico">▤</span><b>작업문의</b><small>→</small></a>
-<a href="work.html"><span class="kjr-ico">▧</span><b>작업현장</b><small>→</small></a>
-<a href="#kjr-location"><span class="kjr-ico">⌖</span><b>오시는 길</b><small>→</small></a>
+<a href="greeting.html"><span class="kjr-ico" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M4 21V6.5L12 3l8 3.5V21M8 9h2m4 0h2M8 13h2m4 0h2M9 21v-4h6v4"/></svg>
+</span><b>회사소개</b><small>→</small></a>
+<a href="inquiry.html"><span class="kjr-ico" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5zM15 3v5h5M8 12h8M8 16h6"/></svg>
+</span><b>문의접수</b><small>→</small></a>
+<a href="work.html"><span class="kjr-ico" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM7 15l3-3 3 3 2-2 3 3M8 9h.01"/></svg>
+</span><b>작업현장</b><small>→</small></a>
+<a href="#kjr-location"><span class="kjr-ico" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M12 21s6-6.1 6-11a6 6 0 1 0-12 0c0 4.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+</span><b>오시는 길</b><small>→</small></a>
 </nav>
 </section>
 <section class="kjr-location" id="kjr-location">
@@ -4394,6 +4402,31 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
   .kjr-footer{
     padding-bottom:28px!important;
     margin-bottom:0!important;
+  }
+}
+</style>
+
+
+
+<style id="kj-mobile-quicknav-icon-fix-20261006">
+@media(max-width:760px){
+  .kjr-ico{
+    width:30px!important;
+    height:30px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    color:#111!important;
+  }
+  .kjr-ico svg{
+    width:27px!important;
+    height:27px!important;
+    display:block!important;
+    fill:none!important;
+    stroke:currentColor!important;
+    stroke-width:1.7!important;
+    stroke-linecap:round!important;
+    stroke-linejoin:round!important;
   }
 }
 </style>
