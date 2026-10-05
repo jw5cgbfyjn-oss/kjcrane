@@ -4440,43 +4440,38 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 
 
 
-<style id="kj-mobile-hero-sequence-20261006">
+
+
+
+
+
+
+
+<style id="kj-mobile-hero-sequence-fixed-20261006">
 @media(max-width:760px){
-  /* JS가 준비된 경우에만 숨겨두므로, 오류가 나도 콘텐츠는 기본 표시됨 */
-  body.kjr-seq-ready .kjr-hero-copy{
-    opacity:0!important;
-    transform:translate3d(0,18px,0)!important;
+  .kjr-crane-wrap{
+    opacity:1!important;
+    transform:none!important;
   }
-
-  body.kjr-seq-ready .kjr-crane-wrap{
-    opacity:0!important;
-    transform:translate3d(42px,0,0)!important;
+  .kjr-hero-copy.kjr-copy-animate{
+    animation:kjrCopyInFixed .72s cubic-bezier(.22,.61,.36,1) both!important;
   }
-
-  /* 1. 글자 먼저 */
-  body.kjr-seq-play .kjr-hero-copy{
-    animation:kjrCopyIn .72s cubic-bezier(.22,.61,.36,1) forwards!important;
+  .kjr-crane-wrap img.kjr-crane-animate{
+    animation:kjrCraneInFixed .95s cubic-bezier(.22,.61,.36,1) both!important;
   }
-
-  /* 2. 글자 들어온 뒤 크레인 */
-  body.kjr-seq-play .kjr-crane-wrap{
-    animation:kjrCraneIn .95s cubic-bezier(.22,.61,.36,1) .62s forwards!important;
-  }
-
-  @keyframes kjrCopyIn{
+  @keyframes kjrCopyInFixed{
     from{opacity:0;transform:translate3d(0,18px,0)}
     to{opacity:1;transform:translate3d(0,0,0)}
   }
-
-  @keyframes kjrCraneIn{
+  @keyframes kjrCraneInFixed{
     from{opacity:0;transform:translate3d(42px,0,0)}
     to{opacity:1;transform:translate3d(0,0,0)}
   }
 }
-
 @media(prefers-reduced-motion:reduce){
   .kjr-hero-copy,
-  .kjr-crane-wrap{
+  .kjr-crane-wrap,
+  .kjr-crane-wrap img{
     opacity:1!important;
     transform:none!important;
     animation:none!important;
@@ -4485,60 +4480,70 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 </style>
 
 
-<script id="kj-mobile-hero-sequence-js-20261006">
+<script id="kj-mobile-hero-sequence-fixed-js-20261006">
 (function(){
   if(!window.matchMedia('(max-width:760px)').matches) return;
 
-  var body=document.body;
   var played=false;
 
-  function play(){
+  function runSequence(){
     if(played) return;
     played=true;
-    body.classList.add('kjr-seq-ready');
 
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        body.classList.add('kjr-seq-play');
-      });
-    });
+    var copy=document.querySelector('.kjr-hero-copy');
+    var crane=document.querySelector('.kjr-crane-wrap img');
+
+    if(copy){
+      copy.classList.remove('kjr-copy-animate');
+      void copy.offsetWidth;
+      copy.classList.add('kjr-copy-animate');
+    }
+
+    if(crane){
+      crane.style.opacity='0';
+      crane.style.transform='translate3d(42px,0,0)';
+
+      setTimeout(function(){
+        crane.style.removeProperty('opacity');
+        crane.style.removeProperty('transform');
+        crane.classList.remove('kjr-crane-animate');
+        void crane.offsetWidth;
+        crane.classList.add('kjr-crane-animate');
+      },620);
+
+      setTimeout(function(){
+        crane.style.opacity='1';
+        crane.style.transform='none';
+      },2000);
+    }
   }
 
-  function introVisible(){
+  function introOpen(){
     var intro=document.getElementById('kj-mobile-entrance');
     if(!intro) return false;
     var cs=getComputedStyle(intro);
-    return cs.display!=='none' && cs.visibility!=='hidden' &&
+    return cs.display!=='none' &&
+           cs.visibility!=='hidden' &&
            !intro.classList.contains('kj-leave');
   }
 
   function init(){
-    body.classList.add('kjr-seq-ready');
-
     var intro=document.getElementById('kj-mobile-entrance');
 
-    if(intro && introVisible()){
-      var done=function(e){
-        if(e.target===intro && (!e.propertyName || e.propertyName==='transform')){
-          intro.removeEventListener('transitionend',done);
-          setTimeout(play,80);
-        }
-      };
-      intro.addEventListener('transitionend',done);
-
-      /* transitionend 누락 대비 */
+    if(intro && introOpen()){
       var observer=new MutationObserver(function(){
-        if(!introVisible()){
+        if(!introOpen()){
           observer.disconnect();
-          setTimeout(play,80);
+          setTimeout(runSequence,90);
         }
       });
       observer.observe(intro,{attributes:true,attributeFilter:['class','style']});
+
       setTimeout(function(){
-        if(!introVisible()) play();
-      },1600);
+        if(!introOpen()) runSequence();
+      },1700);
     }else{
-      setTimeout(play,90);
+      setTimeout(runSequence,100);
     }
   }
 
