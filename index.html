@@ -4555,6 +4555,264 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 })();
 </script>
 
+
+
+<style id="kj-pc-match-mobile-20261006">
+@media(min-width:761px){
+  /* 기존 PC 메인/헤더는 숨기고 모바일 리디자인 구조를 그대로 사용 */
+  body > header,
+  body > main{
+    display:none!important;
+  }
+
+  .kj-mobile-redesign{
+    display:block!important;
+    width:100%!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+
+  .kjr-top{
+    width:min(1180px,calc(100% - 64px))!important;
+    min-height:96px!important;
+    margin:0 auto!important;
+    padding:18px 0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+  }
+  .kjr-logo img{
+    width:170px!important;
+  }
+  .kjr-menu{
+    width:46px!important;
+    height:46px!important;
+    display:flex!important;
+  }
+  .kjr-menu span{
+    width:24px!important;
+  }
+
+  /* 메인: 모바일과 같은 구성, PC에선 좌/우 여유만 확장 */
+  .kjr-hero{
+    width:min(1180px,calc(100% - 64px))!important;
+    min-height:610px!important;
+    margin:0 auto!important;
+    padding:76px 0 0!important;
+    background:linear-gradient(145deg,#fff 0%,#fff 42%,#f7f8f9 100%)!important;
+    overflow:hidden!important;
+  }
+  .kjr-hero-copy{
+    max-width:440px!important;
+    padding-top:0!important;
+  }
+  .kjr-redline{
+    width:46px!important;
+    height:3px!important;
+    margin-bottom:21px!important;
+  }
+  .kjr-hero h1{
+    font-size:58px!important;
+    line-height:1.12!important;
+    letter-spacing:-.06em!important;
+  }
+  .kjr-hero p{
+    margin-top:22px!important;
+    font-size:18px!important;
+    line-height:1.72!important;
+  }
+  .kjr-rep-btn{
+    min-width:172px!important;
+    margin-top:27px!important;
+    padding:13px 18px!important;
+    font-size:14px!important;
+  }
+  .kjr-crane-wrap{
+    width:700px!important;
+    height:505px!important;
+    right:-40px!important;
+    bottom:10px!important;
+  }
+
+  .kjr-watermark{
+    width:min(1180px,calc(100% - 64px))!important;
+    height:84px!important;
+    margin:0 auto!important;
+    padding:0!important;
+  }
+  .kjr-watermark b{
+    font-size:24px!important;
+  }
+
+  /* 작업현장 */
+  .kjr-work{
+    width:min(1180px,calc(100% - 64px))!important;
+    margin:0 auto!important;
+    padding:28px 0 56px!important;
+  }
+  .kjr-kicker{
+    font-size:11px!important;
+  }
+  .kjr-work h2,
+  .kjr-location h2{
+    font-size:34px!important;
+  }
+  .kjr-work .kjr-section-head p{
+    font-size:14px!important;
+  }
+  .kjr-work-main{
+    height:500px!important;
+    border-radius:10px!important;
+  }
+  .kjr-thumbs{
+    gap:8px!important;
+    margin-top:8px!important;
+    overflow-x:auto!important;
+  }
+  .kjr-thumb{
+    flex:0 0 130px!important;
+    width:130px!important;
+    height:92px!important;
+    border-radius:7px!important;
+  }
+
+  /* 바로가기 4개는 PC에서 한 줄 */
+  .kjr-quick{
+    grid-template-columns:repeat(4,1fr)!important;
+    margin-top:24px!important;
+  }
+  .kjr-quick a{
+    min-height:130px!important;
+    border-bottom:0!important;
+    border-right:1px solid #ededed!important;
+  }
+  .kjr-quick a:last-child{
+    border-right:0!important;
+  }
+  .kjr-ico{
+    width:34px!important;
+    height:34px!important;
+  }
+  .kjr-ico svg{
+    width:31px!important;
+    height:31px!important;
+  }
+  .kjr-quick b{
+    font-size:15px!important;
+  }
+
+  /* 오시는 길은 PC에서 좌우 분할 */
+  .kjr-location{
+    width:min(1180px,calc(100% - 64px))!important;
+    margin:0 auto!important;
+    padding:58px 0 70px!important;
+    display:grid!important;
+    grid-template-columns:360px minmax(0,1fr)!important;
+    grid-template-rows:auto auto auto 1fr!important;
+    column-gap:46px!important;
+    align-items:start!important;
+  }
+  .kjr-location .kjr-kicker{grid-column:1!important}
+  .kjr-location h2{grid-column:1!important}
+  .kjr-address{grid-column:1!important;font-size:14px!important;margin-top:14px!important}
+  .kjr-map-btn{grid-column:1!important;justify-self:start!important;margin-top:10px!important}
+  #kjr-kakao-map{
+    grid-column:2!important;
+    grid-row:1 / span 4!important;
+    height:380px!important;
+    border-radius:10px!important;
+  }
+
+  /* 검정 푸터 */
+  .kjr-footer{
+    width:100%!important;
+    min-height:170px!important;
+    padding:34px max(32px,calc((100% - 1180px)/2)) 100px!important;
+    grid-template-columns:130px minmax(0,1fr) 140px!important;
+    gap:28px!important;
+  }
+  .kjr-footer-logo img{
+    width:105px!important;
+  }
+  .kjr-footer-info{
+    font-size:11px!important;
+    line-height:1.85!important;
+  }
+  .kjr-footer-info > div{
+    grid-template-columns:92px 10px minmax(0,1fr)!important;
+    gap:4px!important;
+  }
+  .kjr-privacy{
+    font-size:10px!important;
+  }
+
+  /* 전화/카카오 고정바는 PC에서도 동일하게 유지 */
+  body > .kjr-fixed-contact{
+    height:70px!important;
+  }
+  body > .kjr-fixed-contact a{
+    height:70px!important;
+    font-size:17px!important;
+  }
+  body{
+    padding-bottom:70px!important;
+  }
+}
+</style>
+
+
+<script id="kj-pc-match-mobile-js-20261006">
+(function(){
+  function initDesktop(){
+    if(!window.matchMedia('(min-width:761px)').matches) return;
+
+    /* 새 메뉴 버튼이 기존 전체메뉴를 여는 동작 유지 */
+    var menu=document.querySelector('.kjr-menu');
+    if(menu && !menu.dataset.pcBound){
+      menu.dataset.pcBound='1';
+      menu.addEventListener('click',function(){
+        var old=document.querySelector('.mobile-menu-btn');
+        if(old) old.click();
+      });
+    }
+
+    /* 모바일용 등장 순서를 PC에서도 동일하게 실행 */
+    var copy=document.querySelector('.kjr-hero-copy');
+    var crane=document.querySelector('.kjr-crane-wrap img');
+
+    if(copy){
+      copy.style.opacity='0';
+      copy.style.transform='translate3d(0,18px,0)';
+      requestAnimationFrame(function(){
+        copy.style.transition='opacity .72s ease, transform .72s cubic-bezier(.22,.61,.36,1)';
+        copy.style.opacity='1';
+        copy.style.transform='translate3d(0,0,0)';
+      });
+    }
+
+    if(crane){
+      crane.style.opacity='0';
+      crane.style.transform='translate3d(42px,0,0)';
+      setTimeout(function(){
+        crane.style.transition='opacity .95s ease, transform .95s cubic-bezier(.22,.61,.36,1)';
+        crane.style.opacity='1';
+        crane.style.transform='translate3d(0,0,0)';
+      },620);
+      setTimeout(function(){
+        crane.style.opacity='1';
+        crane.style.transform='none';
+      },1900);
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initDesktop,{once:true});
+  }else{
+    initDesktop();
+  }
+})();
+</script>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
