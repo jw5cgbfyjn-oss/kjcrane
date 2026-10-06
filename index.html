@@ -5697,5 +5697,204 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 }
 </style>
 
+
+
+<style id="kj-quicknav-equal-boxes-20261006">
+@media(max-width:760px){
+  .kjr-quick{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:168px 168px!important;
+    width:100%!important;
+    margin-top:16px!important;
+    border:1px solid #e9e9e9!important;
+    border-radius:8px!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+  .kjr-quick a{
+    width:100%!important;
+    height:168px!important;
+    min-height:168px!important;
+    margin:0!important;
+    padding:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:11px!important;
+    box-sizing:border-box!important;
+    border-right:1px solid #e9e9e9!important;
+    border-bottom:1px solid #e9e9e9!important;
+  }
+  .kjr-quick a:nth-child(2n){border-right:0!important;}
+  .kjr-quick a:nth-child(n+3){border-bottom:0!important;}
+  .kjr-ico{width:34px!important;height:34px!important;margin:0!important;}
+  .kjr-quick b{margin:0!important;font-size:16px!important;line-height:1.2!important;}
+  .kjr-quick small{margin:0!important;font-size:18px!important;line-height:1!important;}
+}
+</style>
+
+
+
+<style id="kj-quicknav-compact-equal-20261006">
+@media(max-width:760px){
+  .kjr-quick{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:118px 118px!important;
+    width:100%!important;
+  }
+
+  .kjr-quick a{
+    width:100%!important;
+    height:118px!important;
+    min-height:118px!important;
+    padding:0!important;
+    margin:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:7px!important;
+  }
+
+  .kjr-ico{
+    width:29px!important;
+    height:29px!important;
+  }
+
+  .kjr-ico svg{
+    width:27px!important;
+    height:27px!important;
+  }
+
+  .kjr-quick b{
+    font-size:14px!important;
+    line-height:1.15!important;
+  }
+
+  .kjr-quick small{
+    font-size:16px!important;
+    line-height:1!important;
+  }
+}
+</style>
+
+
+
+<style id="kj-quicknav-horizontal-20261006">
+@media(max-width:760px){
+  .kjr-quick{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:112px!important;
+    width:100%!important;
+    border:1px solid #e9e9e9!important;
+    border-radius:8px!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+
+  .kjr-quick a{
+    width:100%!important;
+    height:112px!important;
+    min-height:112px!important;
+    padding:0 4px!important;
+    margin:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    border-right:1px solid #e9e9e9!important;
+    border-bottom:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .kjr-quick a:last-child{
+    border-right:0!important;
+  }
+
+  .kjr-ico{
+    width:27px!important;
+    height:27px!important;
+  }
+
+  .kjr-ico svg{
+    width:25px!important;
+    height:25px!important;
+  }
+
+  .kjr-quick b{
+    font-size:11px!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+    letter-spacing:-.04em!important;
+  }
+
+  .kjr-quick small{
+    font-size:14px!important;
+    line-height:1!important;
+  }
+}
+</style>
+
+
+
+<style id="kj-quicknav-horizontal-border-fix-20261006">
+@media(max-width:760px){
+  .kjr-quick{
+    position:relative!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:112px!important;
+    width:100%!important;
+    height:112px!important;
+    border:1px solid #e9e9e9!important;
+    border-radius:8px!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+
+  .kjr-quick a{
+    position:relative!important;
+    width:100%!important;
+    height:112px!important;
+    min-height:112px!important;
+    border:0!important;
+    box-sizing:border-box!important;
+  }
+
+  /* 기존 2x2용 nth-child border 규칙을 완전히 무시 */
+  .kjr-quick a:nth-child(1),
+  .kjr-quick a:nth-child(2),
+  .kjr-quick a:nth-child(3){
+    border-right:1px solid #e9e9e9!important;
+  }
+
+  .kjr-quick a:nth-child(4){
+    border-right:0!important;
+  }
+
+  /* 세로선이 위/아래까지 정확히 닿도록 별도 선으로 보강 */
+  .kjr-quick a:nth-child(1)::after,
+  .kjr-quick a:nth-child(2)::after,
+  .kjr-quick a:nth-child(3)::after{
+    content:""!important;
+    position:absolute!important;
+    top:0!important;
+    right:-1px!important;
+    bottom:0!important;
+    width:1px!important;
+    height:112px!important;
+    background:#e9e9e9!important;
+    display:block!important;
+    z-index:3!important;
+    pointer-events:none!important;
+  }
+}
+</style>
+
 </body>
 </html>
