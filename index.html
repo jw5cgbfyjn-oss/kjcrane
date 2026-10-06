@@ -4971,6 +4971,86 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
 }
 </style>
 
+
+
+<style id="kj-mobile-footer-alignment-final-20261006">
+@media(max-width:760px){
+  .kjr-footer{
+    grid-template-columns:76px minmax(0,1fr) 78px!important;
+    gap:12px!important;
+    align-items:center!important;
+  }
+
+  .kjr-footer-info{
+    display:block!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    font-size:8.7px!important;
+    line-height:1.65!important;
+    text-align:left!important;
+  }
+
+  .kjr-footer-row{
+    display:grid!important;
+    grid-template-columns:72px 8px minmax(0,1fr)!important;
+    column-gap:4px!important;
+    align-items:start!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .kjr-footer-row b{
+    display:block!important;
+    margin:0!important;
+    padding:0!important;
+    color:#fff!important;
+    font-weight:700!important;
+    white-space:nowrap!important;
+    text-align:right!important;
+  }
+
+  /* 예전 CSS에서 자동으로 붙이던 | 완전 제거 */
+  .kjr-footer-row b::before,
+  .kjr-footer-row b::after,
+  .kjr-footer-info b::before,
+  .kjr-footer-info b::after{
+    content:none!important;
+    display:none!important;
+  }
+
+  .kjr-footer-sep{
+    display:block!important;
+    margin:0!important;
+    padding:0!important;
+    color:#777!important;
+    text-align:center!important;
+    line-height:1.65!important;
+  }
+
+  .kjr-footer-value{
+    display:block!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    color:#c9c9c9!important;
+    text-align:left!important;
+    line-height:1.65!important;
+    word-break:keep-all!important;
+  }
+
+  .kjr-privacy{
+    grid-column:3!important;
+    justify-self:end!important;
+    align-self:center!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:right!important;
+    white-space:nowrap!important;
+  }
+}
+</style>
+
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
