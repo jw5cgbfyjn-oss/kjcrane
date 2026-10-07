@@ -23,7 +23,7 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 <section class="hero"><div class="wrap"><div class="kicker">INQUIRY BOARD</div><h1>문의게시판</h1><p>현장 위치와 작업 내용을 남겨주시면 확인 후 순차적으로 안내드립니다.<br>연락처와 현장 정보가 포함될 수 있어 문의글은 비밀글 작성을 권장합니다.</p><div class="tabs"><a href="inquiry.html">문의접수</a><a class="active" href="inquiry-board.html">문의게시판</a><a href="faq.html">자주 묻는 질문</a></div></div></section>
 <section class="board"><div class="wrap">
 <div class="board-top"><div class="board-count" id="countText">전체 0건</div><button class="write-btn" id="openWrite" type="button">문의글 작성</button></div>
-<div class="notice"><b>안내</b> · 당일 급한 작업은 대표번호로 연락해 주세요. 게시판 문의는 확인 순서대로 연락드립니다. 비밀글은 작성 시 설정한 비밀번호로 확인할 수 있습니다.</div>
+<div class="notice"><b>안내</b> · 당일 급한 작업은 대표번호로 연락해 주세요. 게시판 문의는 확인 순서대로 연락드립니다. 문의글은 모두 비밀글로 등록되며, 작성 시 설정한 비밀번호로만 내용을 확인할 수 있습니다.</div>
 <div class="table" id="boardTable"><div class="row headrow"><div class="cell">번호</div><div class="cell">제목</div><div class="cell">작성자</div><div class="cell">등록일</div><div class="cell">상태</div></div><div class="empty" id="emptyState">등록된 문의글이 없습니다.</div></div>
 <div class="detail" id="detailView"><div class="detail-head"><h2 id="detailTitle"></h2><div class="detail-meta"><span id="detailName"></span><span id="detailDate"></span><span id="detailStatus"></span></div></div><div class="detail-body" id="detailBody"></div><div class="answer" id="answerBox" style="display:none"><b>국제크레인 답변</b><p id="answerText"></p></div><div class="detail-actions"><button class="btn" id="backList" type="button">목록으로</button></div></div>
 <div class="form-wrap" id="formWrap"><h2 class="form-title">문의글 작성</h2><form id="inquiryForm"><div class="grid">
@@ -33,41 +33,150 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 <div class="field"><label>비밀번호 <span class="req">*</span></label><input id="qPassword" type="password" minlength="4" maxlength="20" required placeholder="글 확인용 4자 이상"></div>
 <div class="field"><label>현장 지역</label><input id="qLocation" maxlength="40" placeholder="예) 춘천시 동내면"></div>
 <div class="field full"><label>문의내용 <span class="req">*</span></label><textarea id="qContent" required placeholder="작업 내용, 희망 일정, 현장 상황 등을 적어주세요."></textarea></div>
-<label class="secret-line"><input id="qSecret" type="checkbox" checked> 비밀글로 등록합니다.</label>
+<label class="secret-line"><input type="checkbox" checked disabled> 문의글은 자동으로 비밀글로 등록됩니다.</label>
 </div><div class="form-actions"><button class="btn" id="cancelWrite" type="button">취소</button><button class="btn primary" type="submit">등록하기</button></div></form></div>
 </div></section>
 </main>
 <footer><div class="wrap"><div class="footer-name">국제크레인</div><div>대표 김선원 · 춘천 중심 강원 전 지역 작업</div><div>대표번호 010-6379-8692</div></div></footer>
 <script>
-const KEY='kjcrane_inquiry_board_v1';
+const SUPABASE_URL='https://topybambfbohphrfxrbg.supabase.co';
+const SUPABASE_KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
+const API=SUPABASE_URL+'/rest/v1/rpc/';
 const $=s=>document.querySelector(s);
-let posts=[]; try{posts=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){posts=[]}
-const save=()=>localStorage.setItem(KEY,JSON.stringify(posts));
+let posts=[];
+
 const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate=value=>{
+  if(!value)return '';
+  const d=new Date(value);
+  if(Number.isNaN(d.getTime())) return String(value).slice(0,10).replaceAll('-','.');
+  return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('.');
+};
+
+async function rpc(name, body={}){
+  const res=await fetch(API+name,{
+    method:'POST',
+    headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(body)
+  });
+  const raw=await res.text();
+  let data=null;
+  try{data=raw?JSON.parse(raw):null}catch(e){data=raw}
+  if(!res.ok){
+    const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))||raw||('HTTP '+res.status);
+    throw new Error(msg);
+  }
+  return data;
+}
+
 function render(){
   document.querySelectorAll('.data-row').forEach(x=>x.remove());
   $('#countText').textContent='전체 '+posts.length+'건';
   $('#emptyState').style.display=posts.length?'none':'block';
-  posts.slice().reverse().forEach((p,idx)=>{
-    const row=document.createElement('div');row.className='row data-row';
+  posts.forEach((p,idx)=>{
+    const row=document.createElement('div');
+    row.className='row data-row';
     const no=posts.length-idx;
-    row.innerHTML=`<div class="cell">${no}</div><div class="cell title-cell"><span class="lock">${p.secret?'🔒':''}</span><button class="title-btn" type="button">${esc(p.title)}</button></div><div class="cell">${esc(p.name)}</div><div class="cell">${esc(p.date)}</div><div class="cell"><span class="status ${p.status==='답변완료'?'done':''}">${esc(p.status||'답변대기')}</span></div>`;
+    row.innerHTML=`<div class="cell">${no}</div><div class="cell title-cell"><span class="lock">🔒</span><button class="title-btn" type="button">${esc(p.title)}</button></div><div class="cell">비공개</div><div class="cell">${esc(fmtDate(p.created_at))}</div><div class="cell"><span class="status ${p.status==='답변완료'?'done':''}">${esc(p.status||'답변대기')}</span></div>`;
     row.querySelector('.title-btn').addEventListener('click',()=>openPost(p.id));
     $('#boardTable').appendChild(row);
   });
 }
-function openPost(id){
-  const p=posts.find(x=>x.id===id); if(!p)return;
-  if(p.secret){const pw=prompt('비밀글입니다. 작성 시 설정한 비밀번호를 입력해 주세요.'); if(pw===null)return; if(pw!==p.password){alert('비밀번호가 일치하지 않습니다.');return;}}
-  $('#detailTitle').textContent=p.title;$('#detailName').textContent='작성자 '+p.name;$('#detailDate').textContent=p.date;$('#detailStatus').textContent=p.status||'답변대기';
-  $('#detailBody').textContent=(p.location?'현장 지역: '+p.location+'\n\n':'')+p.content+'\n\n연락처: '+p.phone;
-  if(p.answer){$('#answerBox').style.display='block';$('#answerText').textContent=p.answer}else{$('#answerBox').style.display='none'}
-  $('#detailView').classList.add('open');$('#formWrap').classList.remove('open');$('#detailView').scrollIntoView({behavior:'smooth',block:'start'});
+
+async function loadPosts(){
+  $('#countText').textContent='문의글 불러오는 중...';
+  $('#emptyState').style.display='none';
+  try{
+    const data=await rpc('list_inquiries',{});
+    posts=Array.isArray(data)?data:[];
+    render();
+  }catch(err){
+    console.error(err);
+    posts=[];
+    render();
+    $('#emptyState').style.display='block';
+    $('#emptyState').textContent='문의글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+  }
 }
-$('#openWrite').addEventListener('click',()=>{$('#detailView').classList.remove('open');$('#formWrap').classList.add('open');$('#formWrap').scrollIntoView({behavior:'smooth',block:'start'})});
-$('#cancelWrite').addEventListener('click',()=>{$('#formWrap').classList.remove('open');$('#inquiryForm').reset();$('#qSecret').checked=true});
-$('#backList').addEventListener('click',()=>{$('#detailView').classList.remove('open');window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'})});
-$('#inquiryForm').addEventListener('submit',e=>{e.preventDefault();const pw=$('#qPassword').value.trim();if(pw.length<4){alert('비밀번호는 4자 이상 입력해 주세요.');return;}const now=new Date();const date=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('.');posts.push({id:Date.now(),title:$('#qTitle').value.trim(),name:$('#qName').value.trim(),phone:$('#qPhone').value.trim(),password:pw,location:$('#qLocation').value.trim(),content:$('#qContent').value.trim(),secret:$('#qSecret').checked,date,status:'답변대기',answer:''});save();render();e.target.reset();$('#qSecret').checked=true;$('#formWrap').classList.remove('open');alert('문의글이 등록되었습니다.');window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'})});
-render();
+
+async function openPost(id){
+  const pw=prompt('비밀글입니다. 작성 시 설정한 비밀번호를 입력해 주세요.');
+  if(pw===null)return;
+  if(!pw.trim()){alert('비밀번호를 입력해 주세요.');return;}
+  try{
+    const data=await rpc('read_inquiry',{p_id:Number(id),p_password:pw.trim()});
+    const p=Array.isArray(data)?data[0]:null;
+    if(!p){alert('비밀번호가 일치하지 않습니다.');return;}
+    $('#detailTitle').textContent=p.title||'';
+    $('#detailName').textContent='작성자 '+(p.name||'');
+    $('#detailDate').textContent=fmtDate(p.created_at);
+    $('#detailStatus').textContent=p.status||'답변대기';
+    $('#detailBody').textContent=(p.content||'')+'
+
+연락처: '+(p.phone||'');
+    if(p.answer){$('#answerBox').style.display='block';$('#answerText').textContent=p.answer}
+    else{$('#answerBox').style.display='none';$('#answerText').textContent=''}
+    $('#detailView').classList.add('open');
+    $('#formWrap').classList.remove('open');
+    $('#detailView').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(err){
+    console.error(err);
+    alert('문의글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
+  }
+}
+
+$('#openWrite').addEventListener('click',()=>{
+  $('#detailView').classList.remove('open');
+  $('#formWrap').classList.add('open');
+  $('#formWrap').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+$('#cancelWrite').addEventListener('click',()=>{
+  $('#formWrap').classList.remove('open');
+  $('#inquiryForm').reset();
+});
+
+$('#backList').addEventListener('click',()=>{
+  $('#detailView').classList.remove('open');
+  window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
+});
+
+$('#inquiryForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const submit=e.submitter;
+  const pw=$('#qPassword').value.trim();
+  if(pw.length<4){alert('비밀번호는 4자 이상 입력해 주세요.');return;}
+  const title=$('#qTitle').value.trim();
+  const name=$('#qName').value.trim();
+  const phone=$('#qPhone').value.trim();
+  const location=$('#qLocation').value.trim();
+  const content=$('#qContent').value.trim();
+  const savedText=location?`[현장 지역] ${location}
+
+${content}`:content;
+  if(!title||!name||!phone||!content){alert('필수 항목을 모두 입력해 주세요.');return;}
+  try{
+    if(submit){submit.disabled=true;submit.textContent='등록 중...';}
+    await rpc('create_inquiry',{
+      p_title:title,
+      p_name:name,
+      p_phone:phone,
+      p_content:savedText,
+      p_password:pw
+    });
+    e.target.reset();
+    $('#formWrap').classList.remove('open');
+    await loadPosts();
+    alert('문의글이 등록되었습니다.');
+    window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
+  }catch(err){
+    console.error(err);
+    alert('문의글 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+  }finally{
+    if(submit){submit.disabled=false;submit.textContent='등록하기';}
+  }
+});
+
+loadPosts();
 </script>
 </body></html>
