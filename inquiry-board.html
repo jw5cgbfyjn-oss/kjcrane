@@ -111,9 +111,7 @@ async function openPost(id){
     $('#detailName').textContent='작성자 '+(p.name||'');
     $('#detailDate').textContent=fmtDate(p.created_at);
     $('#detailStatus').textContent=p.status||'답변대기';
-    $('#detailBody').textContent=(p.content||'')+'
-
-연락처: '+(p.phone||'');
+    $('#detailBody').textContent=(p.content||'')+'\n\n연락처: '+(p.phone||'');
     if(p.answer){$('#answerBox').style.display='block';$('#answerText').textContent=p.answer}
     else{$('#answerBox').style.display='none';$('#answerText').textContent=''}
     $('#detailView').classList.add('open');
