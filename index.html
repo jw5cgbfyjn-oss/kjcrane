@@ -2997,6 +2997,102 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-pc-first-screen-fit-20261008">
+@media(min-width:761px){
+  /* PC 첫 화면 = 상단 + 메인 + 5칸 메뉴 */
+  .kjr-top{
+    width:min(1180px,calc(100% - 64px))!important;
+    height:88px!important;
+    min-height:88px!important;
+    padding:12px 0!important;
+    box-sizing:border-box!important;
+  }
+
+  .kjr-hero{
+    width:min(1180px,calc(100% - 64px))!important;
+    height:calc(100vh - 88px - 126px)!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0 auto!important;
+    padding:clamp(28px,5vh,64px) 0 0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  .kjr-hero-copy{
+    max-width:430px!important;
+  }
+
+  .kjr-hero h1{
+    font-size:clamp(38px,3.4vw,56px)!important;
+    line-height:1.1!important;
+  }
+
+  .kjr-hero p{
+    margin-top:18px!important;
+    font-size:clamp(14px,1.05vw,18px)!important;
+    line-height:1.65!important;
+  }
+
+  .kjr-crane-wrap{
+    width:min(58vw,690px)!important;
+    height:min(48vh,500px)!important;
+    right:-20px!important;
+    bottom:0!important;
+  }
+
+  /* PC에서는 5칸 메뉴를 첫 화면 맨 아래에 배치 */
+  body.kj-pc-quick-moved .kjr-quick{
+    width:min(1180px,calc(100% - 64px))!important;
+    height:126px!important;
+    min-height:126px!important;
+    margin:0 auto!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-rows:126px!important;
+    border-radius:8px 8px 0 0!important;
+  }
+
+  body.kj-pc-quick-moved .kjr-quick a{
+    height:126px!important;
+    min-height:126px!important;
+  }
+
+  /* 첫 화면 다음 섹션부터 자연스럽게 스크롤 */
+  .kjr-work{
+    padding-top:54px!important;
+  }
+}
+
+/* 낮은 노트북 화면에서도 첫 화면이 넘치지 않게 */
+@media(min-width:761px) and (max-height:760px){
+  .kjr-top{
+    height:76px!important;
+    min-height:76px!important;
+  }
+  .kjr-hero{
+    height:calc(100vh - 76px - 108px)!important;
+    padding-top:24px!important;
+  }
+  body.kj-pc-quick-moved .kjr-quick{
+    height:108px!important;
+    min-height:108px!important;
+    grid-template-rows:108px!important;
+  }
+  body.kj-pc-quick-moved .kjr-quick a{
+    height:108px!important;
+    min-height:108px!important;
+  }
+  .kjr-hero h1{
+    font-size:clamp(34px,3vw,48px)!important;
+  }
+  .kjr-hero p{
+    font-size:14px!important;
+    margin-top:12px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -6592,6 +6688,52 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 }
 </style>
+
+
+<script id="kj-pc-first-screen-fit-js-20261008">
+(function(){
+  var quick, marker, hero;
+
+  function setup(){
+    quick=document.querySelector('.kjr-quick');
+    hero=document.querySelector('.kjr-hero');
+    if(!quick || !hero) return;
+
+    if(!marker){
+      marker=document.createElement('span');
+      marker.id='kjQuickOriginalMarker';
+      marker.style.display='none';
+      quick.parentNode.insertBefore(marker,quick);
+    }
+    apply();
+  }
+
+  function apply(){
+    if(!quick || !marker || !hero) return;
+    var isPc=window.matchMedia('(min-width:761px)').matches;
+
+    if(isPc){
+      if(quick.previousElementSibling!==hero){
+        hero.insertAdjacentElement('afterend',quick);
+      }
+      document.body.classList.add('kj-pc-quick-moved');
+    }else{
+      if(marker.nextSibling!==quick){
+        marker.parentNode.insertBefore(quick,marker.nextSibling);
+      }
+      document.body.classList.remove('kj-pc-quick-moved');
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setup,{once:true});
+  }else{
+    setup();
+  }
+
+  window.addEventListener('resize',apply);
+})();
+</script>
 
 </body>
 </html>
