@@ -3093,6 +3093,236 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-pc-header-board-firstview-20261008">
+@media(min-width:761px){
+  /* PC 상단은 햄버거 대신 가로 메뉴 */
+  .kjr-top{
+    width:min(1240px,calc(100% - 56px))!important;
+    height:78px!important;
+    min-height:78px!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:30px!important;
+    border-bottom:1px solid #f0f0f0!important;
+  }
+  .kjr-logo{
+    flex:0 0 auto!important;
+  }
+  .kjr-logo img{
+    width:154px!important;
+    height:auto!important;
+  }
+  .kjr-menu{
+    display:none!important;
+  }
+  .kjr-pc-nav{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:clamp(20px,2.2vw,34px)!important;
+    margin-left:auto!important;
+    white-space:nowrap!important;
+  }
+  .kjr-pc-nav a{
+    display:flex!important;
+    align-items:center!important;
+    gap:3px!important;
+    min-height:78px!important;
+    color:#222!important;
+    text-decoration:none!important;
+    font-size:15px!important;
+    font-weight:700!important;
+    letter-spacing:-.035em!important;
+    position:relative!important;
+  }
+  .kjr-pc-nav a:after{
+    content:""!important;
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    height:2px!important;
+    background:#d71920!important;
+    transform:scaleX(0)!important;
+    transition:transform .2s ease!important;
+  }
+  .kjr-pc-nav a:hover:after{
+    transform:scaleX(1)!important;
+  }
+  .kjr-pc-nav .kj-new-badge{
+    vertical-align:0!important;
+  }
+
+  /*
+    PC 첫 화면:
+    상단 78px + 메인 + 하단 대시보드(바로가기/문의게시판)
+  */
+  .kjr-hero{
+    width:min(1240px,calc(100% - 56px))!important;
+    height:calc(100vh - 78px - 230px)!important;
+    min-height:330px!important;
+    max-height:590px!important;
+    margin:0 auto!important;
+    padding:clamp(30px,4.5vh,58px) 0 0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  .kjr-hero-copy{
+    max-width:410px!important;
+  }
+  .kjr-hero h1{
+    font-size:clamp(38px,3.5vw,55px)!important;
+    line-height:1.08!important;
+  }
+  .kjr-hero p{
+    margin-top:15px!important;
+    font-size:16px!important;
+    line-height:1.58!important;
+  }
+  .kjr-rep-btn{
+    margin-top:18px!important;
+  }
+  .kjr-crane-wrap{
+    width:min(58vw,700px)!important;
+    height:min(48vh,490px)!important;
+    right:-10px!important;
+    bottom:-5px!important;
+  }
+
+  /* 첫 화면 하단 영역 */
+  .kjr-pc-first-bottom{
+    width:min(1240px,calc(100% - 56px))!important;
+    height:230px!important;
+    margin:0 auto!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1.35fr) minmax(360px,.65fr)!important;
+    gap:18px!important;
+    align-items:stretch!important;
+    box-sizing:border-box!important;
+    padding:14px 0 18px!important;
+  }
+
+  body.kj-pc-quick-moved .kjr-pc-first-bottom .kjr-quick{
+    width:100%!important;
+    height:198px!important;
+    min-height:198px!important;
+    margin:0!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-rows:198px!important;
+    border:1px solid #ececec!important;
+    border-radius:10px!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+  body.kj-pc-quick-moved .kjr-pc-first-bottom .kjr-quick a{
+    height:198px!important;
+    min-height:198px!important;
+    padding:0 8px!important;
+  }
+  .kjr-pc-first-bottom .kjr-quick .kjr-ico{
+    width:38px!important;
+    height:38px!important;
+  }
+  .kjr-pc-first-bottom .kjr-quick b{
+    font-size:14px!important;
+  }
+
+  /* 문의게시판을 첫 화면에 카드처럼 노출 */
+  .kjr-pc-first-bottom .kjr-board-preview{
+    width:100%!important;
+    height:198px!important;
+    min-height:198px!important;
+    margin:0!important;
+    padding:17px 18px!important;
+    box-sizing:border-box!important;
+    border:1px solid #ececec!important;
+    border-radius:10px!important;
+    background:#fff!important;
+    overflow:hidden!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-head{
+    margin:0 0 9px!important;
+    padding:0 0 10px!important;
+    border-bottom:1px solid #eee!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-head h2{
+    margin:0!important;
+    font-size:20px!important;
+    line-height:1.1!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-head p{
+    display:none!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-head > a{
+    font-size:12px!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-list{
+    max-height:134px!important;
+    overflow:hidden!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-item,
+  .kjr-pc-first-bottom .kjr-board-preview-row{
+    min-height:36px!important;
+    padding:7px 0!important;
+    font-size:13px!important;
+  }
+
+  /* 원래 위치에서는 빠진 요소만큼 자연스럽게 이어지도록 */
+  .kjr-work{
+    padding-top:48px!important;
+  }
+}
+
+/* 화면 높이가 낮은 노트북 */
+@media(min-width:761px) and (max-height:760px){
+  .kjr-top{
+    height:68px!important;
+    min-height:68px!important;
+  }
+  .kjr-pc-nav a{
+    min-height:68px!important;
+    font-size:14px!important;
+  }
+  .kjr-hero{
+    height:calc(100vh - 68px - 196px)!important;
+    min-height:285px!important;
+    padding-top:24px!important;
+  }
+  .kjr-hero h1{
+    font-size:40px!important;
+  }
+  .kjr-hero p{
+    margin-top:10px!important;
+    font-size:14px!important;
+  }
+  .kjr-pc-first-bottom{
+    height:196px!important;
+    padding:10px 0 12px!important;
+  }
+  body.kj-pc-quick-moved .kjr-pc-first-bottom .kjr-quick,
+  .kjr-pc-first-bottom .kjr-board-preview{
+    height:174px!important;
+    min-height:174px!important;
+  }
+  body.kj-pc-quick-moved .kjr-pc-first-bottom .kjr-quick{
+    grid-template-rows:174px!important;
+  }
+  body.kj-pc-quick-moved .kjr-pc-first-bottom .kjr-quick a{
+    height:174px!important;
+    min-height:174px!important;
+  }
+  .kjr-pc-first-bottom .kjr-board-preview-list{
+    max-height:112px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -4098,6 +4328,14 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="kj-mobile-redesign" id="kj-mobile-redesign">
 <div class="kjr-top">
 <a class="kjr-logo" href="#kjr-hero"><img alt="국제크레인" src="kj-logo-new.png"/></a>
+<nav aria-label="PC 상단 메뉴" class="kjr-pc-nav">
+<a href="#about">회사소개</a>
+<a href="inquiry.html">문의하기</a>
+<a href="#work">작업현장</a>
+<a href="#location">오시는 길</a>
+<a href="review.html">고객후기 <em class="kj-new-badge" id="kjPcReviewN">N</em></a>
+<a href="inquiry-board.html">문의게시판 <em class="kj-new-badge" id="kjPcInquiryN">N</em></a>
+</nav>
 <button aria-label="메뉴 열기" class="kjr-menu" type="button"><span></span><span></span><span></span></button>
 </div>
 <section class="kjr-hero" id="kjr-hero">
@@ -6424,7 +6662,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     .then(function(r){ if(!r.ok) throw new Error('review'); return r.json(); })
     .then(function(rows){
       if(Array.isArray(rows) && rows[0] && recent(rows[0].created_at)){
-        show(['kjQuickReviewN','kjDrawerReviewN']);
+        show(['kjQuickReviewN','kjDrawerReviewN','kjPcReviewN']);
       }
     })
     .catch(function(){});
@@ -6443,7 +6681,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     .then(function(r){ if(!r.ok) throw new Error('inquiry'); return r.json(); })
     .then(function(rows){
       if(Array.isArray(rows) && rows.some(function(x){return recent(x.created_at)})){
-        show(['kjQuickInquiryN','kjDrawerInquiryN']);
+        show(['kjQuickInquiryN','kjDrawerInquiryN','kjPcInquiryN']);
       }
     })
     .catch(function(){});
@@ -6731,6 +6969,69 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     setup();
   }
 
+  window.addEventListener('resize',apply);
+})();
+</script>
+
+
+<script id="kj-pc-header-board-firstview-js-20261008">
+(function(){
+  var quick, board, hero, quickMarker, boardMarker, panel;
+
+  function setup(){
+    quick=document.querySelector('.kjr-quick');
+    board=document.querySelector('.kjr-board-preview');
+    hero=document.querySelector('.kjr-hero');
+    if(!quick || !board || !hero) return;
+
+    if(!quickMarker){
+      quickMarker=document.createElement('span');
+      quickMarker.id='kjQuickPcOriginalMarker';
+      quickMarker.style.display='none';
+      quick.parentNode.insertBefore(quickMarker,quick);
+    }
+
+    if(!boardMarker){
+      boardMarker=document.createElement('span');
+      boardMarker.id='kjBoardPcOriginalMarker';
+      boardMarker.style.display='none';
+      board.parentNode.insertBefore(boardMarker,board);
+    }
+
+    if(!panel){
+      panel=document.createElement('div');
+      panel.className='kjr-pc-first-bottom';
+      panel.id='kjrPcFirstBottom';
+      hero.insertAdjacentElement('afterend',panel);
+    }
+
+    apply();
+  }
+
+  function apply(){
+    if(!quick || !board || !hero || !panel) return;
+    var pc=window.matchMedia('(min-width:761px)').matches;
+
+    if(pc){
+      panel.appendChild(quick);
+      panel.appendChild(board);
+      document.body.classList.add('kj-pc-quick-moved');
+    }else{
+      if(quickMarker && quickMarker.parentNode){
+        quickMarker.parentNode.insertBefore(quick,quickMarker.nextSibling);
+      }
+      if(boardMarker && boardMarker.parentNode){
+        boardMarker.parentNode.insertBefore(board,boardMarker.nextSibling);
+      }
+      document.body.classList.remove('kj-pc-quick-moved');
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setup,{once:true});
+  }else{
+    setup();
+  }
   window.addEventListener('resize',apply);
 })();
 </script>
