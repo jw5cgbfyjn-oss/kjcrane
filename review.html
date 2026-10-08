@@ -121,7 +121,7 @@ const fmtDate=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'':[d.get
 const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(n);
 const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.now()-d.getTime())<=3*24*60*60*1000)};
 async function loadReviews(){
-  const rpcUrl=SUPABASE_URL+'/rest/v1/rpc/list_public_reviews';
+  const rpcUrl=SUPABASE_URL+'/rest/v1/rpc/list_public_reviews_v2';
   const directUrl=REVIEWS+'?select=*&order=created_at.desc';
 
   async function getJson(url, options){

@@ -6730,7 +6730,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 
   function checkReviews(){
-    var rpcUrl=URL+'/rest/v1/rpc/list_public_reviews';
+    var rpcUrl=URL+'/rest/v1/rpc/list_public_reviews_v2';
     var directUrl=URL+'/rest/v1/reviews?select=*&order=created_at.desc';
 
     function publicRows(rows){
