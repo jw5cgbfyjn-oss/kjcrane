@@ -6730,46 +6730,13 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 
   function checkReviews(){
-    var rpcUrl=URL+'/rest/v1/rpc/list_public_reviews_v2';
-    var directUrl=URL+'/rest/v1/reviews?select=*&order=created_at.desc';
-
-    function publicRows(rows){
-      return (Array.isArray(rows)?rows:[]).filter(function(x){
-        return x.is_private!==true;
-      });
-    }
-
-    return fetch(rpcUrl,{
+    return fetch(URL+'/rest/v1/rpc/list_reviews_public_v3',{
       method:'POST',
-      headers:{
-        apikey:KEY,
-        Authorization:'Bearer '+KEY,
-        'Content-Type':'application/json'
-      },
-      body:'{}',
-      cache:'no-store'
+      headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},
+      body:'{}',cache:'no-store'
     })
-    .then(function(r){
-      if(!r.ok) throw new Error('rpc');
-      return r.json();
-    })
-    .catch(function(){
-      return fetch(directUrl,{
-        headers:{
-          apikey:KEY,
-          Authorization:'Bearer '+KEY
-        },
-        cache:'no-store'
-      }).then(function(r){
-        if(!r.ok) throw new Error('direct');
-        return r.json();
-      }).then(publicRows);
-    })
-    .then(function(rows){
-      if(Array.isArray(rows) && rows.some(function(x){return recent(x.created_at)})){
-        show(['kjQuickReviewN','kjDrawerReviewN','kjPcReviewN']);
-      }
-    })
+    .then(function(r){if(!r.ok)throw new Error('review');return r.json();})
+    .then(function(rows){if(Array.isArray(rows)&&rows.some(function(x){return recent(x.created_at)})){show(['kjQuickReviewN','kjDrawerReviewN','kjPcReviewN']);}})
     .catch(function(){});
   }
   function checkInquiries(){

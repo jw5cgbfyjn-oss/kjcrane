@@ -86,6 +86,12 @@ html, body{
 }
 </style>
 
+
+<style id="kj-review-author-manage-20261008">
+.review-card{position:relative}.review-card.private-review{background:#fafafa;padding-left:14px;padding-right:14px;border-radius:5px;margin:8px 0;border:1px solid #eee}.review-manage{margin-top:12px}.manage-btn{border:1px solid #d8d8d8;background:#fff;color:#444;padding:7px 11px;border-radius:3px;font-size:11px;font-weight:700;cursor:pointer}.private-lock{font-size:13px;font-weight:800;color:#555}.private-copy{margin-top:12px;color:#888;font-size:13px}.review-detail,.review-edit{display:none;margin-top:34px;padding-top:30px;border-top:1px solid #ddd}.review-detail.open,.review-edit.open{display:block}.review-detail-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.review-detail-head h2{font-size:20px;margin:7px 0 0}.review-detail-content{white-space:pre-wrap;font-size:14px;line-height:1.8;color:#444;margin:20px 0}.detail-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.btn.danger{border-color:#b42323;color:#b42323;background:#fff}.btn.danger:hover{background:#fff5f5}.review-edit{padding-bottom:6px}
+@media(max-width:760px){.detail-actions{justify-content:stretch}.detail-actions .btn{flex:1;padding-left:8px;padding-right:8px}.review-card.private-review{margin-left:0;margin-right:0}}
+</style>
+
 </head>
 <body>
 <header><div class="wrap head"><a class="brand" href="index.html"><img src="kj-logo-new.png" alt="국제크레인 로고"></a><nav class="nav"><a href="index.html#about">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="review.html">고객후기</a><a href="https://kko.to/UqjyMgz-Bb" target="_blank" rel="noopener">오시는 길</a><a class="phone" href="tel:01063798692">☎ 010-6379-8692</a></nav></div></header>
@@ -95,6 +101,31 @@ html, body{
 <div class="review-top"><div class="count" id="countText">전체 0건</div><button class="write-btn" id="openWrite" type="button">후기 작성</button></div>
 
 <div class="review-list" id="reviewList"><div class="empty" id="emptyState">등록된 후기가 없습니다.</div></div>
+
+<div class="review-detail" id="reviewDetail">
+  <div class="review-detail-head">
+    <div><div class="card-stars" id="detailStars"></div><h2 id="detailReviewName">후기</h2></div>
+    <div class="date" id="detailReviewDate"></div>
+  </div>
+  <p class="review-detail-content" id="detailReviewContent"></p>
+  <div class="detail-actions">
+    <button class="btn" id="editReview" type="button">수정하기</button>
+    <button class="btn danger" id="deleteReview" type="button">삭제하기</button>
+    <button class="btn" id="closeReview" type="button">목록으로</button>
+  </div>
+</div>
+
+<div class="review-edit" id="reviewEdit">
+  <h2 class="form-title">후기 수정</h2>
+  <form id="reviewEditForm"><div class="grid">
+    <div class="field"><label>이름 <span style="color:#999;font-weight:500">(선택)</span></label><input id="eRName" maxlength="20" placeholder="비워두면 익명으로 저장됩니다."></div>
+    <div class="field full review-private-field"><label class="review-private-check"><input type="checkbox" id="eRPrivate"><span class="review-private-box" aria-hidden="true"></span><span>비공개로 작성하기 <small>(선택)</small></span></label></div>
+    <div class="field"><label>별점 <span class="req">*</span></label><div class="star-picker" id="editStarPicker"><input type="radio" name="editRating" id="estar5" value="5"><label for="estar5">★</label><input type="radio" name="editRating" id="estar4" value="4"><label for="estar4">★</label><input type="radio" name="editRating" id="estar3" value="3"><label for="estar3">★</label><input type="radio" name="editRating" id="estar2" value="2"><label for="estar2">★</label><input type="radio" name="editRating" id="estar1" value="1"><label for="estar1">★</label></div></div>
+    <div class="field full"><label>후기내용 <span class="req">*</span></label><textarea id="eRContent" maxlength="1000" required></textarea></div>
+  </div>
+  <div class="form-actions"><button class="btn" id="cancelReviewEdit" type="button">취소</button><button class="btn primary" type="submit">수정완료</button></div>
+  </form>
+</div>
 <div class="form-wrap" id="formWrap"><h2 class="form-title">후기 작성</h2><form id="reviewForm"><div class="grid">
 <div class="field"><label>이름 <span style="color:#999;font-weight:500">(선택)</span></label><input id="rName" maxlength="20" placeholder="비워두면 익명으로 등록됩니다."></div>
 <div class="field full review-private-field">
@@ -104,6 +135,7 @@ html, body{
     <span>비공개로 작성하기 <small>(선택)</small></span>
   </label>
 </div>
+<div class="field"><label>비밀번호 <span class="req">*</span></label><input id="rPassword" type="password" minlength="4" maxlength="20" required placeholder="수정·삭제용 4자 이상"></div>
 <div class="field"><label>별점 <span class="req">*</span></label><div class="star-picker" aria-label="별점 선택"><input type="radio" name="rating" id="star5" value="5" required><label for="star5">★</label><input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label><input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label><input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label><input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label></div></div>
 <div class="field full"><label>후기내용 <span class="req">*</span></label><textarea id="rContent" maxlength="1000" required placeholder="소중한 후기는 운영에 많은 도움이 됩니다. 감사합니다."></textarea></div>
 <div class="privacy-note">※ 작성된 후기는 홈페이지에 공개됩니다. 전화번호, 정확한 주소 등 개인정보는 입력하지 마세요.</div>
@@ -114,77 +146,129 @@ html, body{
 <script>
 const SUPABASE_URL='https://topybambfbohphrfxrbg.supabase.co';
 const SUPABASE_KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
-const REVIEWS=SUPABASE_URL+'/rest/v1/reviews';
+const API=SUPABASE_URL+'/rest/v1/rpc/';
 const $=s=>document.querySelector(s);
+let reviewRows=[];
+let currentReviewId='';
+let currentReviewPassword='';
+let currentReviewData=null;
+
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtDate=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'':[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('.')};
 const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(n);
 const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.now()-d.getTime())<=3*24*60*60*1000)};
+
+async function rpc(name,body={}){
+  const res=await fetch(API+name,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body),cache:'no-store'});
+  const raw=await res.text();
+  let data=null; try{data=raw?JSON.parse(raw):null}catch(e){data=raw}
+  if(!res.ok) throw new Error((data&&typeof data==='object'&&(data.message||data.hint||data.details))||raw||('HTTP '+res.status));
+  return data;
+}
+
 async function loadReviews(){
-  const rpcUrl=SUPABASE_URL+'/rest/v1/rpc/list_public_reviews_v2';
-  const directUrl=REVIEWS+'?select=*&order=created_at.desc';
-
-  async function getJson(url, options){
-    const res=await fetch(url, options);
-    const raw=await res.text();
-    if(!res.ok) throw new Error(raw || ('HTTP '+res.status));
-    try{return raw ? JSON.parse(raw) : []}
-    catch(e){return []}
-  }
-
   try{
-    let rows;
-    try{
-      rows=await getJson(rpcUrl,{
-        method:'POST',
-        headers:{
-          apikey:SUPABASE_KEY,
-          Authorization:'Bearer '+SUPABASE_KEY,
-          'Content-Type':'application/json'
-        },
-        body:'{}',
-        cache:'no-store'
-      });
-    }catch(rpcErr){
-      console.warn('공개 후기 RPC 실패, 직접 조회로 재시도',rpcErr);
-      rows=await getJson(directUrl,{
-        headers:{
-          apikey:SUPABASE_KEY,
-          Authorization:'Bearer '+SUPABASE_KEY
-        },
-        cache:'no-store'
-      });
-      rows=(Array.isArray(rows)?rows:[]).filter(r=>r.is_private!==true);
-    }
-
-    render(Array.isArray(rows)?rows:[]);
+    const data=await rpc('list_reviews_manage_v1');
+    reviewRows=Array.isArray(data)?data:[];
+    renderReviews();
   }catch(e){
     console.error(e);
-    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>통합 SQL을 먼저 실행해 주세요.</div>';
   }
 }
-function render(data){
-  $('#countText').textContent='전체 '+data.length+'건';
-  $('#scoreMeta').textContent='등록된 후기 '+data.length+'건';
-  if(data.length){const avg=data.reduce((a,r)=>a+Number(r.rating||0),0)/data.length;$('#avgScore').textContent=avg.toFixed(1);$('#avgStars').textContent=stars(Math.round(avg));}
+
+function renderReviews(){
+  const publicRows=reviewRows.filter(r=>!r.is_private);
+  $('#countText').textContent='전체 '+reviewRows.length+'건';
+  $('#scoreMeta').textContent='등록된 공개 후기 '+publicRows.length+'건';
+  if(publicRows.length){const avg=publicRows.reduce((a,r)=>a+Number(r.rating||0),0)/publicRows.length;$('#avgScore').textContent=avg.toFixed(1);$('#avgStars').textContent=stars(Math.round(avg));}
   else{$('#avgScore').textContent='-';$('#avgStars').textContent='☆☆☆☆☆';}
-  if(!data.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return}
-  $('#reviewList').innerHTML=data.map(r=>`<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p></article>`).join('');
+  if(!reviewRows.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return;}
+  $('#reviewList').innerHTML=reviewRows.map(r=>{
+    if(r.is_private){
+      return `<article class="review-card private-review"><div class="card-top"><div><div class="private-lock">🔒 비공개 후기 ${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div><div class="private-copy">작성자만 내용을 확인할 수 있습니다.</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div>${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">확인</button></div>`:''}</article>`;
+    }
+    return `<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p>${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">수정·삭제</button></div>`:''}</article>`;
+  }).join('');
 }
-$('#openWrite').addEventListener('click',()=>{$('#formWrap').classList.add('open');$('#formWrap').scrollIntoView({behavior:'smooth',block:'start'})});
+
+async function openReview(id){
+  const pw=prompt('작성 시 설정한 비밀번호를 입력해 주세요.');
+  if(pw===null)return;
+  if(pw.trim().length<4){alert('비밀번호를 입력해 주세요.');return;}
+  try{
+    const data=await rpc('read_review_manage_v1',{p_id:String(id),p_password:pw.trim()});
+    if(!data||typeof data!=='object'){alert('비밀번호가 일치하지 않습니다.');return;}
+    currentReviewId=String(id); currentReviewPassword=pw.trim(); currentReviewData=data;
+    $('#detailStars').textContent=stars(Number(data.rating||0));
+    $('#detailReviewName').textContent=data.name||'익명';
+    $('#detailReviewDate').textContent=fmtDate(data.created_at);
+    $('#detailReviewContent').textContent=data.content||'';
+    $('#reviewDetail').classList.add('open');
+    $('#reviewEdit').classList.remove('open');
+    $('#formWrap').classList.remove('open');
+    $('#reviewDetail').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){console.error(e);alert('후기를 확인하지 못했습니다. 비밀번호를 확인해 주세요.');}
+}
+
+$('#reviewList').addEventListener('click',e=>{const b=e.target.closest('[data-review-id]');if(b)openReview(b.getAttribute('data-review-id'))});
+$('#closeReview').addEventListener('click',()=>{$('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');currentReviewId='';currentReviewPassword='';currentReviewData=null;});
+
+$('#editReview').addEventListener('click',()=>{
+  if(!currentReviewData||!currentReviewPassword)return;
+  $('#eRName').value=currentReviewData.name==='익명'?'':(currentReviewData.name||'');
+  $('#eRPrivate').checked=!!currentReviewData.is_private;
+  const radio=document.querySelector(`input[name="editRating"][value="${Number(currentReviewData.rating||0)}"]`); if(radio)radio.checked=true;
+  $('#eRContent').value=currentReviewData.content||'';
+  $('#reviewEdit').classList.add('open');
+  $('#reviewEdit').scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('#cancelReviewEdit').addEventListener('click',()=>{$('#reviewEdit').classList.remove('open');$('#reviewEditForm').reset();$('#reviewDetail').scrollIntoView({behavior:'smooth',block:'start'});});
+
+$('#reviewEditForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const rating=document.querySelector('input[name="editRating"]:checked');
+  if(!rating){alert('별점을 선택해 주세요.');return;}
+  const content=$('#eRContent').value.trim(); if(!content){alert('후기내용을 입력해 주세요.');return;}
+  const btn=e.submitter;
+  try{
+    if(btn){btn.disabled=true;btn.textContent='수정 중...';}
+    const ok=await rpc('update_review_manage_v1',{p_id:currentReviewId,p_password:currentReviewPassword,p_name:$('#eRName').value.trim()||'익명',p_rating:Number(rating.value),p_content:content,p_is_private:$('#eRPrivate').checked});
+    if(ok!==true){alert('비밀번호가 일치하지 않거나 수정할 수 없는 후기입니다.');return;}
+    $('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');
+    currentReviewId='';currentReviewPassword='';currentReviewData=null;
+    await loadReviews();alert('후기가 수정되었습니다.');
+  }catch(err){console.error(err);alert('후기 수정에 실패했습니다.');}
+  finally{if(btn){btn.disabled=false;btn.textContent='수정완료';}}
+});
+
+$('#deleteReview').addEventListener('click',async()=>{
+  if(!currentReviewId||!currentReviewPassword)return;
+  if(!confirm('이 후기를 삭제하시겠습니까?\n삭제한 후기는 복구할 수 없습니다.'))return;
+  try{
+    const ok=await rpc('delete_review_manage_v1',{p_id:currentReviewId,p_password:currentReviewPassword});
+    if(ok!==true){alert('비밀번호가 일치하지 않거나 삭제할 수 없는 후기입니다.');return;}
+    $('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');
+    currentReviewId='';currentReviewPassword='';currentReviewData=null;
+    await loadReviews();alert('후기가 삭제되었습니다.');
+  }catch(err){console.error(err);alert('후기 삭제에 실패했습니다.');}
+});
+
+$('#openWrite').addEventListener('click',()=>{$('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');$('#formWrap').classList.add('open');$('#formWrap').scrollIntoView({behavior:'smooth',block:'start'})});
 $('#cancelWrite').addEventListener('click',()=>{$('#formWrap').classList.remove('open');$('#reviewForm').reset()});
 $('#reviewForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const rating=document.querySelector('input[name="rating"]:checked');
-  if(!rating){alert('별점을 선택해주세요.');return}
-  const btn=e.submitter; if(btn){btn.disabled=true;btn.textContent='등록 중...'}
-  const payload={name:$('#rName').value.trim()||'익명',rating:Number(rating.value),content:$('#rContent').value.trim(),is_private:$('#rPrivate').checked};
+  if(!rating){alert('별점을 선택해주세요.');return;}
+  const pw=$('#rPassword').value.trim(); if(pw.length<4){alert('비밀번호는 4자 이상 입력해 주세요.');return;}
+  const content=$('#rContent').value.trim(); if(!content){alert('후기내용을 입력해 주세요.');return;}
+  const btn=e.submitter;
   try{
-    const res=await fetch(REVIEWS,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify(payload)});
-    if(!res.ok) throw new Error(await res.text());
+    if(btn){btn.disabled=true;btn.textContent='등록 중...';}
+    await rpc('create_review_manage_v1',{p_name:$('#rName').value.trim()||'익명',p_rating:Number(rating.value),p_content:content,p_is_private:$('#rPrivate').checked,p_password:pw});
     alert('후기가 등록되었습니다.');$('#reviewForm').reset();$('#formWrap').classList.remove('open');await loadReviews();window.scrollTo({top:0,behavior:'smooth'});
-  }catch(err){console.error(err);alert('후기 등록에 실패했습니다. 리뷰 DB 설정을 확인해주세요.');}
-  finally{if(btn){btn.disabled=false;btn.textContent='등록하기'}}
+  }catch(err){console.error(err);alert('후기 등록에 실패했습니다. 통합 SQL 실행 여부를 확인해 주세요.');}
+  finally{if(btn){btn.disabled=false;btn.textContent='등록하기';}}
 });
 loadReviews();
 </script>

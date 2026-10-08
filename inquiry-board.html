@@ -19,6 +19,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-
 footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;text-align:center;font-size:11px;line-height:1.7}.footer-name{color:#fff;font-weight:750;margin-bottom:4px}
 @media(max-width:760px){.wrap{width:min(100% - 30px,1080px)}.head{height:70px}.brand img{height:44px}.nav a:not(.phone){display:none}.nav{gap:0}.phone{font-size:11px!important;padding:9px 11px}.hero{padding:46px 0 28px}.hero h1{font-size:29px}.hero p{font-size:13px}.tabs{overflow-x:auto}.tabs a{padding:13px 15px;white-space:nowrap;font-size:13px}.board{padding:30px 0 60px}.row{grid-template-columns:52px minmax(0,1fr) 82px}.row .cell:nth-child(3),.row .cell:nth-child(4){display:none}.row.headrow .cell:nth-child(3),.row.headrow .cell:nth-child(4){display:none}.cell{padding:11px 6px;font-size:12px}.title-btn{font-size:13px}.grid{grid-template-columns:1fr}.field.full,.secret-line{grid-column:auto}.board-top{align-items:flex-end}.write-btn{padding:11px 15px}.notice{font-size:12px}.detail-meta{flex-wrap:wrap}.form-actions{justify-content:stretch}.form-actions .btn{flex:1}}
 </style>
+<style id="kj-inquiry-delete-20261008">.btn.danger{border-color:#b42323!important;color:#b42323!important;background:#fff!important}.btn.danger:hover{background:#fff5f5!important}</style>
 </head>
 <body>
 <header><div class="wrap head"><a class="brand" href="index.html"><img src="kj-logo-new.png" alt="국제크레인 로고"></a><nav class="nav"><a href="about.html">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="review.html">고객후기</a><a href="https://kko.to/UqjyMgz-Bb" target="_blank" rel="noopener">오시는 길</a><a class="phone" href="tel:01063798692">☎ 010-6379-8692</a></nav></div></header>
@@ -41,7 +42,7 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
   <textarea id="adminAnswerText" maxlength="2000" placeholder="고객에게 보여줄 답변을 입력해 주세요."></textarea>
   <div class="admin-bar"><button class="btn dark" id="saveAnswer" type="button">답변 등록</button></div>
 </div>
-<div class="detail-actions"><button class="btn" id="editPost" type="button" style="display:none">수정하기</button><button class="btn" id="backList" type="button">목록으로</button></div></div>
+<div class="detail-actions"><button class="btn" id="editPost" type="button" style="display:none">수정하기</button><button class="btn danger" id="deletePost" type="button" style="display:none">삭제하기</button><button class="btn" id="backList" type="button">목록으로</button></div></div>
 <div class="edit-wrap" id="editWrap">
   <h2 class="edit-title">문의글 수정</h2>
   <p class="edit-note">글 작성 시 입력한 비밀번호로 확인된 작성자만 수정할 수 있습니다.</p>
@@ -232,6 +233,7 @@ async function openPost(id){
     currentPostData=p;
     closeEdit();
     $('#editPost').style.display=adminMode?'none':'inline-block';
+    $('#deletePost').style.display=adminMode?'none':'inline-block';
     $('#detailTitle').textContent=p.title||'';
     $('#detailName').textContent='작성자 '+(p.name||'');
     $('#detailDate').textContent=fmtDate(p.created_at);
@@ -376,6 +378,24 @@ $('#editForm').addEventListener('submit',async e=>{
   }
 });
 
+
+$('#deletePost').addEventListener('click',async()=>{
+  if(adminMode || !currentPostId || !currentAuthorPassword) return;
+  if(!confirm('이 문의글을 삭제하시겠습니까?\n삭제한 글은 복구할 수 없습니다.')) return;
+  try{
+    const data=await rpc('delete_inquiry',{p_id:currentPostId,p_password:currentAuthorPassword});
+    const ok=(data===true)||(Array.isArray(data)&&data[0]===true);
+    if(!ok){alert('비밀번호가 일치하지 않거나 삭제할 수 없는 글입니다.');return;}
+    $('#detailView').classList.remove('open');
+    closeEdit();
+    currentPostId=null; currentAuthorPassword=''; currentPostData=null;
+    $('#editPost').style.display='none'; $('#deletePost').style.display='none';
+    await loadPosts();
+    alert('문의글이 삭제되었습니다.');
+    window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
+  }catch(err){console.error(err);alert('문의글 삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.');}
+});
+
 $('#openWrite').addEventListener('click',()=>{
   $('#detailView').classList.remove('open');
   $('#formWrap').classList.add('open');
@@ -393,6 +413,7 @@ $('#backList').addEventListener('click',()=>{
   currentAuthorPassword='';
   currentPostData=null;
   $('#editPost').style.display='none';
+  $('#deletePost').style.display='none';
   window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
 });
 
