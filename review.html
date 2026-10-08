@@ -168,27 +168,111 @@ async function rpc(name,body={}){
 
 async function loadReviews(){
   try{
-    const data=await rpc('list_reviews_manage_v1');
-    reviewRows=Array.isArray(data)?data:[];
+    let publicData=[];
+    let manageData=[];
+
+    try{
+      publicData=await rpc('list_reviews_public_v3');
+    }catch(publicErr){
+      console.error(publicErr);
+      publicData=[];
+    }
+
+    try{
+      manageData=await rpc('list_reviews_manage_v1');
+    }catch(manageErr){
+      console.error(manageErr);
+      manageData=[];
+    }
+
+    const publicRows=Array.isArray(publicData)?publicData:[];
+    const manageRows=Array.isArray(manageData)?manageData:[];
+
+    const manageMap=new Map(
+      manageRows.map(r=>[String(r.id),r])
+    );
+
+    const publicMapped=publicRows.map(r=>{
+      const m=manageMap.get(String(r.id));
+      return {
+        ...r,
+        is_private:false,
+        can_manage:!!(m&&m.can_manage)
+      };
+    });
+
+    const privateMapped=manageRows
+      .filter(r=>r.is_private===true)
+      .map(r=>({
+        id:r.id,
+        name:'비공개',
+        rating:null,
+        content:null,
+        created_at:r.created_at,
+        is_private:true,
+        can_manage:!!r.can_manage
+      }));
+
+    reviewRows=[...publicMapped,...privateMapped].sort((a,b)=>{
+      return new Date(b.created_at).getTime()-new Date(a.created_at).getTime();
+    });
+
     renderReviews();
   }catch(e){
     console.error(e);
-    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>통합 SQL을 먼저 실행해 주세요.</div>';
+    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.</div>';
   }
 }
 
 function renderReviews(){
   const publicRows=reviewRows.filter(r=>!r.is_private);
-  $('#countText').textContent='전체 '+publicRows.length+'건';
-  $('#scoreMeta').textContent='등록된 후기 '+publicRows.length+'건';
-  if(publicRows.length){const avg=publicRows.reduce((a,r)=>a+Number(r.rating||0),0)/publicRows.length;$('#avgScore').textContent=avg.toFixed(1);$('#avgStars').textContent=stars(Math.round(avg));}
-  else{$('#avgScore').textContent='-';$('#avgStars').textContent='☆☆☆☆☆';}
-  if(!publicRows.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return;}
-  $('#reviewList').innerHTML=publicRows.map(r=>{
-    return `<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p>${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">수정·삭제</button></div>`:''}</article>`;
+  $('#countText').textContent='전체 '+reviewRows.length+'건';
+  $('#scoreMeta').textContent='등록된 공개 후기 '+publicRows.length+'건';
+
+  if(publicRows.length){
+    const avg=publicRows.reduce((a,r)=>a+Number(r.rating||0),0)/publicRows.length;
+    $('#avgScore').textContent=avg.toFixed(1);
+    $('#avgStars').textContent=stars(Math.round(avg));
+  }else{
+    $('#avgScore').textContent='-';
+    $('#avgStars').textContent='☆☆☆☆☆';
+  }
+
+  if(!reviewRows.length){
+    $('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';
+    return;
+  }
+
+  $('#reviewList').innerHTML=reviewRows.map(r=>{
+    if(r.is_private){
+      return `<article class="review-card private-review">
+        <div class="card-top">
+          <div>
+            <div class="private-lock">🔒 비공개 후기 ${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div>
+            <div class="private-copy">사장님에게만 공개된 후기입니다.</div>
+          </div>
+          <div class="date">${esc(fmtDate(r.created_at))}</div>
+        </div>
+        <div class="review-manage">
+          ${r.can_manage?`<button class="manage-btn" type="button" data-review-id="${esc(r.id)}">작성자 수정·삭제</button>`:''}
+          <button class="manage-btn" type="button" data-admin-review-id="${esc(r.id)}">사장님 확인</button>
+        </div>
+      </article>`;
+    }
+
+    return `<article class="review-card">
+      <div class="card-top">
+        <div>
+          <div class="card-stars">${esc(stars(Number(r.rating||0)))}</div>
+          <div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div>
+        </div>
+        <div class="date">${esc(fmtDate(r.created_at))}</div>
+      </div>
+      <p class="card-content">${esc(r.content)}</p>
+      ${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">수정·삭제</button></div>`:''}
+    </article>`;
   }).join('');
 }
-
 async function openReview(id){
   const pw=prompt('작성 시 설정한 비밀번호를 입력해 주세요.');
   if(pw===null)return;
@@ -201,6 +285,8 @@ async function openReview(id){
     $('#detailReviewName').textContent=data.name||'익명';
     $('#detailReviewDate').textContent=fmtDate(data.created_at);
     $('#detailReviewContent').textContent=data.content||'';
+    $('#editReview').style.display='';
+    $('#deleteReview').style.display='';
     $('#reviewDetail').classList.add('open');
     $('#reviewEdit').classList.remove('open');
     $('#formWrap').classList.remove('open');
@@ -208,8 +294,56 @@ async function openReview(id){
   }catch(e){console.error(e);alert('후기를 확인하지 못했습니다. 비밀번호를 확인해 주세요.');}
 }
 
-$('#reviewList').addEventListener('click',e=>{const b=e.target.closest('[data-review-id]');if(b)openReview(b.getAttribute('data-review-id'))});
-$('#closeReview').addEventListener('click',()=>{$('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');currentReviewId='';currentReviewPassword='';currentReviewData=null;});
+async function openAdminReview(id){
+  const pw=prompt('국제크레인 관리자 비밀번호를 입력해 주세요.');
+  if(pw===null)return;
+  if(!pw.trim()){alert('관리자 비밀번호를 입력해 주세요.');return;}
+
+  try{
+    const data=await rpc('read_review_admin_v1',{
+      p_id:String(id),
+      p_admin_password:pw.trim()
+    });
+
+    if(!data||typeof data!=='object'){
+      alert('관리자 비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    currentReviewId='';
+    currentReviewPassword='';
+    currentReviewData=null;
+
+    $('#detailStars').textContent=stars(Number(data.rating||0));
+    $('#detailReviewName').textContent=data.name||'익명';
+    $('#detailReviewDate').textContent=fmtDate(data.created_at);
+    $('#detailReviewContent').textContent=data.content||'';
+
+    $('#editReview').style.display='none';
+    $('#deleteReview').style.display='none';
+    $('#reviewDetail').classList.add('open');
+    $('#reviewEdit').classList.remove('open');
+    $('#formWrap').classList.remove('open');
+    $('#reviewDetail').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){
+    console.error(e);
+    alert('관리자 확인에 실패했습니다.');
+  }
+}
+
+$('#reviewList').addEventListener('click',e=>{
+  const adminBtn=e.target.closest('[data-admin-review-id]');
+  if(adminBtn){
+    openAdminReview(adminBtn.getAttribute('data-admin-review-id'));
+    return;
+  }
+
+  const authorBtn=e.target.closest('[data-review-id]');
+  if(authorBtn){
+    openReview(authorBtn.getAttribute('data-review-id'));
+  }
+});
+$('#closeReview').addEventListener('click',()=>{$('#reviewDetail').classList.remove('open');$('#reviewEdit').classList.remove('open');$('#editReview').style.display='';$('#deleteReview').style.display='';currentReviewId='';currentReviewPassword='';currentReviewData=null;});
 
 $('#editReview').addEventListener('click',()=>{
   if(!currentReviewData||!currentReviewPassword)return;
