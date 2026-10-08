@@ -3176,6 +3176,33 @@ document.addEventListener('DOMContentLoaded',function(){
   .kj-unified-kakao{background:#ffe500!important;color:#111!important}
 }
 </style>
+
+<style id="kj-remove-old-contact-inquiry-20261009">
+@media(max-width:760px){
+  .kj-unified-contact,
+  .mobile-cta,
+  .mobile-bottom-bar,
+  .bottom-contact,
+  .fixed-contact,
+  .kj-bottom-contact{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    pointer-events:none!important;
+    height:0!important;
+    min-height:0!important;
+    max-height:0!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+  body,
+  body:not(.kj-intro-open){
+    padding-bottom:0!important;
+  }
+}
+</style>
+
 </head>
 <body><header><div class="wrap head">
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
@@ -3206,64 +3233,6 @@ document.addEventListener('DOMContentLoaded',function(){
 </form>
 </div>
 </section>
-
-<script id="online-inquiry-worker-bridge">
-(() => {
-  const form = document.getElementById('online-inquiry-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-
-    const button = form.querySelector('.inquiry-submit');
-    const originalText = button ? button.textContent : '';
-
-    if (button) {
-      button.disabled = true;
-      button.textContent = '접수 중...';
-    }
-
-    try {
-      const payload = {
-        region: (form.elements['area']?.value || '').trim(),
-        work: (form.elements['details']?.value || '').trim(),
-        date: form.elements['date']?.value || '',
-        phone: (form.elements['phone']?.value || '').trim()
-      };
-
-      const response = await fetch('https://kjcrane-inquiry.rlagytjs97.workers.dev', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      let result = {};
-      try { result = await response.json(); } catch (_) {}
-
-      if (!response.ok || result.ok !== true) {
-        throw new Error(
-          (result.error || '문의 접수 실패') +
-          (result.status ? ` / ${result.status}` : '') +
-          (result.detail ? ` / ${JSON.stringify(result.detail)}` : '')
-        );
-      }
-
-      alert('문의가 정상적으로 접수되었습니다.');
-      form.reset();
-    } catch (error) {
-      console.error('Inquiry submit error:', error);
-      alert(error.message || '문의 접수에 실패했습니다.');
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = originalText;
-      }
-    }
-  });
-})();
-</script>
-
 </main>
 
 <style id="kj-inquiry-footer-sync-20261006">
@@ -3387,22 +3356,6 @@ document.addEventListener('DOMContentLoaded',function(){
 <p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
 </div>
 </dialog>
-<div aria-label="빠른 문의" class="kj-unified-contact">
-<a class="kj-unified-call" href="tel:01063798692">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M6.7 2.7 9.4 8c.3.6.1 1.2-.4 1.6l-1.7 1.2c1.2 2.6 3.3 4.7 5.9 5.9l1.2-1.7c.4-.5 1-.7 1.6-.4l5.3 2.7c.6.3.9.9.7 1.5-.5 1.8-2.1 3.2-4.1 3.2C9.1 22 2 14.9 2 6.1c0-2 1.4-3.6 3.2-4.1.6-.2 1.2.1 1.5.7Z"></path>
-</svg>
-<b>전화 문의</b><span>→</span>
-</a>
-<a class="kj-unified-kakao" href="https://pf.kakao.com/_IqfrX/chat" rel="noopener" target="_blank">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M12 3C6.5 3 2 6.5 2 10.9c0 2.8 1.8 5.3 4.6 6.7L5.8 21l4-2.2c.7.1 1.4.2 2.2.2 5.5 0 10-3.5 10-8.1S17.5 3 12 3Z"></path>
-</svg>
-<b>카카오톡 문의</b><span>→</span>
-</a>
-</div>
-
-
 <style id="kj-inquiry-final-visual-fix-20261006">
 /* 필수 *는 빨간색 */
 .kj-standalone-inquiry-form label > span b,
