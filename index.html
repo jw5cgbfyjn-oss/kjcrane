@@ -223,9 +223,9 @@ nav a:hover .nav-chevron,nav a:focus-visible .nav-chevron,nav a:active .nav-chev
 </style>
 <link href="https://kjcrane.kr/" rel="canonical"/>
 <meta content="website" property="og:type"/>
-<meta content="https://kjcrane.kr/" property="og:url">
-<meta content="춘천 크레인 작업 | 국제크레인" property="og:title">
-<meta content="춘천을 중심으로 강원 전 지역 크레인 작업을 진행합니다. 13T부터 100T까지 장비 보유, 구조물·자재·수목·정자·공장 및 설비 문의 접수하기." property="og:description">
+<meta content="https://kjcrane.kr/" property="og:url"/>
+<meta content="춘천 크레인 작업 | 국제크레인" property="og:title"/>
+<meta content="춘천을 중심으로 강원 전 지역 크레인 작업을 진행합니다. 13T부터 100T까지 장비 보유, 구조물·자재·수목·정자·공장 및 설비 문의 접수하기." property="og:description"/>
 <style>
 .location-preview{padding:72px 0 24px;border-top:1px solid #eee}
 .location-preview .map-address{margin:10px 0 22px;font-size:15px;color:#555}
@@ -2839,15 +2839,169 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
   .kjr-fixed-contact{position:fixed;left:0;right:0;bottom:0;height:66px;z-index:2147482000;display:grid;grid-template-columns:1fr 1fr;padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:content-box}.kjr-fixed-contact a{display:flex;align-items:center;justify-content:center;gap:11px;font-size:16px;font-weight:850}.kjr-fixed-contact span{font-size:21px}.kjr-fixed-contact i{font-style:normal;font-weight:400;margin-left:8px}.kjr-call{background:#111;color:#fff!important}.kjr-kakao{background:#ffe500;color:#111!important}
 }
 </style>
-</meta></meta></meta><style id="pc-intro-disabled-final">
+<style id="pc-intro-disabled-final">
 @media (min-width:761px){
   #kj-pc-entrance{display:none!important}
   body.kj-pc-intro-open{overflow:auto!important}
 }
+</style><style id="home-inquiry-preview-style-20261008">
+/* 메인 하단 문의게시판 미리보기 */
+.home-inquiry-preview{
+  padding:64px 0 76px;
+  border-top:1px solid #eee;
+  background:#fff;
+}
+.hip-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:26px;
+}
+.hip-kicker{
+  margin-bottom:8px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+  color:#aaa;
+}
+.hip-head h2{
+  margin:0;
+  font-size:30px;
+  letter-spacing:-.045em;
+}
+.hip-all{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding-bottom:3px;
+  border-bottom:1px solid #aaa;
+  font-size:13px;
+  font-weight:700;
+  color:#444;
+}
+.hip-list{border-top:2px solid #222}
+.hip-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 110px 100px;
+  align-items:center;
+  gap:18px;
+  min-height:64px;
+  padding:0 8px;
+  border-bottom:1px solid #e8e8e8;
+  text-decoration:none;
+}
+.hip-title{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:14px;
+  font-weight:650;
+  color:#222;
+}
+.hip-lock{margin-right:7px;color:#777}
+.hip-date{
+  font-size:12px;
+  color:#999;
+  text-align:center;
+  white-space:nowrap;
+}
+.hip-status{
+  justify-self:end;
+  min-width:78px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#f3f3f3;
+  text-align:center;
+  font-size:11px;
+  font-weight:750;
+  color:#666;
+}
+.hip-status.done{background:#111;color:#fff}
+.hip-empty{
+  padding:48px 12px;
+  border-bottom:1px solid #e8e8e8;
+  text-align:center;
+  color:#999;
+  font-size:13px;
+}
+
+/* 모바일 새 디자인 */
+.kjr-inquiry-preview{display:none}
+@media(max-width:760px){
+  .home-inquiry-preview{display:none!important}
+  .kjr-inquiry-preview{
+    display:block!important;
+    padding:44px 22px 52px!important;
+    background:#fff!important;
+    border-top:1px solid #efefef!important;
+  }
+  .kjr-inquiry-head{
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:12px!important;
+    margin-bottom:20px!important;
+  }
+  .kjr-inquiry-head h2{
+    margin:4px 0 0!important;
+    font-size:27px!important;
+    line-height:1.15!important;
+    letter-spacing:-.05em!important;
+  }
+  .kjr-inquiry-head>a{
+    display:flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    padding-bottom:3px!important;
+    border-bottom:1px solid #aaa!important;
+    font-size:11px!important;
+    font-weight:700!important;
+    color:#555!important;
+  }
+  .kjr-inquiry-list{border-top:2px solid #222!important}
+  .kjr-inquiry-row{
+    min-height:58px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    gap:10px!important;
+    align-items:center!important;
+    padding:0 2px!important;
+    border-bottom:1px solid #e7e7e7!important;
+  }
+  .kjr-inquiry-title{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:13px!important;
+    font-weight:700!important;
+    color:#222!important;
+  }
+  .kjr-inquiry-lock{margin-right:5px!important;color:#777!important}
+  .kjr-inquiry-status{
+    min-width:66px!important;
+    padding:6px 8px!important;
+    border-radius:999px!important;
+    background:#f2f2f2!important;
+    text-align:center!important;
+    font-size:10px!important;
+    font-weight:800!important;
+    color:#666!important;
+  }
+  .kjr-inquiry-status.done{background:#111!important;color:#fff!important}
+  .kjr-inquiry-empty{
+    padding:42px 8px!important;
+    border-bottom:1px solid #e7e7e7!important;
+    text-align:center!important;
+    color:#aaa!important;
+    font-size:12px!important;
+  }
+}
 </style></head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
-
 <div aria-label="국제크레인 PC 메인" class="desktop-home">
 <div class="d-head"><a aria-label="국제크레인 홈" class="d-brand" href="index.html"><img alt="국제크레인 로고" src="data:image/webp;base64,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"/></a><nav class="d-nav"><a href="about.html">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">오시는 길</a><a class="d-phone" href="tel:01063798692">☎ 전화 문의</a></nav></div>
 <main class="d-main">
@@ -2989,7 +3143,20 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 <section aria-label="KJ CRANE" class="kj-location-watermark-bridge">
 <div class="kj-location-watermark-word">KJ CRANE</div>
 </section>
-<section class="location-preview" id="location"><div class="wrap kj-rise"><h2>오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div aria-label="국제크레인 위치 지도" class="map-box" id="kj-kakao-map" role="region"><div class="kj-map-loading">지도를 불러오는 중입니다.</div></div><a class="map-link" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section>
+<section class="location-preview" id="location"><div class="wrap kj-rise"><h2>오시는 길</h2><p class="map-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p><div aria-label="국제크레인 위치 지도" class="map-box" id="kj-kakao-map" role="region"><div class="kj-map-loading">지도를 불러오는 중입니다.</div></div><a class="map-link" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 ›</a></div></section><section class="home-inquiry-preview" id="home-inquiry-preview">
+<div class="wrap">
+<div class="hip-head">
+<div>
+<div class="hip-kicker">INQUIRY BOARD</div>
+<h2>문의게시판</h2>
+</div>
+<a class="hip-all" href="inquiry-board.html">전체보기 <span>→</span></a>
+</div>
+<div class="hip-list" id="homeInquiryListDesktop">
+<div class="hip-empty">문의글을 불러오는 중입니다.</div>
+</div>
+</div>
+</section>
 <footer><div class="wrap footer-info">
 <div><span class="footer-label">대표자</span><span class="sep">|</span>김선원</div>
 <div><span class="footer-label">사업자등록번호</span><span class="sep">|</span>221-08-87838</div>
@@ -3469,7 +3636,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 })();
 </script>
-
 <style id="kj-mobile-main-exact-final-20261002">
 @media (max-width:760px){
   #about{
@@ -3856,20 +4022,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <a class="kjr-work-main" href="work.html"><img alt="국제크레인 작업현장" id="kjr-work-main-img"/></a>
 <div class="kjr-thumbs" id="kjr-thumbs"></div>
-<nav class="kjr-quick">
-<a href="greeting.html"><span aria-hidden="true" class="kjr-ico">
-<svg viewbox="0 0 24 24"><path d="M4 21V6.5L12 3l8 3.5V21M8 9h2m4 0h2M8 13h2m4 0h2M9 21v-4h6v4"></path></svg>
-</span><b>회사소개</b><small>→</small></a>
-<a href="inquiry.html"><span aria-hidden="true" class="kjr-ico">
-<svg viewbox="0 0 24 24"><path d="M5 3h10l4 4v14H5zM15 3v5h5M8 12h8M8 16h6"></path></svg>
-</span><b>문의접수</b><small>→</small></a>
-<a href="work.html"><span aria-hidden="true" class="kjr-ico">
-<svg viewbox="0 0 24 24"><path d="M3 5h18v14H3zM7 15l3-3 3 3 2-2 3 3M8 9h.01"></path></svg>
-</span><b>작업현장</b><small>→</small></a>
-<a href="#kjr-location"><span aria-hidden="true" class="kjr-ico">
-<svg viewbox="0 0 24 24"><path d="M12 21s6-6.1 6-11a6 6 0 1 0-12 0c0 4.9 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg>
-</span><b>오시는 길</b><small>→</small></a>
-</nav>
+<nav class="kjr-quick"><a href="inquiry.html"><span aria-hidden="true" class="kjr-ico"><svg viewbox="0 0 24 24"><path d="M4 5h16v12H8l-4 3V5z"></path><path d="M8 9h8M8 13h5"></path></svg></span><b>문자문의</b><small>→</small></a><a href="inquiry-board.html"><span aria-hidden="true" class="kjr-ico"><svg viewbox="0 0 24 24"><path d="M6 4h12v16H6z"></path><path d="M9 8h6M9 12h6M9 16h4"></path></svg></span><b>문의게시판</b><small>→</small></a><a href="https://pf.kakao.com/_IqfrX/chat" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="kjr-ico"><svg viewbox="0 0 24 24"><path d="M4 6.5C4 4.6 5.8 3 8 3h8c2.2 0 4 1.6 4 3.5v5c0 1.9-1.8 3.5-4 3.5h-4.7L7 19v-4H8c-2.2 0-4-1.6-4-3.5z"></path></svg></span><b>카톡문의</b><small>→</small></a><a href="tel:01063798692"><span aria-hidden="true" class="kjr-ico"><svg viewbox="0 0 24 24"><path d="M7 3l3 4-2 2c1.4 2.7 3.3 4.6 6 6l2-2 4 3-1.5 3c-.4.8-1.3 1.2-2.2 1-7-1.5-12.8-7.3-14.3-14.3-.2-.9.2-1.8 1-2.2L7 3z"></path></svg></span><b>전화문의</b><small>→</small></a><a href="review.html"><span aria-hidden="true" class="kjr-ico"><svg viewbox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3z"></path></svg></span><b>후기남기기</b><small>→</small></a></nav>
 </section>
 <section class="kjr-location" id="kjr-location">
 <div class="kjr-kicker">LOCATION <i></i></div>
@@ -3877,6 +4030,17 @@ document.addEventListener('DOMContentLoaded',function(){
 <p class="kjr-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p>
 <a class="kjr-map-btn" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 <span>→</span></a>
 <div id="kjr-kakao-map"><div class="kjr-map-loading">지도를 불러오는 중입니다.</div></div>
+</section><section class="kjr-inquiry-preview" id="kjr-inquiry-preview">
+<div class="kjr-inquiry-head">
+<div>
+<div class="kjr-kicker">INQUIRY BOARD <i></i></div>
+<h2>문의게시판</h2>
+</div>
+<a href="inquiry-board.html">전체보기 <span>→</span></a>
+</div>
+<div class="kjr-inquiry-list" id="homeInquiryListMobile">
+<div class="kjr-inquiry-empty">문의글을 불러오는 중입니다.</div>
+</div>
 </section>
 <footer class="kjr-footer"><div class="kjr-footer-logo"><img alt="국제크레인" src="kj-logo-new.png"/></div><div class="kjr-footer-table"><div class="kjr-footer-table-row"><span class="kjr-footer-label">대표자</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">김선원</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">사업자등록번호</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">221-08-87838</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">소재지</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">전화문의</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">010-6379-8692</span></div></div><button class="kjr-privacy" type="button">개인정보처리방침</button></footer>
 <div class="kjr-fixed-contact"><a class="kjr-call" href="tel:01063798692">
@@ -5836,5 +6000,124 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 }
 </style>
-</body>
+<style id="kj-quicknav-five-items-final-20261008">
+@media(max-width:760px){
+  .kjr-quick{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-rows:112px!important;
+    width:100%!important;
+    height:112px!important;
+    border:1px solid #e9e9e9!important;
+    border-radius:8px!important;
+    overflow:hidden!important;
+    background:#fff!important;
+  }
+  .kjr-quick a{
+    position:relative!important;
+    width:100%!important;
+    height:112px!important;
+    min-height:112px!important;
+    padding:0 2px!important;
+    margin:0!important;
+    border:0!important;
+    border-right:1px solid #e9e9e9!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    box-sizing:border-box!important;
+  }
+  .kjr-quick a:last-child{border-right:0!important}
+  .kjr-quick a::after{display:none!important;content:none!important}
+  .kjr-ico{width:26px!important;height:26px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  .kjr-ico svg{width:25px!important;height:25px!important;stroke:currentColor!important;fill:none!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+  .kjr-quick b{
+    margin:0!important;
+    font-size:10.5px!important;
+    line-height:1.15!important;
+    white-space:nowrap!important;
+    letter-spacing:-.055em!important;
+    font-weight:800!important;
+  }
+  .kjr-quick small{margin:0!important;font-size:14px!important;line-height:1!important;color:#777!important}
+}
+</style><script id="home-inquiry-preview-js-20261008">
+(function(){
+  const SB_URL='https://topybambfbohphrfxrbg.supabase.co';
+  const SB_KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
+
+  function esc(v){
+    return String(v == null ? '' : v).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function date(v){
+    const d=new Date(v);
+    if(Number.isNaN(d.getTime())) return '';
+    return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('.');
+  }
+  function isDone(status){
+    return String(status||'').indexOf('완료')>-1;
+  }
+
+  async function loadHomeInquiries(){
+    const desktop=document.getElementById('homeInquiryListDesktop');
+    const mobile=document.getElementById('homeInquiryListMobile');
+    if(!desktop && !mobile) return;
+
+    try{
+      const res=await fetch(SB_URL+'/rest/v1/rpc/list_inquiries',{
+        method:'POST',
+        headers:{
+          apikey:SB_KEY,
+          Authorization:'Bearer '+SB_KEY,
+          'Content-Type':'application/json'
+        },
+        body:'{}'
+      });
+      if(!res.ok) throw new Error(await res.text());
+      const rows=(await res.json()).slice(0,5);
+
+      if(!rows.length){
+        if(desktop) desktop.innerHTML='<div class="hip-empty">등록된 문의가 없습니다.</div>';
+        if(mobile) mobile.innerHTML='<div class="kjr-inquiry-empty">등록된 문의가 없습니다.</div>';
+        return;
+      }
+
+      if(desktop){
+        desktop.innerHTML=rows.map(function(r){
+          const done=isDone(r.status);
+          return '<a class="hip-row" href="inquiry-board.html">'
+            +'<div class="hip-title"><span class="hip-lock">🔒</span>'+esc(r.title)+'</div>'
+            +'<div class="hip-date">'+esc(date(r.created_at))+'</div>'
+            +'<div class="hip-status '+(done?'done':'')+'">'+esc(r.status||'답변대기')+'</div>'
+            +'</a>';
+        }).join('');
+      }
+
+      if(mobile){
+        mobile.innerHTML=rows.map(function(r){
+          const done=isDone(r.status);
+          return '<a class="kjr-inquiry-row" href="inquiry-board.html">'
+            +'<div class="kjr-inquiry-title"><span class="kjr-inquiry-lock">🔒</span>'+esc(r.title)+'</div>'
+            +'<div class="kjr-inquiry-status '+(done?'done':'')+'">'+esc(r.status||'답변대기')+'</div>'
+            +'</a>';
+        }).join('');
+      }
+    }catch(err){
+      console.error('home inquiry preview:',err);
+      if(desktop) desktop.innerHTML='<div class="hip-empty">문의글을 불러오지 못했습니다.</div>';
+      if(mobile) mobile.innerHTML='<div class="kjr-inquiry-empty">문의글을 불러오지 못했습니다.</div>';
+    }
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',loadHomeInquiries);
+  }else{
+    loadHomeInquiries();
+  }
+})();
+</script></body>
 </html>
