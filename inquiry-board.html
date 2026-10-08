@@ -72,7 +72,12 @@ const fmtDate=value=>{
 async function rpc(name, body={}){
   const res=await fetch(API+name,{
     method:'POST',
-    headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json','Accept':'application/json'},
+    headers:{
+      'apikey':SUPABASE_KEY,
+      'Authorization':'Bearer '+SUPABASE_KEY,
+      'Content-Type':'application/json',
+      'Accept':'application/json'
+    },
     body:JSON.stringify(body)
   });
   const raw=await res.text();

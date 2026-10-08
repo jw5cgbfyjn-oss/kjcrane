@@ -3323,6 +3323,26 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-mobile-pcnav-hide-and-preview-clean-20261008">
+/* PC 전용 가로메뉴는 기본적으로 숨김 */
+.kjr-pc-nav{
+  display:none!important;
+}
+
+/* PC에서만 가로메뉴 표시 */
+@media(min-width:761px){
+  .kjr-pc-nav{
+    display:flex!important;
+  }
+}
+
+/* 문의게시판 미리보기 제목 아래 작은 설명문구 제거 */
+.kjr-board-preview-head p{
+  display:none!important;
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
