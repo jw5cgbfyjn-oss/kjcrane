@@ -201,8 +201,14 @@ async function loadReviews(){
       };
     });
 
+    const PRIVATE_VISIBLE_FROM=new Date('2026-10-09T00:00:00+09:00').getTime();
+
     const privateMapped=manageRows
-      .filter(r=>r.is_private===true)
+      .filter(r=>{
+        if(r.is_private!==true)return false;
+        const created=new Date(r.created_at).getTime();
+        return Number.isFinite(created) && created>=PRIVATE_VISIBLE_FROM;
+      })
       .map(r=>({
         id:r.id,
         name:'비공개',
