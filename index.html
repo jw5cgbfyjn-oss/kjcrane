@@ -3373,6 +3373,49 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 
 <meta name="theme-color" content="#ffffff">
 
+
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+
+
+<style id="kj-ios-safari-bottom-real-fix-20261008">
+@media(max-width:760px){
+  html,
+  body{
+    background:#fff!important;
+  }
+
+  /* 버튼은 아이폰 하단 안전영역 위까지만 */
+  body > .kjr-fixed-contact,
+  .kjr-fixed-contact{
+    bottom:env(safe-area-inset-bottom, 0px)!important;
+    padding-bottom:0!important;
+    box-sizing:border-box!important;
+  }
+
+  /* 실제 안전영역은 별도 흰색 판으로 덮음 */
+  body::after{
+    content:""!important;
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    height:env(safe-area-inset-bottom, 0px)!important;
+    min-height:1px!important;
+    background:#fff!important;
+    z-index:2147483646!important;
+    pointer-events:none!important;
+  }
+
+  /* 이전에 화면 밖으로 만든 가상영역은 제거 */
+  body > .kjr-fixed-contact::after,
+  .kjr-fixed-contact::after{
+    display:none!important;
+    content:none!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
