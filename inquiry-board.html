@@ -2,6 +2,9 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>문의게시판 | 국제크레인</title>
 <meta name="description" content="국제크레인 작업 문의게시판. 크레인 작업 일정, 현장 조건, 장비 관련 문의를 남겨주세요."/>
@@ -107,16 +110,60 @@ function render(){
 async function loadPosts(){
   $('#countText').textContent='문의글 불러오는 중...';
   $('#emptyState').style.display='none';
+
+  const url=SUPABASE_URL+'/rest/v1/rpc/list_inquiries';
+
+  async function requestList(headers){
+    const res=await fetch(url,{
+      method:'POST',
+      headers:headers,
+      body:'{}',
+      cache:'no-store'
+    });
+
+    const raw=await res.text();
+    let data=null;
+    try{ data=raw ? JSON.parse(raw) : []; }
+    catch(e){ data=raw; }
+
+    if(!res.ok){
+      const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))
+        || raw || ('HTTP '+res.status);
+      throw new Error(msg);
+    }
+    return Array.isArray(data) ? data : [];
+  }
+
   try{
-    const data=await rpc('list_inquiries',{});
-    posts=Array.isArray(data)?data:[];
+    /* 메인 홈페이지 문의게시판 미리보기와 동일한 요청 */
+    posts=await requestList({
+      'apikey':SUPABASE_KEY,
+      'Authorization':'Bearer '+SUPABASE_KEY,
+      'Content-Type':'application/json'
+    });
+
     render();
-  }catch(err){
-    console.error(err);
-    posts=[];
-    render();
-    $('#emptyState').style.display='block';
-    $('#emptyState').textContent='문의글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+    return;
+  }catch(firstErr){
+    console.warn('문의목록 1차 요청 실패',firstErr);
+
+    try{
+      /* 일부 모바일 브라우저 대비 2차 요청 */
+      posts=await requestList({
+        'apikey':SUPABASE_KEY,
+        'Content-Type':'application/json'
+      });
+
+      render();
+      return;
+    }catch(secondErr){
+      console.error('문의목록 최종 요청 실패',secondErr);
+
+      posts=[];
+      render();
+      $('#emptyState').style.display='block';
+      $('#emptyState').textContent='문의글을 불러오지 못했습니다. 페이지를 새로고침해 주세요.';
+    }
   }
 }
 
