@@ -3866,6 +3866,9 @@ document.addEventListener('DOMContentLoaded',function(){
 <a href="work.html"><span aria-hidden="true" class="kjr-ico">
 <svg viewbox="0 0 24 24"><path d="M3 5h18v14H3zM7 15l3-3 3 3 2-2 3 3M8 9h.01"></path></svg>
 </span><b>작업현장</b><small>→</small></a>
+<a href="review.html"><span aria-hidden="true" class="kjr-ico">
+<svg viewbox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3Z"></path></svg>
+</span><b>고객후기</b><small>→</small></a>
 <a href="#kjr-location"><span aria-hidden="true" class="kjr-ico">
 <svg viewbox="0 0 24 24"><path d="M12 21s6-6.1 6-11a6 6 0 1 0-12 0c0 4.9 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg>
 </span><b>오시는 길</b><small>→</small></a>
@@ -5932,6 +5935,93 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   display:none!important;
 }
 </style>
+
+
+<style id="kj-final-restore-20261008">
+/* === Restore only the user's latest intended presentation === */
+
+/* PC intro removed: PC opens directly to the main page. Mobile intro is untouched. */
+@media (min-width:761px){
+  #kj-pc-entrance{display:none!important;visibility:hidden!important;pointer-events:none!important}
+  body.kj-pc-intro-open{overflow:auto!important}
+}
+
+/* Hide decorative labels/buttons that had reappeared. Business info in footer stays intact. */
+.kjr-rep-btn,
+.kjr-watermark,
+.kjr-kicker{
+  display:none!important;
+}
+
+/* Restore the middle shortcuts to five equal items. */
+.kjr-quick{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:112px!important;
+  width:100%!important;
+  height:112px!important;
+}
+.kjr-quick a{
+  width:100%!important;
+  height:112px!important;
+  min-height:112px!important;
+  border:0!important;
+  border-right:1px solid #e9e9e9!important;
+  box-sizing:border-box!important;
+}
+.kjr-quick a:nth-child(5){
+  border-right:0!important;
+}
+.kjr-quick a::after{
+  display:none!important;
+  content:none!important;
+}
+
+@media (max-width:760px){
+  .kjr-quick{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-rows:104px!important;
+    height:104px!important;
+  }
+  .kjr-quick a{
+    height:104px!important;
+    min-height:104px!important;
+    padding:0 2px!important;
+  }
+  .kjr-quick .kjr-ico{
+    width:25px!important;
+    height:25px!important;
+  }
+  .kjr-quick .kjr-ico svg{
+    width:23px!important;
+    height:23px!important;
+  }
+  .kjr-quick b{
+    font-size:12px!important;
+    white-space:nowrap!important;
+    letter-spacing:-.05em!important;
+  }
+  .kjr-quick small{
+    font-size:13px!important;
+  }
+}
+</style>
+
+<script id="kj-final-pc-intro-cleanup-20261008">
+(function(){
+  function cleanPcIntro(){
+    if(!window.matchMedia('(min-width:761px)').matches) return;
+    document.body.classList.remove('kj-pc-intro-open');
+    var pc=document.getElementById('kj-pc-entrance');
+    if(pc) pc.style.display='none';
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',cleanPcIntro,{once:true});
+  }else{
+    cleanPcIntro();
+  }
+})();
+</script>
 
 </body>
 </html>
