@@ -7263,5 +7263,88 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 })();
 </script>
 
+
+<style id="kj-redline-watermark-restore-final-20261008">
+/* 메인 빨간 포인트선 복구 */
+.kjr-redline{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:39px!important;
+  height:3px!important;
+  min-height:3px!important;
+  margin:0 0 17px 0!important;
+  background:#d71920!important;
+  border-radius:0!important;
+  position:relative!important;
+  z-index:10!important;
+}
+
+/* 작업현장/오시는 길 제목 옆 빨간선도 유지 */
+.kjr-kicker i{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:31px!important;
+  height:2px!important;
+  min-height:2px!important;
+  background:#d71920!important;
+  flex:0 0 31px!important;
+}
+
+/* KJ CRANE 워터마크 복구 */
+.kjr-watermark{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:15px!important;
+  height:76px!important;
+  min-height:76px!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0 24px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  position:relative!important;
+  z-index:5!important;
+}
+.kjr-watermark span{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  height:1px!important;
+  background:#e9e9e9!important;
+  flex:1 1 auto!important;
+}
+.kjr-watermark b{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  color:#ececec!important;
+  font-size:20px!important;
+  letter-spacing:.32em!important;
+  padding-left:.32em!important;
+  font-weight:800!important;
+  white-space:nowrap!important;
+}
+
+@media(min-width:761px){
+  .kjr-redline{
+    width:46px!important;
+    margin-bottom:21px!important;
+  }
+  .kjr-watermark{
+    width:min(1180px,calc(100% - 64px))!important;
+    height:84px!important;
+    min-height:84px!important;
+    margin:0 auto!important;
+    padding:0!important;
+    gap:18px!important;
+  }
+}
+</style>
+
 </body>
 </html>
