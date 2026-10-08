@@ -179,15 +179,12 @@ async function loadReviews(){
 
 function renderReviews(){
   const publicRows=reviewRows.filter(r=>!r.is_private);
-  $('#countText').textContent='전체 '+reviewRows.length+'건';
-  $('#scoreMeta').textContent='등록된 공개 후기 '+publicRows.length+'건';
+  $('#countText').textContent='전체 '+publicRows.length+'건';
+  $('#scoreMeta').textContent='등록된 후기 '+publicRows.length+'건';
   if(publicRows.length){const avg=publicRows.reduce((a,r)=>a+Number(r.rating||0),0)/publicRows.length;$('#avgScore').textContent=avg.toFixed(1);$('#avgStars').textContent=stars(Math.round(avg));}
   else{$('#avgScore').textContent='-';$('#avgStars').textContent='☆☆☆☆☆';}
-  if(!reviewRows.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return;}
-  $('#reviewList').innerHTML=reviewRows.map(r=>{
-    if(r.is_private){
-      return `<article class="review-card private-review"><div class="card-top"><div><div class="private-lock">🔒 비공개 후기 ${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div><div class="private-copy">작성자만 내용을 확인할 수 있습니다.</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div>${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">확인</button></div>`:''}</article>`;
-    }
+  if(!publicRows.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return;}
+  $('#reviewList').innerHTML=publicRows.map(r=>{
     return `<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p>${r.can_manage?`<div class="review-manage"><button class="manage-btn" type="button" data-review-id="${esc(r.id)}">수정·삭제</button></div>`:''}</article>`;
   }).join('');
 }
