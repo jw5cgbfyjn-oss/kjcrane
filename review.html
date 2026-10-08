@@ -121,10 +121,21 @@ const fmtDate=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'':[d.get
 const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(n);
 const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.now()-d.getTime())<=3*24*60*60*1000)};
 async function loadReviews(){
+  const rpcUrl=SUPABASE_URL+'/rest/v1/rpc/list_public_reviews';
+  const directUrl=REVIEWS+'?select=*&order=created_at.desc';
+
+  async function getJson(url, options){
+    const res=await fetch(url, options);
+    const raw=await res.text();
+    if(!res.ok) throw new Error(raw || ('HTTP '+res.status));
+    try{return raw ? JSON.parse(raw) : []}
+    catch(e){return []}
+  }
+
   try{
-    const res=await fetch(
-      SUPABASE_URL+'/rest/v1/rpc/list_public_reviews',
-      {
+    let rows;
+    try{
+      rows=await getJson(rpcUrl,{
         method:'POST',
         headers:{
           apikey:SUPABASE_KEY,
@@ -133,11 +144,20 @@ async function loadReviews(){
         },
         body:'{}',
         cache:'no-store'
-      }
-    );
-    if(!res.ok) throw new Error(await res.text());
-    const data=await res.json();
-    render(Array.isArray(data)?data:[]);
+      });
+    }catch(rpcErr){
+      console.warn('공개 후기 RPC 실패, 직접 조회로 재시도',rpcErr);
+      rows=await getJson(directUrl,{
+        headers:{
+          apikey:SUPABASE_KEY,
+          Authorization:'Bearer '+SUPABASE_KEY
+        },
+        cache:'no-store'
+      });
+      rows=(Array.isArray(rows)?rows:[]).filter(r=>r.is_private!==true);
+    }
+
+    render(Array.isArray(rows)?rows:[]);
   }catch(e){
     console.error(e);
     $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>잠시 후 다시 시도해주세요.</div>';
