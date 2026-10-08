@@ -123,27 +123,24 @@ const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.no
 async function loadReviews(){
   try{
     const res=await fetch(
-      REVIEWS+'?select=id,name,rating,content,created_at,is_private&order=created_at.desc',
+      SUPABASE_URL+'/rest/v1/rpc/list_public_reviews',
       {
+        method:'POST',
         headers:{
           apikey:SUPABASE_KEY,
-          Authorization:'Bearer '+SUPABASE_KEY
+          Authorization:'Bearer '+SUPABASE_KEY,
+          'Content-Type':'application/json'
         },
+        body:'{}',
         cache:'no-store'
       }
     );
     if(!res.ok) throw new Error(await res.text());
-
-    const rows=await res.json();
-
-    /* 공개 후기만 화면에 표시.
-       기존 후기처럼 is_private 값이 없는(null) 글도 공개로 처리 */
-    const data=(Array.isArray(rows)?rows:[]).filter(r=>r.is_private!==true);
-
-    render(data);
+    const data=await res.json();
+    render(Array.isArray(data)?data:[]);
   }catch(e){
     console.error(e);
-    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>리뷰 DB 설정을 확인해주세요.</div>';
+    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>잠시 후 다시 시도해주세요.</div>';
   }
 }
 function render(data){
