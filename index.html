@@ -4440,10 +4440,10 @@ document.addEventListener('DOMContentLoaded',function(){
 </span><b>카톡문의</b><small>→</small></a>
 <a href="review.html"><span aria-hidden="true" class="kjr-ico">
 <svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3Z"></path></svg>
-</span><b>고객후기 <em class="kj-new-badge" id="kjQuickReviewN">N</em></b><small>→</small></a>
+<em class="kj-new-badge" id="kjQuickReviewN">N</em></span><b>고객후기</b><small>→</small></a>
 <a href="inquiry-board.html"><span aria-hidden="true" class="kjr-ico">
 <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3V4Z"></path><path d="M8 9h8M8 13h6"></path></svg>
-</span><b>문의게시판 <em class="kj-new-badge" id="kjQuickInquiryN">N</em></b><small>→</small></a>
+<em class="kj-new-badge" id="kjQuickInquiryN">N</em></span><b>문의게시판</b><small>→</small></a>
 </nav>
 </section>
 <section class="kjr-location" id="kjr-location">
@@ -7343,6 +7343,228 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     padding:0!important;
     gap:18px!important;
   }
+}
+</style>
+
+
+<style id="kj-quickmenu-minimal-v1-final-20261008">
+/* 중간 5칸 메뉴 - 1안 미니멀형 */
+.kjr-quick{
+  background:#fff!important;
+  border:1px solid #f0f0f0!important;
+  border-radius:10px!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.025)!important;
+}
+
+.kjr-quick a{
+  position:relative!important;
+  border:0!important;
+  background:#fff!important;
+  gap:7px!important;
+  transition:background .18s ease!important;
+}
+.kjr-quick a:hover{
+  background:#fafafa!important;
+}
+
+/* 기존 큰 화살표 제거 */
+.kjr-quick small{
+  display:none!important;
+}
+
+/* 세로선은 전체 높이가 아니라 짧고 연하게 */
+.kjr-quick a::before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  top:22%!important;
+  width:1px!important;
+  height:56%!important;
+  background:#eeeeee!important;
+  display:block!important;
+}
+.kjr-quick a:first-child::before{
+  display:none!important;
+}
+.kjr-quick a::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* 아이콘 */
+.kjr-ico{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#181818!important;
+}
+.kjr-ico svg{
+  width:27px!important;
+  height:27px!important;
+  stroke:#181818!important;
+  stroke-width:1.55!important;
+  fill:none!important;
+}
+
+/* 메뉴 글씨 */
+.kjr-quick b{
+  color:#222!important;
+  font-weight:650!important;
+  letter-spacing:-.045em!important;
+  white-space:nowrap!important;
+}
+
+/* N : 아이콘 오른쪽 위의 작은 원형 배지 */
+.kjr-quick .kj-new-badge{
+  position:absolute!important;
+  right:-8px!important;
+  top:-7px!important;
+  min-width:14px!important;
+  width:14px!important;
+  height:14px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:50%!important;
+  background:#d71920!important;
+  color:#fff!important;
+  font-size:8px!important;
+  font-weight:850!important;
+  line-height:14px!important;
+  letter-spacing:0!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 0 0 2px #fff!important;
+}
+
+/* 모바일 */
+@media(max-width:760px){
+  .kjr-quick{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    grid-template-rows:94px!important;
+    height:94px!important;
+    min-height:94px!important;
+    border-radius:9px!important;
+  }
+  .kjr-quick a{
+    height:94px!important;
+    min-height:94px!important;
+    padding:0 2px!important;
+  }
+  .kjr-ico{
+    width:28px!important;
+    height:28px!important;
+  }
+  .kjr-ico svg{
+    width:25px!important;
+    height:25px!important;
+  }
+  .kjr-quick b{
+    font-size:10.5px!important;
+    font-weight:650!important;
+    letter-spacing:-.055em!important;
+  }
+}
+
+/* PC */
+@media(min-width:761px){
+  .kjr-pc-existing-first-bottom > .kjr-quick{
+    border:1px solid #f0f0f0!important;
+    border-radius:10px!important;
+    box-shadow:0 5px 18px rgba(0,0,0,.025)!important;
+  }
+  .kjr-pc-existing-first-bottom > .kjr-quick a{
+    border:0!important;
+    gap:8px!important;
+  }
+  .kjr-ico{
+    width:32px!important;
+    height:32px!important;
+  }
+  .kjr-ico svg{
+    width:29px!important;
+    height:29px!important;
+  }
+  .kjr-quick b{
+    font-size:13px!important;
+    font-weight:650!important;
+  }
+}
+</style>
+
+
+<style id="kj-quickmenu-divider-fix-20261008">
+/* 중간메뉴 구분선 겹침/끊김 수정 */
+.kjr-quick{
+  overflow:hidden!important;
+}
+
+.kjr-quick a{
+  position:relative!important;
+  box-shadow:none!important;
+  border-left:none!important;
+  border-right:none!important;
+}
+
+/* 기존에 추가한 선 제거 */
+.kjr-quick a::before{
+  display:none!important;
+  content:none!important;
+}
+
+/* 한 줄만 깔끔하게 */
+.kjr-quick a + a{
+  border-left:1px solid #ececec!important;
+}
+</style>
+
+
+<style id="kj-quickmenu-divider-hard-reset-20261008">
+/* 과거 2칸/4칸 메뉴용 border 및 가상선 완전 제거 */
+.kjr-quick a,
+.kjr-quick a:nth-child(1),
+.kjr-quick a:nth-child(2),
+.kjr-quick a:nth-child(3),
+.kjr-quick a:nth-child(4),
+.kjr-quick a:nth-child(5),
+.kjr-quick a:nth-child(2n),
+.kjr-quick a:nth-child(n+3),
+.kjr-quick a:last-child{
+  border-left:0!important;
+  border-right:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+}
+
+/* 옛날 ::before / ::after 선도 정확히 제거 */
+.kjr-quick a::before,
+.kjr-quick a::after,
+.kjr-quick a:nth-child(1)::before,
+.kjr-quick a:nth-child(2)::before,
+.kjr-quick a:nth-child(3)::before,
+.kjr-quick a:nth-child(4)::before,
+.kjr-quick a:nth-child(5)::before,
+.kjr-quick a:nth-child(1)::after,
+.kjr-quick a:nth-child(2)::after,
+.kjr-quick a:nth-child(3)::after,
+.kjr-quick a:nth-child(4)::after,
+.kjr-quick a:nth-child(5)::after{
+  display:none!important;
+  content:none!important;
+  width:0!important;
+  height:0!important;
+  background:transparent!important;
+}
+
+/* 최종 구분선: 2~5번째 칸의 왼쪽에 한 줄만 */
+.kjr-quick a:nth-child(n+2){
+  border-left:1px solid #ededed!important;
+}
+
+/* 외곽은 아주 연하게 */
+.kjr-quick{
+  border:1px solid #f0f0f0!important;
+  overflow:hidden!important;
 }
 </style>
 
