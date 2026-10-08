@@ -2954,6 +2954,49 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-new-badge-style-20261008">
+.kj-new-badge{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  min-width:16px;
+  height:16px;
+  padding:0 4px;
+  margin-left:3px;
+  border-radius:3px;
+  background:#d71920;
+  color:#fff!important;
+  font-style:normal;
+  font-size:9px!important;
+  font-weight:900!important;
+  line-height:16px!important;
+  letter-spacing:0!important;
+  vertical-align:2px;
+}
+.kj-new-badge.is-visible{display:inline-flex!important}
+
+@media(max-width:760px){
+  .kjr-quick b{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:2px!important;
+  }
+  .mobile-drawer-sub a>span:first-child{
+    display:flex;
+    align-items:center;
+  }
+  .mobile-drawer-sub .kj-new-badge{
+    min-width:16px!important;
+    height:16px!important;
+    font-size:9px!important;
+    line-height:16px!important;
+    color:#fff!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -2997,8 +3040,8 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 <a href="inquiry.html"><span>문자문의접수</span><span>›</span></a>
 <a href="tel:01063798692"><span>전화문의접수</span><span>›</span></a>
 <a href="https://pf.kakao.com/_IqfrX/chat" rel="noopener noreferrer" target="_blank"><span>카톡문의접수</span><span>›</span></a>
-<a href="review.html"><span>고객후기</span><span>›</span></a>
-<a href="inquiry-board.html"><span>문의게시판</span><span>›</span></a>
+<a href="review.html"><span>고객후기 <em class="kj-new-badge" id="kjDrawerReviewN">N</em></span><span>›</span></a>
+<a href="inquiry-board.html"><span>문의게시판 <em class="kj-new-badge" id="kjDrawerInquiryN">N</em></span><span>›</span></a>
 </div></div>
 <div class="mobile-drawer-group"><button class="mobile-drawer-main" type="button">작업현장 <span class="mobile-drawer-chevron">⌄</span></button><div class="mobile-drawer-sub"><a href="work.html"><span>전체 작업현장</span><span>›</span></a><a href="work.html?category=structure"><span>구조물 작업</span><span>›</span></a><a href="work.html?category=landscape"><span>수목·조경 작업</span><span>›</span></a><a href="work.html?category=material"><span>자재 작업</span><span>›</span></a><a href="work.html?category=factory"><span>공장·설비 작업</span><span>›</span></a></div></div>
 <div class="mobile-drawer-group"><a class="mobile-drawer-main" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">오시는 길 <span style="color:#aaa">›</span></a></div>
@@ -3990,10 +4033,10 @@ document.addEventListener('DOMContentLoaded',function(){
 </span><b>카톡문의</b><small>→</small></a>
 <a href="review.html"><span aria-hidden="true" class="kjr-ico">
 <svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3Z"></path></svg>
-</span><b>고객후기</b><small>→</small></a>
+</span><b>고객후기 <em class="kj-new-badge" id="kjQuickReviewN">N</em></b><small>→</small></a>
 <a href="inquiry-board.html"><span aria-hidden="true" class="kjr-ico">
 <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3V4Z"></path><path d="M8 9h8M8 13h6"></path></svg>
-</span><b>문의게시판</b><small>→</small></a>
+</span><b>문의게시판 <em class="kj-new-badge" id="kjQuickInquiryN">N</em></b><small>→</small></a>
 </nav>
 </section>
 <section class="kjr-location" id="kjr-location">
@@ -6257,6 +6300,71 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   }
 }
 </style>
+
+
+<script id="kj-new-badge-js-20261008">
+(function(){
+  var URL='https://topybambfbohphrfxrbg.supabase.co';
+  var KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
+  var THREE_DAYS=3*24*60*60*1000;
+
+  function recent(v){
+    if(!v) return false;
+    var d=new Date(v);
+    return !isNaN(d.getTime()) && (Date.now()-d.getTime()>=0) && (Date.now()-d.getTime()<=THREE_DAYS);
+  }
+
+  function show(ids){
+    ids.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) el.classList.add('is-visible');
+    });
+  }
+
+  function checkReviews(){
+    return fetch(URL+'/rest/v1/reviews?select=created_at&order=created_at.desc&limit=1',{
+      headers:{apikey:KEY,Authorization:'Bearer '+KEY}
+    })
+    .then(function(r){ if(!r.ok) throw new Error('review'); return r.json(); })
+    .then(function(rows){
+      if(Array.isArray(rows) && rows[0] && recent(rows[0].created_at)){
+        show(['kjQuickReviewN','kjDrawerReviewN']);
+      }
+    })
+    .catch(function(){});
+  }
+
+  function checkInquiries(){
+    return fetch(URL+'/rest/v1/rpc/list_inquiries',{
+      method:'POST',
+      headers:{
+        apikey:KEY,
+        Authorization:'Bearer '+KEY,
+        'Content-Type':'application/json'
+      },
+      body:'{}'
+    })
+    .then(function(r){ if(!r.ok) throw new Error('inquiry'); return r.json(); })
+    .then(function(rows){
+      if(Array.isArray(rows) && rows.some(function(x){return recent(x.created_at)})){
+        show(['kjQuickInquiryN','kjDrawerInquiryN']);
+      }
+    })
+    .catch(function(){});
+  }
+
+  function init(){
+    checkReviews();
+    checkInquiries();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init,{once:true});
+  }else{
+    init();
+  }
+})();
+</script>
 
 </body>
 </html>
