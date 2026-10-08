@@ -20,6 +20,72 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 @media(max-width:760px){.wrap{width:min(100% - 30px,1080px)}.head{height:70px}.brand img{height:44px}.nav a:not(.phone){display:none}.nav{gap:0}.phone{font-size:11px!important;padding:9px 11px}.hero{padding:46px 0 28px}.hero h1{font-size:29px}.hero p{font-size:13px}.tabs{overflow-x:auto}.tabs a{padding:13px 15px;white-space:nowrap;font-size:13px}.board{padding:30px 0 60px}.row{grid-template-columns:52px minmax(0,1fr) 82px}.row .cell:nth-child(3),.row .cell:nth-child(4){display:none}.row.headrow .cell:nth-child(3),.row.headrow .cell:nth-child(4){display:none}.cell{padding:11px 6px;font-size:12px}.title-btn{font-size:13px}.grid{grid-template-columns:1fr}.field.full,.secret-line{grid-column:auto}.board-top{align-items:flex-end}.write-btn{padding:11px 15px}.notice{font-size:12px}.detail-meta{flex-wrap:wrap}.form-actions{justify-content:stretch}.form-actions .btn{flex:1}}
 </style>
 <style id="kj-inquiry-delete-20261008">.btn.danger{border-color:#b42323!important;color:#b42323!important;background:#fff!important}.btn.danger:hover{background:#fff5f5!important}</style>
+
+<style id="kj-category-footer-unified-final-20261009">
+.kj-unified-footer{
+  background:#151515!important;color:#d5d5d5!important;margin:0!important;
+  padding:28px 22px!important;box-sizing:border-box!important;
+}
+.kj-unified-footer-logo img{
+  display:block!important;width:86px!important;height:auto!important;
+  filter:brightness(0) invert(1)!important;opacity:.95!important;
+}
+.kj-unified-footer-info>div{
+  display:grid!important;grid-template-columns:92px 10px minmax(0,1fr)!important;
+  align-items:start!important;column-gap:4px!important;font-size:11px!important;line-height:1.65!important;
+}
+.kj-unified-footer-info b{color:#fff!important;font-weight:700!important;white-space:nowrap!important}
+.kj-unified-footer-info i{color:#777!important;font-style:normal!important;text-align:center!important}
+.kj-unified-footer-info span{color:#c9c9c9!important}
+.kj-unified-privacy{
+  border:0!important;background:transparent!important;color:#9b9b9b!important;
+  padding:0!important;font:inherit!important;cursor:pointer!important;
+}
+.kj-unified-dialog{
+  width:min(90vw,620px)!important;border:0!important;border-radius:14px!important;
+  padding:0!important;box-shadow:0 18px 60px rgba(0,0,0,.18)!important;
+}
+.kj-unified-dialog::backdrop{background:rgba(0,0,0,.42)!important}
+.kj-unified-dialog-box{padding:26px!important;font-size:13px!important;line-height:1.7!important}
+.kj-unified-dialog-close{
+  float:right!important;border:0!important;background:#f2f2f2!important;
+  border-radius:999px!important;padding:7px 12px!important;
+}
+.kj-unified-contact,.mobile-cta,.mobile-bottom-bar,.bottom-contact,.fixed-contact,.kj-bottom-contact,.kjr-fixed-contact{
+  display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;
+}
+@media(min-width:701px){
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:110px minmax(0,1fr) 120px!important;
+    gap:24px!important;align-items:center!important;
+  }
+  .kj-unified-privacy{text-align:right!important}
+}
+@media(max-width:700px){
+  body{padding-bottom:0!important}
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:72px minmax(0,1fr) 74px!important;
+    gap:12px!important;align-items:center!important;width:100%!important;
+    min-height:140px!important;padding:24px 16px 28px!important;
+  }
+  .kj-unified-footer-logo{grid-column:1!important;align-self:center!important}
+  .kj-unified-footer-logo img{width:68px!important}
+  .kj-unified-footer-info{grid-column:2!important;min-width:0!important}
+  .kj-unified-footer-info>div{
+    grid-template-columns:66px 7px minmax(0,1fr)!important;
+    column-gap:3px!important;margin:0!important;padding:0!important;
+    font-size:8.6px!important;line-height:1.72!important;
+  }
+  .kj-unified-footer-info b,.kj-unified-footer-info i,.kj-unified-footer-info span{
+    display:block!important;margin:0!important;padding:0!important;
+  }
+  .kj-unified-privacy{
+    grid-column:3!important;justify-self:end!important;text-align:right!important;
+    font-size:8.3px!important;line-height:1.4!important;white-space:nowrap!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="wrap head"><a class="brand" href="index.html"><img src="kj-logo-new.png" alt="국제크레인 로고"></a><nav class="nav"><a href="about.html">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="review.html">고객후기</a><a href="https://kko.to/UqjyMgz-Bb" target="_blank" rel="noopener">오시는 길</a><a class="phone" href="tel:01063798692">☎ 010-6379-8692</a></nav></div></header>
@@ -67,7 +133,25 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 </div><div class="form-actions"><button class="btn" id="cancelWrite" type="button">취소</button><button class="btn primary" type="submit">등록하기</button></div></form></div>
 </div></section>
 </main>
-<footer><div class="wrap"><div class="footer-name">국제크레인</div><div>대표 김선원 · 춘천 중심 강원 전 지역 작업</div><div>대표번호 010-6379-8692</div></div></footer>
+<footer class="kj-unified-footer">
+<div class="kj-unified-footer-logo">
+<img alt="국제크레인" src="kj-logo-new.png"/>
+</div>
+<div class="kj-unified-footer-info">
+<div><b>대표자</b><i>|</i><span>김선원</span></div>
+<div><b>사업자등록번호</b><i>|</i><span>221-08-87838</span></div>
+<div><b>소재지</b><i>|</i><span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div>
+<div><b>전화문의</b><i>|</i><span>010-6379-8692</span></div>
+</div>
+<button class="kj-unified-privacy" onclick="document.getElementById('kjUnifiedPrivacy').showModal()" type="button">개인정보처리방침</button>
+</footer>
+<dialog class="kj-unified-dialog" id="kjUnifiedPrivacy">
+<div class="kj-unified-dialog-box">
+<button class="kj-unified-dialog-close" onclick="this.closest('dialog').close()" type="button">닫기</button>
+<h3>개인정보처리방침</h3>
+<p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
+</div>
+</dialog>
 <script>
 const SUPABASE_URL='https://topybambfbohphrfxrbg.supabase.co';
 const SUPABASE_KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
