@@ -3705,6 +3705,29 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-safari-toolbar-avoid-20261009">
+@media(max-width:760px){
+  :root{
+    --kj-browser-bottom:0px;
+  }
+
+  .kj-float-quick{
+    bottom:calc(var(--kj-browser-bottom) + 8px)!important;
+    transition:bottom .18s ease!important;
+  }
+
+  body,
+  body:not(.kj-intro-open){
+    padding-bottom:calc(92px + var(--kj-browser-bottom))!important;
+  }
+
+  .kj-float-main{
+    padding-bottom:0!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -8120,6 +8143,61 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     body:not(.kj-intro-open){
       padding-bottom:82px!important;
     }
+  }
+}
+</style>
+
+
+<script id="kj-safari-toolbar-avoid-script-20261009">
+(function(){
+  function updateBrowserBottom(){
+    var vv=window.visualViewport;
+    var obstruction=0;
+
+    if(vv){
+      obstruction=Math.max(
+        0,
+        window.innerHeight - vv.height - vv.offsetTop
+      );
+    }
+
+    /* 너무 작은 값은 홈 인디케이터 수준이라 무시 */
+    if(obstruction<18) obstruction=0;
+
+    /* 과도하게 튀는 값 방지 */
+    obstruction=Math.min(obstruction,110);
+
+    document.documentElement.style.setProperty(
+      '--kj-browser-bottom',
+      obstruction+'px'
+    );
+  }
+
+  updateBrowserBottom();
+
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize',updateBrowserBottom);
+    window.visualViewport.addEventListener('scroll',updateBrowserBottom);
+  }
+
+  window.addEventListener('resize',updateBrowserBottom);
+  window.addEventListener('orientationchange',function(){
+    setTimeout(updateBrowserBottom,120);
+  });
+})();
+</script>
+
+
+<style id="kj-remove-old-white-strip-20261009">
+@media(max-width:760px){
+  body::after,
+  body:not(.kj-intro-open)::after{
+    display:none!important;
+    content:none!important;
+    width:0!important;
+    height:0!important;
+    background:transparent!important;
+    pointer-events:none!important;
   }
 }
 </style>
