@@ -204,6 +204,72 @@ h1{margin:0;font-size:27px;line-height:1.3;letter-spacing:-.045em}
   .kj-unified-kakao{background:#ffe500!important;color:#111!important}
 }
 </style>
+
+<style id="kj-category-footer-unified-final-20261009">
+.kj-unified-footer{
+  background:#151515!important;color:#d5d5d5!important;margin:0!important;
+  padding:28px 22px!important;box-sizing:border-box!important;
+}
+.kj-unified-footer-logo img{
+  display:block!important;width:86px!important;height:auto!important;
+  filter:brightness(0) invert(1)!important;opacity:.95!important;
+}
+.kj-unified-footer-info>div{
+  display:grid!important;grid-template-columns:92px 10px minmax(0,1fr)!important;
+  align-items:start!important;column-gap:4px!important;font-size:11px!important;line-height:1.65!important;
+}
+.kj-unified-footer-info b{color:#fff!important;font-weight:700!important;white-space:nowrap!important}
+.kj-unified-footer-info i{color:#777!important;font-style:normal!important;text-align:center!important}
+.kj-unified-footer-info span{color:#c9c9c9!important}
+.kj-unified-privacy{
+  border:0!important;background:transparent!important;color:#9b9b9b!important;
+  padding:0!important;font:inherit!important;cursor:pointer!important;
+}
+.kj-unified-dialog{
+  width:min(90vw,620px)!important;border:0!important;border-radius:14px!important;
+  padding:0!important;box-shadow:0 18px 60px rgba(0,0,0,.18)!important;
+}
+.kj-unified-dialog::backdrop{background:rgba(0,0,0,.42)!important}
+.kj-unified-dialog-box{padding:26px!important;font-size:13px!important;line-height:1.7!important}
+.kj-unified-dialog-close{
+  float:right!important;border:0!important;background:#f2f2f2!important;
+  border-radius:999px!important;padding:7px 12px!important;
+}
+.kj-unified-contact,.mobile-cta,.mobile-bottom-bar,.bottom-contact,.fixed-contact,.kj-bottom-contact,.kjr-fixed-contact{
+  display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;
+}
+@media(min-width:701px){
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:110px minmax(0,1fr) 120px!important;
+    gap:24px!important;align-items:center!important;
+  }
+  .kj-unified-privacy{text-align:right!important}
+}
+@media(max-width:700px){
+  body{padding-bottom:0!important}
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:72px minmax(0,1fr) 74px!important;
+    gap:12px!important;align-items:center!important;width:100%!important;
+    min-height:140px!important;padding:24px 16px 28px!important;
+  }
+  .kj-unified-footer-logo{grid-column:1!important;align-self:center!important}
+  .kj-unified-footer-logo img{width:68px!important}
+  .kj-unified-footer-info{grid-column:2!important;min-width:0!important}
+  .kj-unified-footer-info>div{
+    grid-template-columns:66px 7px minmax(0,1fr)!important;
+    column-gap:3px!important;margin:0!important;padding:0!important;
+    font-size:8.6px!important;line-height:1.72!important;
+  }
+  .kj-unified-footer-info b,.kj-unified-footer-info i,.kj-unified-footer-info span{
+    display:block!important;margin:0!important;padding:0!important;
+  }
+  .kj-unified-privacy{
+    grid-column:3!important;justify-self:end!important;text-align:right!important;
+    font-size:8.3px!important;line-height:1.4!important;white-space:nowrap!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="head"><a class="brand" href="index.html">국제크레인</a><a class="back" href="index.html?home=1">홈으로 ›</a></div></header>
@@ -231,9 +297,7 @@ h1{margin:0;font-size:27px;line-height:1.3;letter-spacing:-.045em}
 <div><b>소재지</b><i>|</i><span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div>
 <div><b>전화문의</b><i>|</i><span>010-6379-8692</span></div>
 </div>
-<button class="kj-unified-privacy" onclick="document.getElementById('kjUnifiedPrivacy').showModal()" type="button">
-    개인정보처리방침
-  </button>
+<button class="kj-unified-privacy" onclick="document.getElementById('kjUnifiedPrivacy').showModal()" type="button">개인정보처리방침</button>
 </footer>
 <dialog class="kj-unified-dialog" id="kjUnifiedPrivacy">
 <div class="kj-unified-dialog-box">
@@ -242,19 +306,5 @@ h1{margin:0;font-size:27px;line-height:1.3;letter-spacing:-.045em}
 <p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
 </div>
 </dialog>
-<div aria-label="빠른 문의" class="kj-unified-contact">
-<a class="kj-unified-call" href="tel:01063798692">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M6.7 2.7 9.4 8c.3.6.1 1.2-.4 1.6l-1.7 1.2c1.2 2.6 3.3 4.7 5.9 5.9l1.2-1.7c.4-.5 1-.7 1.6-.4l5.3 2.7c.6.3.9.9.7 1.5-.5 1.8-2.1 3.2-4.1 3.2C9.1 22 2 14.9 2 6.1c0-2 1.4-3.6 3.2-4.1.6-.2 1.2.1 1.5.7Z"></path>
-</svg>
-<b>전화 문의</b><span>→</span>
-</a>
-<a class="kj-unified-kakao" href="https://pf.kakao.com/_IqfrX/chat" rel="noopener" target="_blank">
-<svg aria-hidden="true" viewbox="0 0 24 24">
-<path d="M12 3C6.5 3 2 6.5 2 10.9c0 2.8 1.8 5.3 4.6 6.7L5.8 21l4-2.2c.7.1 1.4.2 2.2.2 5.5 0 10-3.5 10-8.1S17.5 3 12 3Z"></path>
-</svg>
-<b>카카오톡 문의</b><span>→</span>
-</a>
-</div>
 </body>
 </html>
