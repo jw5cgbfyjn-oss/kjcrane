@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>문의게시판 | 국제크레인</title>
+<meta name="description" content="국제크레인 작업 문의게시판. 크레인 작업 일정, 현장 조건, 장비 관련 문의를 남겨주세요."/>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#171717;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;word-break:keep-all}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(1080px,calc(100% - 48px));margin:0 auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid #ececec}.head{height:88px;display:flex;align-items:center;gap:26px}.brand img{height:58px;width:auto;display:block}.nav{margin-left:auto;display:flex;align-items:center;gap:30px}.nav a{font-size:14px;font-weight:750;color:#222}.phone{padding:10px 15px;border:1px solid #ddd;border-radius:999px;font-size:13px!important}
+.hero{padding:70px 0 38px;border-bottom:1px solid #efefef}.kicker{font-size:10px;letter-spacing:.18em;font-weight:800;color:#aaa;margin-bottom:10px}.hero h1{font-size:38px;letter-spacing:-.05em;margin:0}.hero p{margin:14px 0 0;color:#666;font-size:15px;line-height:1.75}.tabs{display:flex;gap:0;margin-top:32px;border-bottom:1px solid #ddd}.tabs a{padding:14px 22px;font-size:14px;font-weight:700;color:#777;border-bottom:2px solid transparent}.tabs a.active{color:#111;border-color:#111}
+.board{padding:42px 0 80px}.board-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}.board-count{font-size:13px;color:#777}.write-btn{border:0;background:#111;color:#fff;padding:12px 18px;border-radius:3px;font-size:13px;font-weight:750;cursor:pointer}.notice{padding:15px 17px;background:#fafafa;border:1px solid #ededed;color:#666;font-size:13px;line-height:1.65;margin-bottom:24px}
+.table{border-top:2px solid #222}.row{display:grid;grid-template-columns:78px minmax(0,1fr) 120px 110px 110px;align-items:center;min-height:58px;border-bottom:1px solid #e9e9e9}.row.headrow{min-height:48px;background:#fafafa;color:#555;font-size:12px;font-weight:700;text-align:center}.cell{padding:12px 10px;font-size:13px}.row:not(.headrow) .cell:first-child,.row:not(.headrow) .cell:nth-child(3),.row:not(.headrow) .cell:nth-child(4),.row:not(.headrow) .cell:nth-child(5){text-align:center;color:#777}.title-cell{display:flex;align-items:center;gap:8px;min-width:0}.title-btn{border:0;background:none;padding:0;text-align:left;font-size:14px;font-weight:650;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lock{font-size:12px;color:#999}.status{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:750;background:#f1f1f1;color:#666}.status.done{background:#111;color:#fff}.empty{padding:70px 20px;text-align:center;color:#999;border-bottom:1px solid #e9e9e9;font-size:14px}
+.form-wrap{display:none;margin-top:34px;padding-top:34px;border-top:1px solid #ddd}.form-wrap.open{display:block}.form-title{font-size:24px;letter-spacing:-.04em;margin:0 0 24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:750;color:#444}.req{color:#b31919}.field input,.field textarea{width:100%;border:1px solid #ddd;border-radius:2px;padding:13px 14px;font-size:14px;outline:none;background:#fff}.field textarea{min-height:170px;resize:vertical}.field input:focus,.field textarea:focus{border-color:#777}.secret-line{grid-column:1/-1;display:flex;align-items:center;gap:9px;margin-top:2px;font-size:13px;color:#555}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}.btn{border:1px solid #ccc;background:#fff;padding:12px 20px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer}.btn.primary{border-color:#111;background:#111;color:#fff}
+.detail{display:none;margin-top:30px;border-top:2px solid #222}.detail.open{display:block}.detail-head{padding:24px 4px 20px;border-bottom:1px solid #ddd}.detail-head h2{margin:0 0 10px;font-size:22px;letter-spacing:-.035em}.detail-meta{display:flex;gap:14px;font-size:12px;color:#888}.detail-body{padding:34px 4px;min-height:160px;font-size:14px;line-height:1.8;white-space:pre-wrap;border-bottom:1px solid #ddd}.answer{margin-top:20px;padding:20px;background:#fafafa;border:1px solid #ededed}.answer b{display:block;margin-bottom:8px;font-size:13px}.answer p{margin:0;color:#555;font-size:13px;line-height:1.7;white-space:pre-wrap}.detail-actions{margin-top:16px;display:flex;gap:8px;justify-content:flex-end}.admin-answer{display:none;margin-top:18px;padding:18px;border:1px solid #ddd;background:#fff}.admin-answer.open{display:block}.admin-answer label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}.admin-answer textarea{width:100%;min-height:120px;border:1px solid #d8d8d8;padding:12px;font:inherit;resize:vertical}.admin-bar{display:flex;justify-content:flex-end;gap:8px;margin:12px 0 0}.admin-badge{display:none;font-size:12px;font-weight:750;color:#555;align-items:center}.admin-badge.on{display:inline-flex}
+footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;text-align:center;font-size:11px;line-height:1.7}.footer-name{color:#fff;font-weight:750;margin-bottom:4px}
+@media(max-width:760px){.wrap{width:min(100% - 30px,1080px)}.head{height:70px}.brand img{height:44px}.nav a:not(.phone){display:none}.nav{gap:0}.phone{font-size:11px!important;padding:9px 11px}.hero{padding:46px 0 28px}.hero h1{font-size:29px}.hero p{font-size:13px}.tabs{overflow-x:auto}.tabs a{padding:13px 15px;white-space:nowrap;font-size:13px}.board{padding:30px 0 60px}.row{grid-template-columns:52px minmax(0,1fr) 82px}.row .cell:nth-child(3),.row .cell:nth-child(4){display:none}.row.headrow .cell:nth-child(3),.row.headrow .cell:nth-child(4){display:none}.cell{padding:11px 6px;font-size:12px}.title-btn{font-size:13px}.grid{grid-template-columns:1fr}.field.full,.secret-line{grid-column:auto}.board-top{align-items:flex-end}.write-btn{padding:11px 15px}.notice{font-size:12px}.detail-meta{flex-wrap:wrap}.form-actions{justify-content:stretch}.form-actions .btn{flex:1}}
+</style>
+</head>
+<body>
+<header><div class="wrap head"><a class="brand" href="index.html"><img src="kj-logo-new.png" alt="국제크레인 로고"></a><nav class="nav"><a href="about.html">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="review.html">고객후기</a><a href="https://kko.to/UqjyMgz-Bb" target="_blank" rel="noopener">오시는 길</a><a class="phone" href="tel:01063798692">☎ 010-6379-8692</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap"><div class="kicker">INQUIRY BOARD</div><h1>문의게시판</h1><p>현장 위치와 작업 내용을 남겨주시면 확인 후 순차적으로 안내드립니다.<br>연락처와 현장 정보가 포함될 수 있어 문의글은 비밀글 작성을 권장합니다.</p><div class="tabs"><a href="inquiry.html">문의접수</a><a class="active" href="inquiry-board.html">문의게시판</a><a href="review.html">고객후기</a></div></div></section>
+<section class="board"><div class="wrap">
+<div class="board-top">
+  <div class="board-count" id="countText">전체 0건</div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span class="admin-badge" id="adminBadge">관리자 모드</span>
+    <button class="btn" id="adminLogin" type="button">관리자</button>
+    <button class="write-btn" id="openWrite" type="button">문의글 작성</button>
+  </div>
+</div>
+<div class="notice"><b>안내</b> · 당일 급한 작업은 대표번호로 연락해 주세요. 게시판 문의는 확인 순서대로 연락드립니다. 문의글은 모두 비밀글로 등록되며, 작성 시 설정한 비밀번호로만 내용을 확인할 수 있습니다.</div>
+<div class="table" id="boardTable"><div class="row headrow"><div class="cell">번호</div><div class="cell">제목</div><div class="cell">작성자</div><div class="cell">등록일</div><div class="cell">상태</div></div><div class="empty" id="emptyState">등록된 문의글이 없습니다.</div></div>
+<div class="detail" id="detailView"><div class="detail-head"><h2 id="detailTitle"></h2><div class="detail-meta"><span id="detailName"></span><span id="detailDate"></span><span id="detailStatus"></span></div></div><div class="detail-body" id="detailBody"></div><div class="answer" id="answerBox" style="display:none"><b>국제크레인 답변</b><p id="answerText"></p></div>
+<div class="admin-answer" id="adminAnswer">
+  <label for="adminAnswerText">관리자 답변 작성</label>
+  <textarea id="adminAnswerText" maxlength="2000" placeholder="고객에게 보여줄 답변을 입력해 주세요."></textarea>
+  <div class="admin-bar"><button class="btn dark" id="saveAnswer" type="button">답변 등록</button></div>
+</div>
+<div class="detail-actions"><button class="btn" id="backList" type="button">목록으로</button></div></div>
+<div class="form-wrap" id="formWrap"><h2 class="form-title">문의글 작성</h2><form id="inquiryForm"><div class="grid">
+<div class="field full"><label>제목 <span class="req">*</span></label><input id="qTitle" maxlength="80" required placeholder="예) 춘천 수목 이동 작업 문의드립니다"></div>
+<div class="field"><label>이름 <span class="req">*</span></label><input id="qName" maxlength="20" required placeholder="성함 또는 업체명"></div>
+<div class="field"><label>연락처 <span class="req">*</span></label><input id="qPhone" inputmode="tel" maxlength="20" required placeholder="010-0000-0000"></div>
+<div class="field"><label>비밀번호 <span class="req">*</span></label><input id="qPassword" type="password" minlength="4" maxlength="20" required placeholder="글 확인용 4자 이상"></div>
+<div class="field"><label>현장 지역</label><input id="qLocation" maxlength="40" placeholder="예) 춘천시 동내면"></div>
+<div class="field full"><label>문의내용 <span class="req">*</span></label><textarea id="qContent" required placeholder="작업 내용, 희망 일정, 현장 상황 등을 적어주세요."></textarea></div>
+<label class="secret-line"><input type="checkbox" checked disabled> 문의글은 자동으로 비밀글로 등록됩니다.</label>
+</div><div class="form-actions"><button class="btn" id="cancelWrite" type="button">취소</button><button class="btn primary" type="submit">등록하기</button></div></form></div>
+</div></section>
+</main>
+<footer><div class="wrap"><div class="footer-name">국제크레인</div><div>대표 김선원 · 춘천 중심 강원 전 지역 작업</div><div>대표번호 010-6379-8692</div></div></footer>
+<script>
+const SUPABASE_URL='https://topybambfbohphrfxrbg.supabase.co';
+const SUPABASE_KEY='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
+const API=SUPABASE_URL+'/rest/v1/rpc/';
+const $=s=>document.querySelector(s);
+let posts=[];
+let adminMode=false;
+let adminPassword='';
+let currentPostId=null;
+
+const esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate=value=>{
+  if(!value)return '';
+  const d=new Date(value);
+  if(Number.isNaN(d.getTime())) return String(value).slice(0,10).replaceAll('-','.');
+  return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('.');
+};
+
+async function rpc(name, body={}){
+  const res=await fetch(API+name,{
+    method:'POST',
+    headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(body)
+  });
+  const raw=await res.text();
+  let data=null;
+  try{data=raw?JSON.parse(raw):null}catch(e){data=raw}
+  if(!res.ok){
+    const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))||raw||('HTTP '+res.status);
+    throw new Error(msg);
+  }
+  return data;
+}
+
+function render(){
+  document.querySelectorAll('.data-row').forEach(x=>x.remove());
+  $('#countText').textContent='전체 '+posts.length+'건';
+  $('#emptyState').style.display=posts.length?'none':'block';
+  posts.forEach((p,idx)=>{
+    const row=document.createElement('div');
+    row.className='row data-row';
+    const no=posts.length-idx;
+    row.innerHTML=`<div class="cell">${no}</div><div class="cell title-cell"><span class="lock">🔒</span><button class="title-btn" type="button">${esc(p.title)}</button></div><div class="cell">비공개</div><div class="cell">${esc(fmtDate(p.created_at))}</div><div class="cell"><span class="status ${p.status==='답변완료'?'done':''}">${esc(p.status||'답변대기')}</span></div>`;
+    row.querySelector('.title-btn').addEventListener('click',()=>openPost(p.id));
+    $('#boardTable').appendChild(row);
+  });
+}
+
+async function loadPosts(){
+  $('#countText').textContent='문의글 불러오는 중...';
+  $('#emptyState').style.display='none';
+  try{
+    const data=await rpc('list_inquiries',{});
+    posts=Array.isArray(data)?data:[];
+    render();
+  }catch(err){
+    console.error(err);
+    posts=[];
+    render();
+    $('#emptyState').style.display='block';
+    $('#emptyState').textContent='문의글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+  }
+}
+
+async function openPost(id){
+  let p=null;
+  try{
+    if(adminMode){
+      const data=await rpc('read_inquiry_admin',{p_id:Number(id),p_admin_password:adminPassword});
+      p=Array.isArray(data)?data[0]:null;
+      if(!p){
+        adminMode=false; adminPassword='';
+        $('#adminBadge').classList.remove('on');
+        $('#adminLogin').textContent='관리자';
+        alert('관리자 비밀번호가 올바르지 않거나 세션이 만료되었습니다.');
+        return;
+      }
+    }else{
+      const pw=prompt('비밀글입니다. 작성 시 설정한 비밀번호를 입력해 주세요.');
+      if(pw===null)return;
+      if(!pw.trim()){alert('비밀번호를 입력해 주세요.');return;}
+      const data=await rpc('read_inquiry',{p_id:Number(id),p_password:pw.trim()});
+      p=Array.isArray(data)?data[0]:null;
+      if(!p){alert('비밀번호가 일치하지 않습니다.');return;}
+    }
+
+    currentPostId=Number(id);
+    $('#detailTitle').textContent=p.title||'';
+    $('#detailName').textContent='작성자 '+(p.name||'');
+    $('#detailDate').textContent=fmtDate(p.created_at);
+    $('#detailStatus').textContent=p.status||'답변대기';
+    $('#detailBody').textContent=(p.content||'')+'\n\n연락처: '+(p.phone||'');
+    if(p.answer){$('#answerBox').style.display='block';$('#answerText').textContent=p.answer}
+    else{$('#answerBox').style.display='none';$('#answerText').textContent=''}
+    if(adminMode){
+      $('#adminAnswer').classList.add('open');
+      $('#adminAnswerText').value=p.answer||'';
+    }else{
+      $('#adminAnswer').classList.remove('open');
+      $('#adminAnswerText').value='';
+    }
+    $('#detailView').classList.add('open');
+    $('#formWrap').classList.remove('open');
+    $('#detailView').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(err){
+    console.error(err);
+    alert('문의글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
+  }
+}
+
+$('#adminLogin').addEventListener('click',async()=>{
+  if(adminMode){
+    adminMode=false; adminPassword='';
+    $('#adminBadge').classList.remove('on');
+    $('#adminLogin').textContent='관리자';
+    $('#adminAnswer').classList.remove('open');
+    alert('관리자 모드를 종료했습니다.');
+    return;
+  }
+  const pw=prompt('국제크레인 관리자 비밀번호를 입력해 주세요.');
+  if(pw===null)return;
+  if(!pw.trim()){alert('관리자 비밀번호를 입력해 주세요.');return;}
+  try{
+    const data=await rpc('admin_check',{p_admin_password:pw.trim()});
+    const ok=(data===true)||(Array.isArray(data)&&data[0]===true);
+    if(!ok){alert('관리자 비밀번호가 일치하지 않습니다.');return;}
+    adminMode=true; adminPassword=pw.trim();
+    $('#adminBadge').classList.add('on');
+    $('#adminLogin').textContent='관리자 종료';
+    alert('관리자 모드로 전환되었습니다. 이제 문의글을 열어 답변할 수 있습니다.');
+  }catch(err){
+    console.error(err);
+    alert('관리자 확인에 실패했습니다.');
+  }
+});
+
+$('#saveAnswer').addEventListener('click',async()=>{
+  if(!adminMode||!currentPostId)return;
+  const answer=$('#adminAnswerText').value.trim();
+  if(!answer){alert('답변 내용을 입력해 주세요.');return;}
+  const btn=$('#saveAnswer');
+  try{
+    btn.disabled=true; btn.textContent='저장 중...';
+    const data=await rpc('answer_inquiry',{
+      p_id:currentPostId,
+      p_admin_password:adminPassword,
+      p_answer:answer
+    });
+    const ok=(data===true)||(Array.isArray(data)&&data[0]===true);
+    if(!ok){alert('관리자 비밀번호가 일치하지 않습니다.');return;}
+    $('#answerText').textContent=answer;
+    $('#answerBox').style.display='block';
+    $('#detailStatus').textContent='답변완료';
+    await loadPosts();
+    alert('답변이 등록되었습니다.');
+  }catch(err){
+    console.error(err);
+    alert('답변 등록에 실패했습니다.');
+  }finally{
+    btn.disabled=false; btn.textContent='답변 등록';
+  }
+});
+
+$('#openWrite').addEventListener('click',()=>{
+  $('#detailView').classList.remove('open');
+  $('#formWrap').classList.add('open');
+  $('#formWrap').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+$('#cancelWrite').addEventListener('click',()=>{
+  $('#formWrap').classList.remove('open');
+  $('#inquiryForm').reset();
+});
+
+$('#backList').addEventListener('click',()=>{
+  $('#detailView').classList.remove('open');
+  window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
+});
+
+$('#inquiryForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const submit=e.submitter;
+  const pw=$('#qPassword').value.trim();
+  if(pw.length<4){alert('비밀번호는 4자 이상 입력해 주세요.');return;}
+  const title=$('#qTitle').value.trim();
+  const name=$('#qName').value.trim();
+  const phone=$('#qPhone').value.trim();
+  const location=$('#qLocation').value.trim();
+  const content=$('#qContent').value.trim();
+  const savedText=location?`[현장 지역] ${location}
+
+${content}`:content;
+  if(!title||!name||!phone||!content){alert('필수 항목을 모두 입력해 주세요.');return;}
+  try{
+    if(submit){submit.disabled=true;submit.textContent='등록 중...';}
+    await rpc('create_inquiry',{
+      p_title:title,
+      p_name:name,
+      p_phone:phone,
+      p_content:savedText,
+      p_password:pw
+    });
+    e.target.reset();
+    $('#formWrap').classList.remove('open');
+    await loadPosts();
+    alert('문의글이 등록되었습니다.');
+    window.scrollTo({top:document.querySelector('.board').offsetTop-70,behavior:'smooth'});
+  }catch(err){
+    console.error(err);
+    alert('문의글 등록에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+  }finally{
+    if(submit){submit.disabled=false;submit.textContent='등록하기';}
+  }
+});
+
+loadPosts();
+</script>
+</body></html>
