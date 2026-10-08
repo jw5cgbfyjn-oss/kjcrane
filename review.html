@@ -15,6 +15,63 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-
 footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;text-align:center;font-size:11px;line-height:1.7}.footer-name{color:#fff;font-weight:750;margin-bottom:4px}
 @media(max-width:760px){.wrap{width:min(100% - 30px,1080px)}.head{height:70px}.brand img{height:44px}.nav a:not(.phone){display:none}.nav{gap:0}.phone{font-size:11px!important;padding:9px 11px}.hero{padding:46px 0 30px}.hero-row{display:block}.hero h1{font-size:29px}.hero p{font-size:13px}.scorebox{text-align:left;margin-top:26px}.scorebig{font-size:30px}.review-section{padding:30px 0 60px}.review-card{padding:21px 2px}.card-top{gap:10px}.grid{grid-template-columns:1fr}.field.full,.privacy-note{grid-column:auto}.form-actions{justify-content:stretch}.form-actions .btn{flex:1}}
 </style>
+
+<style id="kj-review-private-checkbox-20261008">
+.review-private-field{
+  margin-top:2px;
+}
+.review-private-check{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  user-select:none;
+  font-size:13px!important;
+  font-weight:700!important;
+  color:#333!important;
+}
+.review-private-check input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.review-private-box{
+  width:20px;
+  height:20px;
+  border:1.5px solid #bbb;
+  border-radius:3px;
+  background:#fff;
+  position:relative;
+  flex:0 0 20px;
+  box-sizing:border-box;
+}
+.review-private-check input:checked + .review-private-box{
+  background:#111;
+  border-color:#111;
+}
+.review-private-check input:checked + .review-private-box::after{
+  content:"✓";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-54%);
+  color:#fff;
+  font-size:14px;
+  font-weight:900;
+  line-height:1;
+}
+.review-private-check small{
+  color:#999;
+  font-size:11px;
+  font-weight:500;
+}
+@media(max-width:760px){
+  .review-private-check{
+    font-size:13px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="wrap head"><a class="brand" href="index.html"><img src="kj-logo-new.png" alt="국제크레인 로고"></a><nav class="nav"><a href="index.html#about">회사소개</a><a href="inquiry.html">작업문의</a><a href="work.html">작업현장</a><a href="review.html">고객후기</a><a href="https://kko.to/UqjyMgz-Bb" target="_blank" rel="noopener">오시는 길</a><a class="phone" href="tel:01063798692">☎ 010-6379-8692</a></nav></div></header>
@@ -26,10 +83,15 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 <div class="review-list" id="reviewList"><div class="empty" id="emptyState">등록된 후기가 없습니다.</div></div>
 <div class="form-wrap" id="formWrap"><h2 class="form-title">후기 작성</h2><form id="reviewForm"><div class="grid">
 <div class="field"><label>이름 <span style="color:#999;font-weight:500">(선택)</span></label><input id="rName" maxlength="20" placeholder="비워두면 익명으로 등록됩니다."></div>
-<div class="field"><label>작업지역</label><input id="rArea" maxlength="40" placeholder="예) 춘천시"></div>
-<div class="field"><label>작업종류</label><select id="rWorkType"><option value="">선택</option><option>구조물 작업</option><option>수목·조경 작업</option><option>자재 작업</option><option>공장·설비 작업</option><option>기타 작업</option></select></div>
+<div class="field full review-private-field">
+  <label class="review-private-check">
+    <input type="checkbox" id="rPrivate">
+    <span class="review-private-box" aria-hidden="true"></span>
+    <span>비공개로 작성하기 <small>(선택)</small></span>
+  </label>
+</div>
 <div class="field"><label>별점 <span class="req">*</span></label><div class="star-picker" aria-label="별점 선택"><input type="radio" name="rating" id="star5" value="5" required><label for="star5">★</label><input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label><input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label><input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label><input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label></div></div>
-<div class="field full"><label>후기내용 <span class="req">*</span></label><textarea id="rContent" maxlength="1000" required placeholder="작업 이용 후기를 남겨주세요."></textarea></div>
+<div class="field full"><label>후기내용 <span class="req">*</span></label><textarea id="rContent" maxlength="1000" required placeholder="소중한 후기는 운영에 많은 도움이 됩니다. 감사합니다."></textarea></div>
 <div class="privacy-note">※ 작성된 후기는 홈페이지에 공개됩니다. 전화번호, 정확한 주소 등 개인정보는 입력하지 마세요.</div>
 </div><div class="form-actions"><button class="btn" id="cancelWrite" type="button">취소</button><button class="btn primary" type="submit">등록하기</button></div></form></div>
 </div></section>
@@ -46,7 +108,7 @@ const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(n);
 const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.now()-d.getTime())<=3*24*60*60*1000)};
 async function loadReviews(){
   try{
-    const res=await fetch(REVIEWS+'?select=id,name,area,work_type,rating,content,created_at&order=created_at.desc',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});
+    const res=await fetch(REVIEWS+'?select=id,name,rating,content,created_at,is_private&or=(is_private.is.false,is_private.is.null)&order=created_at.desc',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY},cache:'no-store'});
     if(!res.ok) throw new Error(await res.text());
     const data=await res.json(); render(data);
   }catch(e){console.error(e);$('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>리뷰 DB 설정을 확인해주세요.</div>'}
@@ -57,7 +119,7 @@ function render(data){
   if(data.length){const avg=data.reduce((a,r)=>a+Number(r.rating||0),0)/data.length;$('#avgScore').textContent=avg.toFixed(1);$('#avgStars').textContent=stars(Math.round(avg));}
   else{$('#avgScore').textContent='-';$('#avgStars').textContent='☆☆☆☆☆';}
   if(!data.length){$('#reviewList').innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';return}
-  $('#reviewList').innerHTML=data.map(r=>`<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div><div class="card-meta">${r.area?'<span>'+esc(r.area)+'</span>':''}${r.work_type?'<span>'+esc(r.work_type)+'</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p></article>`).join('');
+  $('#reviewList').innerHTML=data.map(r=>`<article class="review-card"><div class="card-top"><div><div class="card-stars">${esc(stars(Number(r.rating||0)))}</div><div class="card-title">${esc(r.name)}${isNew(r.created_at)?'<span class="new-badge">N</span>':''}</div></div><div class="date">${esc(fmtDate(r.created_at))}</div></div><p class="card-content">${esc(r.content)}</p></article>`).join('');
 }
 $('#openWrite').addEventListener('click',()=>{$('#formWrap').classList.add('open');$('#formWrap').scrollIntoView({behavior:'smooth',block:'start'})});
 $('#cancelWrite').addEventListener('click',()=>{$('#formWrap').classList.remove('open');$('#reviewForm').reset()});
@@ -66,7 +128,7 @@ $('#reviewForm').addEventListener('submit',async e=>{
   const rating=document.querySelector('input[name="rating"]:checked');
   if(!rating){alert('별점을 선택해주세요.');return}
   const btn=e.submitter; if(btn){btn.disabled=true;btn.textContent='등록 중...'}
-  const payload={name:$('#rName').value.trim()||'익명',area:$('#rArea').value.trim()||null,work_type:$('#rWorkType').value||null,rating:Number(rating.value),content:$('#rContent').value.trim()};
+  const payload={name:$('#rName').value.trim()||'익명',rating:Number(rating.value),content:$('#rContent').value.trim(),is_private:$('#rPrivate').checked};
   try{
     const res=await fetch(REVIEWS,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(payload)});
     if(!res.ok) throw new Error(await res.text());
