@@ -3407,6 +3407,304 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
   }
 </style>
 
+
+<style id="kj-floating-expand-menu-20261009">
+/* 기존 가운데 퀵메뉴 + 기존 하단 전화/카톡 바 제거 */
+.kjr-quick,
+.kjr-fixed-contact{
+  display:none!important;
+}
+
+/* 새 하단 확장 퀵메뉴 */
+.kj-float-quick{
+  display:none;
+}
+
+@media(max-width:760px){
+  body{
+    padding-bottom:116px!important;
+  }
+
+  .kj-float-quick{
+    --kj-fq-bottom:0px;
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:var(--kj-fq-bottom);
+    z-index:2147482500;
+    display:block;
+    font-family:inherit;
+    filter:drop-shadow(0 10px 24px rgba(0,0,0,.12));
+  }
+
+  .kj-float-extra{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    background:rgba(255,255,255,.98);
+    border:1px solid #e8e8e8;
+    border-bottom:0;
+    border-radius:18px 18px 0 0;
+    overflow:hidden;
+    transform:translateY(16px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:
+      transform .32s cubic-bezier(.22,.78,.3,1),
+      opacity .22s ease,
+      visibility .22s ease;
+  }
+
+  .kj-float-quick.is-open .kj-float-extra{
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .kj-float-main{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    min-height:72px;
+    background:#111;
+    border-radius:18px;
+    overflow:hidden;
+    position:relative;
+    z-index:2;
+  }
+
+  .kj-float-quick.is-open .kj-float-main{
+    border-radius:0 0 18px 18px;
+  }
+
+  .kj-fq-item{
+    position:relative;
+    min-width:0;
+    min-height:72px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    border:0;
+    border-right:1px solid rgba(255,255,255,.11);
+    background:#111;
+    color:#fff!important;
+    text-decoration:none!important;
+    font:inherit;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  .kj-float-main .kj-fq-item:last-child{
+    border-right:0;
+  }
+
+  .kj-fq-item.kakao{
+    background:#ffe500;
+    color:#111!important;
+  }
+
+  .kj-float-extra .kj-fq-item{
+    min-height:76px;
+    background:#fff;
+    color:#111!important;
+    border-right:1px solid #ededed;
+    border-bottom:1px solid #ededed;
+  }
+
+  .kj-float-extra .kj-fq-item:last-child{
+    border-right:0;
+  }
+
+  .kj-fq-icon{
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    flex:0 0 auto;
+  }
+
+  .kj-fq-icon svg{
+    width:24px;
+    height:24px;
+    display:block;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  .kj-fq-talk{
+    position:relative;
+    width:30px;
+    height:24px;
+    border-radius:50%;
+    background:#111;
+    color:#ffe500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:7.5px;
+    font-weight:900;
+    letter-spacing:-.04em;
+  }
+
+  .kj-fq-talk::after{
+    content:"";
+    position:absolute;
+    left:5px;
+    bottom:-4px;
+    width:7px;
+    height:7px;
+    background:#111;
+    clip-path:polygon(0 0,100% 0,0 100%);
+  }
+
+  .kj-fq-label{
+    display:block;
+    font-size:11px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.045em;
+    white-space:nowrap;
+  }
+
+  .kj-float-extra .kj-fq-label{
+    font-size:10.5px;
+    color:#333;
+  }
+
+  .kj-fq-new{
+    display:none;
+    position:absolute;
+    right:-8px;
+    top:-8px;
+    min-width:16px;
+    height:16px;
+    padding:0 4px;
+    border-radius:999px;
+    background:#d43832;
+    color:#fff;
+    border:2px solid #fff;
+    font-size:8px;
+    line-height:12px;
+    font-style:normal;
+    font-weight:900;
+    text-align:center;
+    box-sizing:border-box;
+  }
+
+  .kj-fq-plus{
+    transition:transform .28s ease;
+  }
+
+  .kj-float-quick.is-open .kj-fq-plus{
+    transform:rotate(45deg);
+  }
+}
+
+/* 기존 iPhone Safari에서 사용하던 하단 여백 유지 */
+@supports (-webkit-touch-callout:none){
+  @media(max-width:760px){
+    .kj-float-quick{
+      --kj-fq-bottom:40px;
+    }
+    body{
+      padding-bottom:156px!important;
+    }
+  }
+}
+
+@media(min-width:761px){
+  .kj-float-quick{
+    display:none!important;
+  }
+}
+</style>
+
+
+<style id="kj-floating-expand-menu-white-v2">
+@media(max-width:760px){
+  .kj-float-quick{
+    filter:drop-shadow(0 8px 22px rgba(0,0,0,.10))!important;
+  }
+
+  .kj-float-main{
+    background:#fff!important;
+    border:1px solid #e7e7e7!important;
+  }
+
+  .kj-fq-item{
+    background:#fff!important;
+    color:#111!important;
+    border-right:1px solid #ededed!important;
+  }
+
+  .kj-float-main .kj-fq-item:last-child{
+    border-right:0!important;
+  }
+
+  .kj-fq-item.kakao{
+    background:#fff!important;
+    color:#111!important;
+  }
+
+  .kj-fq-item.kakao .kj-fq-talk{
+    background:#111!important;
+    color:#ffe500!important;
+    box-shadow:0 0 0 5px #fff7b8;
+  }
+
+  .kj-fq-item.kakao .kj-fq-talk::after{
+    background:#111!important;
+  }
+
+  .kj-fq-label{
+    color:#111!important;
+    font-weight:750!important;
+  }
+
+  .kj-float-extra{
+    background:#fff!important;
+    border:1px solid #e7e7e7!important;
+    border-bottom:0!important;
+  }
+
+  .kj-float-extra .kj-fq-item{
+    background:#fff!important;
+    color:#111!important;
+    border-right:1px solid #ededed!important;
+    border-bottom:1px solid #ededed!important;
+  }
+
+  .kj-float-extra .kj-fq-label{
+    color:#222!important;
+  }
+
+  .kj-fq-new{
+    background:#d63832!important;
+    color:#fff!important;
+    border-color:#fff!important;
+  }
+
+  .kj-fq-icon svg{
+    stroke:#111!important;
+  }
+
+  .kj-fq-item:active{
+    background:#f7f7f7!important;
+  }
+
+  .kj-fq-item.kakao:active{
+    background:#fffbe6!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -6809,7 +7107,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
       body:'{}',cache:'no-store'
     })
     .then(function(r){if(!r.ok)throw new Error('review');return r.json();})
-    .then(function(rows){if(Array.isArray(rows)&&rows.some(function(x){return recent(x.created_at)})){show(['kjQuickReviewN','kjDrawerReviewN','kjPcReviewN']);}})
+    .then(function(rows){if(Array.isArray(rows)&&rows.some(function(x){return recent(x.created_at)})){show(['kjQuickReviewN','kjDrawerReviewN','kjPcReviewN','kjFloatReviewN']);}})
     .catch(function(){});
   }
   function checkInquiries(){
@@ -6826,7 +7124,7 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     .then(function(r){ if(!r.ok) throw new Error('inquiry'); return r.json(); })
     .then(function(rows){
       if(Array.isArray(rows) && rows.some(function(x){return recent(x.created_at)})){
-        show(['kjQuickInquiryN','kjDrawerInquiryN','kjPcInquiryN']);
+        show(['kjQuickInquiryN','kjDrawerInquiryN','kjPcInquiryN','kjFloatInquiryN']);
       }
     })
     .catch(function(){});
@@ -7635,6 +7933,133 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 .kjr-quick{
   border:1px solid #f0f0f0!important;
   overflow:hidden!important;
+}
+</style>
+
+
+<div class="kj-float-quick" id="kjFloatQuick" aria-label="빠른 메뉴">
+  <div class="kj-float-extra" id="kjFloatExtra">
+    <a class="kj-fq-item" href="#about">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12"/><path d="M8 20v-7h8v7"/></svg>
+      </span>
+      <span class="kj-fq-label">인사말</span>
+    </a>
+
+    <a class="kj-fq-item" href="review.html">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>
+        <em class="kj-fq-new" id="kjFloatReviewN">N</em>
+      </span>
+      <span class="kj-fq-label">고객후기</span>
+    </a>
+
+    <a class="kj-fq-item" href="inquiry-board.html">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3V4Z"/><path d="M8 9h8M8 13h6"/></svg>
+        <em class="kj-fq-new" id="kjFloatInquiryN">N</em>
+      </span>
+      <span class="kj-fq-label">문의게시판</span>
+    </a>
+
+    <a class="kj-fq-item" href="#kjr-location">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+      </span>
+      <span class="kj-fq-label">오시는 길</span>
+    </a>
+  </div>
+
+  <div class="kj-float-main">
+    <a class="kj-fq-item" href="tel:01063798692">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M6.7 2.7 9.4 8c.3.6.1 1.2-.4 1.6l-1.7 1.2c1.2 2.6 3.3 4.7 5.9 5.9l1.2-1.7c.4-.5 1-.7 1.6-.4l5.3 2.7c.6.3.9.9.7 1.5-.5 1.8-2.1 3.2-4.1 3.2C9.1 22 2 14.9 2 6.1c0-2 1.4-3.6 3.2-4.1.6-.2 1.2.1 1.5.7Z"/></svg>
+      </span>
+      <span class="kj-fq-label">전화문의</span>
+    </a>
+
+    <a class="kj-fq-item kakao" href="https://pf.kakao.com/_IqfrX/chat" rel="noopener" target="_blank">
+      <span class="kj-fq-icon" aria-hidden="true"><span class="kj-fq-talk">TALK</span></span>
+      <span class="kj-fq-label">카톡문의</span>
+    </a>
+
+    <a class="kj-fq-item" href="inquiry.html">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h5M8 12h8M8 16h6"/></svg>
+      </span>
+      <span class="kj-fq-label">문자문의</span>
+    </a>
+
+    <button class="kj-fq-item" type="button" id="kjFloatToggle" aria-expanded="false" aria-controls="kjFloatExtra">
+      <span class="kj-fq-icon kj-fq-plus" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg>
+      </span>
+      <span class="kj-fq-label" id="kjFloatToggleLabel">더보기</span>
+    </button>
+  </div>
+</div>
+
+<script id="kj-floating-expand-menu-script-20261009">
+(function(){
+  var root=document.getElementById('kjFloatQuick');
+  var btn=document.getElementById('kjFloatToggle');
+  var label=document.getElementById('kjFloatToggleLabel');
+  if(!root||!btn)return;
+
+  function setOpen(open){
+    root.classList.toggle('is-open',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    if(label)label.textContent=open?'접기':'더보기';
+  }
+
+  btn.addEventListener('click',function(){
+    setOpen(!root.classList.contains('is-open'));
+  });
+
+  root.querySelectorAll('.kj-float-extra a').forEach(function(a){
+    a.addEventListener('click',function(){
+      setOpen(false);
+    });
+  });
+})();
+</script>
+
+
+<style id="kj-final-remove-old-bottom-bars-20261009">
+@media(max-width:760px){
+  /* 구형 하단 고정바 완전 제거 */
+  body .mobile-cta,
+  body:not(.kj-intro-open) .mobile-cta,
+  body > .mobile-cta,
+  .kjr-fixed-contact,
+  body > .kjr-fixed-contact{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    pointer-events:none!important;
+    width:0!important;
+    height:0!important;
+    min-height:0!important;
+    max-height:0!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+
+  /* 구형 바용 가상요소도 제거 */
+  body .mobile-cta::before,
+  body .mobile-cta::after,
+  .kjr-fixed-contact::before,
+  .kjr-fixed-contact::after{
+    display:none!important;
+    content:none!important;
+  }
+
+  /* 새 퀵메뉴 공간만 유지 */
+  body,
+  body:not(.kj-intro-open){
+    padding-bottom:156px!important;
+  }
 }
 </style>
 
