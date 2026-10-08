@@ -6493,7 +6493,8 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
       Authorization:'Bearer '+KEY,
       'Content-Type':'application/json'
     },
-    body:'{}'
+    body:'{}',
+    cache:'no-store'
   })
   .then(function(r){
     if(!r.ok) throw new Error('load failed');
@@ -6696,7 +6697,8 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
         Authorization:'Bearer '+KEY,
         'Content-Type':'application/json'
       },
-      body:'{}'
+      body:'{}',
+      cache:'no-store'
     })
     .then(function(r){ if(!r.ok) throw new Error('inquiry'); return r.json(); })
     .then(function(rows){

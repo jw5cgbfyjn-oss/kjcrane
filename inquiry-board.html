@@ -93,6 +93,16 @@ async function rpc(name, body={}){
   return data;
 }
 
+
+const NEW_WINDOW_MS=3*24*60*60*1000;
+function isNew(v){
+  if(!v) return false;
+  const d=new Date(v);
+  if(isNaN(d.getTime())) return false;
+  const diff=Date.now()-d.getTime();
+  return diff>=0 && diff<=NEW_WINDOW_MS;
+}
+
 function render(){
   document.querySelectorAll('.data-row').forEach(x=>x.remove());
   $('#countText').textContent='전체 '+posts.length+'건';
