@@ -108,10 +108,29 @@ const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(n);
 const isNew=v=>{const d=new Date(v);return !Number.isNaN(d.getTime())&&((Date.now()-d.getTime())<=3*24*60*60*1000)};
 async function loadReviews(){
   try{
-    const res=await fetch(REVIEWS+'?select=id,name,rating,content,created_at,is_private&or=(is_private.is.false,is_private.is.null)&order=created_at.desc',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY},cache:'no-store'});
+    const res=await fetch(
+      REVIEWS+'?select=id,name,rating,content,created_at,is_private&order=created_at.desc',
+      {
+        headers:{
+          apikey:SUPABASE_KEY,
+          Authorization:'Bearer '+SUPABASE_KEY
+        },
+        cache:'no-store'
+      }
+    );
     if(!res.ok) throw new Error(await res.text());
-    const data=await res.json(); render(data);
-  }catch(e){console.error(e);$('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>리뷰 DB 설정을 확인해주세요.</div>'}
+
+    const rows=await res.json();
+
+    /* 공개 후기만 화면에 표시.
+       기존 후기처럼 is_private 값이 없는(null) 글도 공개로 처리 */
+    const data=(Array.isArray(rows)?rows:[]).filter(r=>r.is_private!==true);
+
+    render(data);
+  }catch(e){
+    console.error(e);
+    $('#reviewList').innerHTML='<div class="empty">후기 목록을 불러오지 못했습니다.<br>리뷰 DB 설정을 확인해주세요.</div>';
+  }
 }
 function render(data){
   $('#countText').textContent='전체 '+data.length+'건';
@@ -130,7 +149,7 @@ $('#reviewForm').addEventListener('submit',async e=>{
   const btn=e.submitter; if(btn){btn.disabled=true;btn.textContent='등록 중...'}
   const payload={name:$('#rName').value.trim()||'익명',rating:Number(rating.value),content:$('#rContent').value.trim(),is_private:$('#rPrivate').checked};
   try{
-    const res=await fetch(REVIEWS,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(payload)});
+    const res=await fetch(REVIEWS,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify(payload)});
     if(!res.ok) throw new Error(await res.text());
     alert('후기가 등록되었습니다.');$('#reviewForm').reset();$('#formWrap').classList.remove('open');await loadReviews();window.scrollTo({top:0,behavior:'smooth'});
   }catch(err){console.error(err);alert('후기 등록에 실패했습니다. 리뷰 DB 설정을 확인해주세요.');}
