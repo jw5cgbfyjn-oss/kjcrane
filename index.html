@@ -3396,6 +3396,17 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kjr-worksite-smooth-fade">
+  #kjrWorkMain{
+    transition: opacity .6s ease-in-out !important;
+    opacity: 1;
+  }
+  #kjrWorkMain.kjr-fading{
+    opacity: 0;
+  }
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -4489,17 +4500,79 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
     var thumbs=document.getElementById('kjr-thumbs');
     if(main && unique.length) main.src=unique[0];
     if(thumbs){
+      var currentIndex=0;
+      var autoTimer=null;
+
+      function showWork(index){
+        if(!unique.length) return;
+        var nextIndex=(index+unique.length)%unique.length;
+        var nextSrc=unique[nextIndex];
+
+        var buttons=[].slice.call(thumbs.querySelectorAll('.kjr-thumb'));
+        buttons.forEach(function(x){x.classList.remove('is-active')});
+        if(buttons[nextIndex]) buttons[nextIndex].classList.add('is-active');
+
+        if(!main){
+          currentIndex=nextIndex;
+          return;
+        }
+
+        if(main.src===nextSrc || main.getAttribute('src')===nextSrc){
+          currentIndex=nextIndex;
+          return;
+        }
+
+        main.classList.add('kjr-fading');
+
+        setTimeout(function(){
+          var img=new Image();
+          img.onload=function(){
+            main.src=nextSrc;
+            currentIndex=nextIndex;
+            requestAnimationFrame(function(){
+              requestAnimationFrame(function(){
+                main.classList.remove('kjr-fading');
+              });
+            });
+          };
+          img.onerror=function(){
+            main.src=nextSrc;
+            currentIndex=nextIndex;
+            main.classList.remove('kjr-fading');
+          };
+          img.src=nextSrc;
+        },300);
+      }
+
+      function restartAuto(){
+        if(autoTimer) clearInterval(autoTimer);
+        if(unique.length<2) return;
+        autoTimer=setInterval(function(){
+          showWork(currentIndex+1);
+        },4000);
+      }
+
       unique.forEach(function(src,i){
         var b=document.createElement('button');
         b.type='button'; b.className='kjr-thumb'+(i===0?' is-active':'');
         b.innerHTML='<img alt="국제크레인 작업현장 '+(i+1)+'">';
         b.querySelector('img').src=src;
         b.addEventListener('click',function(){
-          if(main) main.src=src;
-          thumbs.querySelectorAll('.kjr-thumb').forEach(function(x){x.classList.remove('is-active')});
-          b.classList.add('is-active');
+          showWork(i);
+          restartAuto();
         });
         thumbs.appendChild(b);
+      });
+
+      showWork(0);
+      restartAuto();
+
+      document.addEventListener('visibilitychange',function(){
+        if(document.hidden){
+          if(autoTimer) clearInterval(autoTimer);
+        }else{
+          restartAuto();
+        }
       });
     }
 
