@@ -3177,28 +3177,67 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-<style id="kj-remove-old-contact-inquiry-20261009">
-@media(max-width:760px){
-  .kj-unified-contact,
-  .mobile-cta,
-  .mobile-bottom-bar,
-  .bottom-contact,
-  .fixed-contact,
-  .kj-bottom-contact{
-    display:none!important;
-    visibility:hidden!important;
-    opacity:0!important;
-    pointer-events:none!important;
-    height:0!important;
-    min-height:0!important;
-    max-height:0!important;
-    padding:0!important;
-    margin:0!important;
-    overflow:hidden!important;
+<style id="kj-category-footer-unified-final-20261009">
+.kj-unified-footer{
+  background:#151515!important;color:#d5d5d5!important;margin:0!important;
+  padding:28px 22px!important;box-sizing:border-box!important;
+}
+.kj-unified-footer-logo img{
+  display:block!important;width:86px!important;height:auto!important;
+  filter:brightness(0) invert(1)!important;opacity:.95!important;
+}
+.kj-unified-footer-info>div{
+  display:grid!important;grid-template-columns:92px 10px minmax(0,1fr)!important;
+  align-items:start!important;column-gap:4px!important;font-size:11px!important;line-height:1.65!important;
+}
+.kj-unified-footer-info b{color:#fff!important;font-weight:700!important;white-space:nowrap!important}
+.kj-unified-footer-info i{color:#777!important;font-style:normal!important;text-align:center!important}
+.kj-unified-footer-info span{color:#c9c9c9!important}
+.kj-unified-privacy{
+  border:0!important;background:transparent!important;color:#9b9b9b!important;
+  padding:0!important;font:inherit!important;cursor:pointer!important;
+}
+.kj-unified-dialog{
+  width:min(90vw,620px)!important;border:0!important;border-radius:14px!important;
+  padding:0!important;box-shadow:0 18px 60px rgba(0,0,0,.18)!important;
+}
+.kj-unified-dialog::backdrop{background:rgba(0,0,0,.42)!important}
+.kj-unified-dialog-box{padding:26px!important;font-size:13px!important;line-height:1.7!important}
+.kj-unified-dialog-close{
+  float:right!important;border:0!important;background:#f2f2f2!important;
+  border-radius:999px!important;padding:7px 12px!important;
+}
+.kj-unified-contact,.mobile-cta,.mobile-bottom-bar,.bottom-contact,.fixed-contact,.kj-bottom-contact,.kjr-fixed-contact{
+  display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;
+}
+@media(min-width:701px){
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:110px minmax(0,1fr) 120px!important;
+    gap:24px!important;align-items:center!important;
   }
-  body,
-  body:not(.kj-intro-open){
-    padding-bottom:0!important;
+  .kj-unified-privacy{text-align:right!important}
+}
+@media(max-width:700px){
+  body{padding-bottom:0!important}
+  .kj-unified-footer{
+    display:grid!important;grid-template-columns:72px minmax(0,1fr) 74px!important;
+    gap:12px!important;align-items:center!important;width:100%!important;
+    min-height:140px!important;padding:24px 16px 28px!important;
+  }
+  .kj-unified-footer-logo{grid-column:1!important;align-self:center!important}
+  .kj-unified-footer-logo img{width:68px!important}
+  .kj-unified-footer-info{grid-column:2!important;min-width:0!important}
+  .kj-unified-footer-info>div{
+    grid-template-columns:66px 7px minmax(0,1fr)!important;
+    column-gap:3px!important;margin:0!important;padding:0!important;
+    font-size:8.6px!important;line-height:1.72!important;
+  }
+  .kj-unified-footer-info b,.kj-unified-footer-info i,.kj-unified-footer-info span{
+    display:block!important;margin:0!important;padding:0!important;
+  }
+  .kj-unified-privacy{
+    grid-column:3!important;justify-self:end!important;text-align:right!important;
+    font-size:8.3px!important;line-height:1.4!important;white-space:nowrap!important;
   }
 }
 </style>
@@ -3208,7 +3247,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <a class="brand brand-logo" href="#about"><img alt="CRANE TRUCK KJ 로고" decoding="async" fetchpriority="high" loading="eager" src="kj-logo-new.png"/></a>
 <nav aria-label="주요 메뉴" class="mega-nav">
 <div class="mega-item"><a class="mega-trigger" href="#about">회사소개</a><div class="mega-panel"><a href="#about"><span class="mega-label">국제크레인 소개</span><span class="mega-arrow">›</span></a><a href="representative.html"><span class="mega-label">대표 김선원</span><span class="mega-arrow">›</span></a></div></div>
-<div class="mega-item"><a class="mega-trigger" href="inquiry.html">문의접수</a><div class="mega-panel"><a href="inquiry.html"><span class="mega-label">문의접수</span><span class="mega-arrow">›</span></a><a href="https://pf.kakao.com/_IqfrX/chat" rel="noopener noreferrer" target="_blank"><span class="mega-label">카카오톡 문의</span><span class="mega-arrow">›</span></a><a href="tel:01063798692"><span class="mega-label">전화 문의</span><span class="mega-arrow">›</span></a><a href="faq.html"><span class="mega-label">자주 묻는 질문</span><span class="mega-arrow">›</span></a></div></div>
+<div class="mega-item"><a class="mega-trigger" href="inquiry.html">현장문의접수</a><div class="mega-panel"><a href="inquiry.html"><span class="mega-label">문의접수</span><span class="mega-arrow">›</span></a><a href="https://pf.kakao.com/_IqfrX/chat" rel="noopener noreferrer" target="_blank"><span class="mega-label">카카오톡 문의</span><span class="mega-arrow">›</span></a><a href="tel:01063798692"><span class="mega-label">전화 문의</span><span class="mega-arrow">›</span></a><a href="faq.html"><span class="mega-label">자주 묻는 질문</span><span class="mega-arrow">›</span></a></div></div>
 <div class="mega-item"><a class="mega-trigger" href="#work">작업현장</a><div class="mega-panel"><a href="work.html"><span class="mega-label">전체 작업현장</span><span class="mega-arrow">›</span></a><a href="work.html?category=structure"><span class="mega-label">구조물 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=landscape"><span class="mega-label">수목·조경 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=material"><span class="mega-label">자재 작업</span><span class="mega-arrow">›</span></a><a href="work.html?category=factory"><span class="mega-label">공장·설비 작업</span><span class="mega-arrow">›</span></a></div></div>
 <div class="mega-item"><a class="mega-trigger" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">오시는 길</a></div>
 </nav>
@@ -3222,11 +3261,11 @@ document.addEventListener('DOMContentLoaded',function(){
 <section class="kj-standalone-inquiry-form">
 <div class="kj-standalone-form-inner">
 <form action="" class="online-inquiry-form" enctype="multipart/form-data" id="online-inquiry-form" method="post">
-<label><span>작업 지역 <b>*</b></span><input name="area" placeholder="예) 춘천시 동면, 강원 전 지역 등" required="" type="text"/></label>
-<label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="예) 건물 자재 인양, 수목 이식, 구조물 설치, 공장 설비 이전 등" required=""></textarea></label>
+
+<label><span>작업 내용 <b>*</b></span><textarea name="details" placeholder="작업 내용을 자유롭게 기재해 주세요.&#10;예) 작업 위치, 희망 시간, 필요한 장비 톤수 등" required=""></textarea></label>
 <label><span>희망 작업일</span><input name="date" type="date"/></label>
 <label><span>연락처 <b>*</b></span><input inputmode="tel" name="phone" placeholder="예) 010-0000-0000" required="" type="tel"/></label>
-<label><span>현장 사진 첨부 <em class="kj-optional">(선택)</em></span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
+<label><span>현장 사진 첨부</span><input accept="image/jpeg,image/png,image/heic" class="file-input" multiple="" name="photos" type="file"/></label>
 <p class="file-help">현장 사진이 있으시면 함께 보내주세요. (최대 5장 / JPG, PNG, HEIC)</p>
 <label class="privacy-check"><input required="" type="checkbox"/><span>개인정보 수집 및 이용에 동의합니다. (필수)</span></label>
 <button class="inquiry-submit" type="submit">문의 접수하기</button>
@@ -3345,9 +3384,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div><b>소재지</b><i>|</i><span>강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div>
 <div><b>전화문의</b><i>|</i><span>010-6379-8692</span></div>
 </div>
-<button class="kj-unified-privacy" onclick="document.getElementById('kjUnifiedPrivacy').showModal()" type="button">
-    개인정보처리방침
-  </button>
+<button class="kj-unified-privacy" onclick="document.getElementById('kjUnifiedPrivacy').showModal()" type="button">개인정보처리방침</button>
 </footer>
 <dialog class="kj-unified-dialog" id="kjUnifiedPrivacy">
 <div class="kj-unified-dialog-box">
@@ -3356,65 +3393,6 @@ document.addEventListener('DOMContentLoaded',function(){
 <p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
 </div>
 </dialog>
-<style id="kj-inquiry-final-visual-fix-20261006">
-/* 필수 *는 빨간색 */
-.kj-standalone-inquiry-form label > span b,
-.online-inquiry-form label > span b{
-  color:#d71920!important;
-  font-weight:800!important;
-}
-
-/* 사진첨부 선택 문구 */
-.kj-optional{
-  color:#8f8f8f!important;
-  font-style:normal!important;
-  font-size:.88em!important;
-  font-weight:500!important;
-  margin-left:3px!important;
-}
-
-/* 이 페이지 푸터만 메인과 동일한 검정색으로 확실히 고정 */
-body .kj-unified-footer{
-  background:#151515!important;
-  background-color:#151515!important;
-  color:#d5d5d5!important;
-  border:0!important;
-  opacity:1!important;
-  visibility:visible!important;
-}
-body .kj-unified-footer-info b{
-  color:#fff!important;
-}
-body .kj-unified-footer-info i{
-  color:#777!important;
-}
-body .kj-unified-footer-info span{
-  color:#c9c9c9!important;
-}
-body .kj-unified-privacy{
-  color:#9b9b9b!important;
-  background:transparent!important;
-}
-body .kj-unified-footer-logo img{
-  filter:brightness(0) invert(1)!important;
-  opacity:.95!important;
-}
-
-@media(max-width:700px){
-  body .kj-unified-footer{
-    display:grid!important;
-    grid-template-columns:72px minmax(0,1fr) 74px!important;
-    gap:12px!important;
-    align-items:center!important;
-    width:100%!important;
-    min-height:140px!important;
-    margin:0!important;
-    padding:24px 16px 28px!important;
-    box-sizing:border-box!important;
-  }
-}
-</style>
-
 </body></html><style id="mobile-lower-fixed-layout">
 @media(max-width:700px){
   /* 하단 큰 칸의 전체 높이는 유지하고, 두 내용 묶음의 위치만 분리 */
