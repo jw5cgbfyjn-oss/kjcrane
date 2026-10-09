@@ -8435,5 +8435,25 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 </script>
 
 <footer class="kjr-footer kjr-pc-footer"><div class="kjr-footer-logo"><img alt="국제크레인" src="kj-logo-new.png"/></div><div class="kjr-footer-table"><div class="kjr-footer-table-row"><span class="kjr-footer-label">대표자</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">김선원</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">사업자등록번호</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">221-08-87838</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">소재지</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">전화문의</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">010-6379-8692</span></div></div><button class="kjr-privacy" type="button">개인정보처리방침</button></footer>
+
+<style id="kj-pc-final-visibility-size-fix-20261010">
+/* PC 전용: 구형 메인 차단 및 현재 인사말/지도/크레인 크기 최종 정리 */
+@media (min-width:761px){
+  html body .desktop-home,
+  html body #pc-work-gallery-hero{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+  html body #kjr-hero{height:auto!important;min-height:700px!important;max-height:none!important;overflow:visible!important;padding-top:36px!important;padding-bottom:34px!important;box-sizing:border-box!important}
+  html body #kjr-hero .kjr-hero-copy{width:410px!important;max-width:410px!important;margin-left:0!important;position:relative!important;z-index:5!important}
+  html body #kjr-hero .kj-pc-hero-map{display:block!important;position:relative!important;width:350px!important;height:350px!important;min-width:350px!important;min-height:350px!important;max-width:350px!important;max-height:350px!important;aspect-ratio:1/1!important;margin-top:18px!important;border:0!important;border-radius:3px!important;overflow:hidden!important}
+  html body #kjr-hero #kj-pc-hero-map-canvas{height:100%!important;width:100%!important;min-height:100%!important;display:block!important}
+  html body #kjr-hero .kjr-crane-wrap{width:min(52vw,650px)!important;height:min(49vw,490px)!important;right:6px!important;bottom:32px!important;max-width:650px!important;max-height:490px!important;transform:none!important}
+  html body #kjr-hero .kjr-crane-wrap img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:right bottom!important}
+}
+@media (min-width:761px) and (max-width:1100px){
+  html body #kjr-hero{min-height:660px!important}
+  html body #kjr-hero .kjr-hero-copy{width:370px!important;max-width:370px!important}
+  html body #kjr-hero .kj-pc-hero-map{width:320px!important;height:320px!important;min-width:320px!important;min-height:320px!important;max-width:320px!important;max-height:320px!important}
+  html body #kjr-hero .kjr-crane-wrap{width:48vw!important;height:39vw!important;right:0!important;bottom:34px!important}
+}
+</style>
 </body>
 </html>
