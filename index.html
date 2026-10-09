@@ -3896,6 +3896,24 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
  .kj-mobile-redesign #kjr-hero>.kjr-crane-wrap{height:clamp(310px,43vw,435px)!important}
 }
 </style>
+<style id="kj-pc-only-section-cleanup-20261010">
+/* 요청한 PC 화면 정리. 모바일 규칙/HTML은 변경하지 않음. */
+@media(min-width:761px){
+  /* 인사말과 보조 설명, 대표 링크: 크레인과 카카오 지도는 유지 */
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > .kjr-redline,
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > h1,
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > p,
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > .kjr-rep-btn{display:none!important}
+  /* 아래 작업현장, 오시는 길 구간 전체 숨김 */
+  html body .kj-mobile-redesign > #kjr-work,
+  html body .kj-mobile-redesign > #kjr-location{display:none!important}
+  /* PC 전용으로 중복 추가된 가장 아래 푸터만 숨김 */
+  html body > footer.kjr-pc-footer{display:none!important}
+  /* 지도는 인사말을 없앤 뒤에도 위쪽에 독립적으로 배치 */
+  html body #kjr-hero .kjr-hero-copy{align-self:flex-start!important}
+  html body #kjr-hero .kj-pc-hero-map{margin-top:0!important}
+}
+</style>
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
