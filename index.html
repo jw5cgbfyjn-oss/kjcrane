@@ -3728,6 +3728,28 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
 }
 </style>
 
+
+<style id="kj-pc-hero-density-tune-20261009">
+@media(min-width:761px){
+  /* PC 첫 화면만 미세 조정 */
+  .kjr-hero-copy{
+    max-width:480px!important;
+    margin-left:8px!important;
+  }
+
+  .kjr-crane-wrap{
+    width:min(59vw,715px)!important;
+    height:min(48vh,485px)!important;
+    right:34px!important;
+    bottom:12px!important;
+  }
+
+  .kjr-crane-wrap img{
+    object-position:right bottom!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -7963,21 +7985,20 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
       <span class="kj-fq-label">고객후기</span>
     </a>
 
-    <a class="kj-fq-item" href="inquiry-board.html">
-      <span class="kj-fq-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3V4Z"/><path d="M8 9h8M8 13h6"/></svg>
-        <em class="kj-fq-new" id="kjFloatInquiryN">N</em>
-      </span>
-      <span class="kj-fq-label">문의게시판</span>
-    </a>
-
     <a class="kj-fq-item" href="#kjr-location">
       <span class="kj-fq-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>
       </span>
       <span class="kj-fq-label">오시는 길</span>
     </a>
-  </div>
+
+    <a class="kj-fq-item" href="inquiry-board.html">
+      <span class="kj-fq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3V4Z"/><path d="M8 9h8M8 13h6"/></svg>
+        <em class="kj-fq-new" id="kjFloatInquiryN">N</em>
+      </span>
+      <span class="kj-fq-label">문의게시판</span>
+    </a></div>
 
   <div class="kj-float-main">
     <a class="kj-fq-item" href="tel:01063798692">
@@ -8197,6 +8218,19 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
     width:0!important;
     height:0!important;
     background:transparent!important;
+    pointer-events:none!important;
+  }
+}
+</style>
+
+
+<style id="kj-recovery-oldbar-guard-20261009">
+@media(max-width:760px){
+  .mobile-cta,.kjr-fixed-contact,.kj-unified-contact,
+  .mobile-bottom-bar,.bottom-contact,.fixed-contact,.kj-bottom-contact{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
     pointer-events:none!important;
   }
 }
