@@ -390,6 +390,22 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
   }
 }
 </style>
+<style id="kj-gallery-group-fade-20261009">
+/* 스크롤 시 한 줄에 보이는 사진들이 동시에 천천히 나타남 */
+@media (prefers-reduced-motion: no-preference) {
+  html.kj-gallery-motion .track .photo-card:not(.kj-gallery-visible){
+    opacity:0!important;
+    transform:translateY(16px)!important;
+  }
+  html.kj-gallery-motion .track .photo-card.kj-gallery-visible{
+    opacity:1!important;
+    transform:translateY(0)!important;
+  }
+  html.kj-gallery-motion .track .photo-card{
+    transition:opacity .68s ease, transform .68s cubic-bezier(.2,.7,.25,1)!important;
+  }
+}
+</style>
 </head>
 <body>
 <header>
@@ -451,5 +467,22 @@ box.querySelector('.lightbox-close').addEventListener('click',closeBox); box.add
 <p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
 </div>
 </dialog>
+<script id="kj-gallery-group-fade-js-20261009">
+(function(){
+  const photos=Array.from(document.querySelectorAll('.track .photo-card'));
+  if(!photos.length || !('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // 처음부터 투명 상태로 시작하되, 화면에 들어온 사진은 함께 등장
+  document.documentElement.classList.add('kj-gallery-motion');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('kj-gallery-visible');
+      observer.unobserve(entry.target); // 한 번 등장한 사진은 그대로 유지
+    });
+  }, {rootMargin:'0px 0px 45px 0px',threshold:0.06});
+  photos.forEach(photo=>observer.observe(photo));
+})();
+</script>
 </body>
 </html>
