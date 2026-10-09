@@ -8501,5 +8501,95 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
   html body #kjr-hero .kjr-crane-wrap{width:48vw!important;height:39vw!important;right:0!important;bottom:34px!important}
 }
 </style>
+
+<style id="kj-pc-menu-map-space-tune-20261010">
+/* 이 수정은 PC에만 적용: 모바일 관련 CSS/HTML/스크립트 불변 */
+@media (min-width:761px){
+  html body .kj-mobile-redesign .kjr-top{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    min-height:80px!important;
+    height:80px!important;
+    padding-left:clamp(25px,4vw,72px)!important;
+    padding-right:clamp(25px,4vw,72px)!important;
+  }
+  html body .kj-mobile-redesign .kjr-pc-nav{
+    display:flex!important;
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    right:auto!important;
+    transform:translate(-50%,-50%)!important;
+    margin:0!important;
+    padding:0!important;
+    width:max-content!important;
+    max-width:calc(100% - 285px)!important;
+    justify-content:center!important;
+    align-items:center!important;
+    gap:clamp(17px,2.6vw,43px)!important;
+    white-space:nowrap!important;
+  }
+  html body .kj-mobile-redesign .kjr-pc-nav > a{
+    font-size:clamp(15px,1.28vw,19px)!important;
+    line-height:1.35!important;
+    font-weight:750!important;
+    white-space:nowrap!important;
+  }
+  /* 첫 화면 높이 줄이기: 긴 흰 공백 방지 */
+  html body #kjr-hero{
+    min-height:530px!important;
+    height:530px!important;
+    max-height:530px!important;
+    width:min(1200px,calc(100% - 90px))!important;
+    margin:0 auto!important;
+    padding:26px 0 0!important;
+    overflow:hidden!important;
+  }
+  /* 지도를 약간 위로, 너무 왼쪽에 붙지 않게 */
+  html body #kjr-hero .kjr-hero-copy{
+    position:absolute!important;
+    left:clamp(30px,5vw,90px)!important;
+    top:18px!important;
+    margin:0!important;
+    width:400px!important;
+    max-width:400px!important;
+  }
+  html body #kjr-hero .kj-pc-hero-map{
+    width:350px!important;height:350px!important;
+    min-width:350px!important;min-height:350px!important;
+    max-width:350px!important;max-height:350px!important;
+    margin-top:0!important;
+    aspect-ratio:1/1!important;
+  }
+  html body #kjr-hero .kjr-crane-wrap{
+    width:min(52vw,650px)!important;
+    height:min(46vw,465px)!important;
+    bottom:25px!important;
+    right:0!important;
+  }
+  /* 구간 사이 불필요한 여백 축소 */
+  html body .kjr-watermark{
+    height:45px!important;min-height:45px!important;
+    margin:0 auto!important;padding:0!important;
+  }
+  html body .kjr-board-preview{
+    margin-top:0!important;
+  }
+}
+@media(min-width:761px) and (max-width:1100px){
+  html body #kjr-hero{min-height:490px!important;height:490px!important;max-height:490px!important;}
+  html body #kjr-hero .kjr-hero-copy{left:22px!important;top:12px!important;}
+  html body #kjr-hero .kj-pc-hero-map{
+    width:310px!important;height:310px!important;
+    min-width:310px!important;min-height:310px!important;
+    max-width:310px!important;max-height:310px!important;
+  }
+  html body #kjr-hero .kjr-crane-wrap{width:49vw!important;height:40vw!important;bottom:25px!important;}
+  html body .kj-mobile-redesign .kjr-pc-nav{max-width:calc(100% - 210px)!important;gap:16px!important;}
+  html body .kj-mobile-redesign .kjr-pc-nav > a{font-size:15px!important;}
+}
+</style>
 </body>
 </html>
