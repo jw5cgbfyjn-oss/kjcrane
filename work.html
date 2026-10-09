@@ -402,12 +402,8 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
 <section class="hero">
 <h1>현장갤러리</h1><div class="redline"></div>
 </section>
-<div class="filter-wrap"><div aria-label="작업 분야 필터" class="filters" role="group">
-<button aria-pressed="true" class="filter-btn active" data-filter="all" type="button">전체</button>
-<button aria-pressed="false" class="filter-btn" data-filter="structure" type="button">건축·구조물</button>
-<button aria-pressed="false" class="filter-btn" data-filter="factory" type="button">공장·설비</button>
-<button aria-pressed="false" class="filter-btn" data-filter="landscape" type="button">수목·조경</button>
-<button aria-pressed="false" class="filter-btn" data-filter="material" type="button">자재·양중</button>
+<div class="filter-wrap"><div aria-label="현장 사진 모아보기" class="filters" role="group">
+<button aria-pressed="true" class="filter-btn active" data-filter="all" type="button">모아보기</button>
 </div></div><section aria-label="국제크레인 전체 현장갤러리 사진" class="conveyor-wrap">
 <div class="conveyor">
 <div class="track"></div>
@@ -420,21 +416,6 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
 </div>
 <script>
 const cards=[...document.querySelectorAll('.photo-card')];
-const buttons=[...document.querySelectorAll('.filter-btn')];
-function applyFilter(filter){
- let visible=0;
- cards.forEach((card,i)=>{
-   const show=filter==='all'||card.dataset.category===filter;
-   card.classList.toggle('filter-hide',!show);
-   card.classList.remove('filter-in');
-   if(show){visible++; setTimeout(()=>card.classList.add('filter-in'),Math.min(visible*28,420));}
- });
- buttons.forEach(b=>{const on=b.dataset.filter===filter;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')});
- const u=new URL(location.href); if(filter==='all')u.searchParams.delete('category'); else u.searchParams.set('category',filter); history.replaceState(null,'',u);
-}
-buttons.forEach(b=>b.addEventListener('click',()=>applyFilter(b.dataset.filter)));
-const valid=['structure','factory','landscape','material'];
-const initial=new URL(location.href).searchParams.get('category'); applyFilter(valid.includes(initial)?initial:'all');
 const box=document.getElementById('lightbox'), big=document.getElementById('lightboxImg');
 cards.forEach(card=>card.addEventListener('click',()=>{big.src=card.dataset.full||card.querySelector('img').src;box.classList.add('open');box.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}));
 function closeBox(){box.classList.remove('open');box.setAttribute('aria-hidden','true');big.removeAttribute('src');document.body.style.overflow=''}
