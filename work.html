@@ -390,21 +390,37 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
   }
 }
 </style>
-<style id="kj-gallery-group-fade-20261009">
-/* 스크롤 시 한 줄에 보이는 사진들이 동시에 천천히 나타남 */
-@media (prefers-reduced-motion: no-preference) {
-  html.kj-gallery-motion .track .photo-card:not(.kj-gallery-visible){
-    opacity:0!important;
-    transform:translateY(16px)!important;
-  }
-  html.kj-gallery-motion .track .photo-card.kj-gallery-visible{
-    opacity:1!important;
-    transform:translateY(0)!important;
-  }
-  html.kj-gallery-motion .track .photo-card{
-    transition:opacity .68s ease, transform .68s cubic-bezier(.2,.7,.25,1)!important;
-  }
+
+<style id="kj-two-direction-train-20261009">
+/* 한 화면에 담는 양방향 무한 갤러리 */
+.conveyor-wrap{max-width:none!important;width:100%!important;padding:10px 0 65px!important;overflow:hidden!important}
+.conveyor{overflow:hidden!important;width:100%!important;cursor:default!important}
+.train-row{width:100%;overflow:hidden;position:relative;margin:0 0 14px}
+.train-move{display:flex;width:max-content;animation:train-left 65s linear infinite;will-change:transform}
+.train-row.reverse .train-move{animation-name:train-right;animation-duration:73s}
+.train-group{display:flex;gap:14px;padding-right:14px;flex:0 0 auto}
+.train-row .photo-card,
+.train-row .photo-card:not(.filter-hide):first-of-type{
+  display:block!important;flex:0 0 auto!important;width:clamp(235px,26vw,370px)!important;
+  height:clamp(175px,19.5vw,270px)!important;min-height:0!important;
+  aspect-ratio:auto!important;grid-column:auto!important;grid-row:auto!important;
+  padding:0!important;border-radius:3px!important;overflow:hidden!important;
 }
+.train-row .photo-card img{width:100%!important;height:100%!important;object-fit:cover!important}
+.train-row:hover .train-move{animation-play-state:paused}
+@keyframes train-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes train-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(max-width:700px){
+ .conveyor-wrap{padding:8px 0 46px!important}
+ .train-row{margin-bottom:9px}
+ .train-group{gap:9px;padding-right:9px}
+ .train-row .photo-card,.train-row .photo-card:not(.filter-hide):first-of-type{
+   width:64vw!important;height:42vw!important;max-height:215px!important;border-radius:2px!important
+ }
+ .train-move{animation-duration:49s}
+ .train-row.reverse .train-move{animation-duration:55s}
+}
+@media(prefers-reduced-motion:reduce){.train-move,.train-row.reverse .train-move{animation:none!important}}
 </style>
 </head>
 <body>
@@ -421,20 +437,7 @@ footer{border-top:1px solid #eee;padding:28px 24px 110px;color:#777;font-size:12
 <div class="filter-wrap"><div aria-label="현장 사진 모아보기" class="filters" role="group">
 <button aria-pressed="true" class="filter-btn active" data-filter="all" type="button">모아보기</button>
 </div></div><section aria-label="국제크레인 전체 현장갤러리 사진" class="conveyor-wrap">
-<div class="conveyor">
-<div class="track">
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-01.jpg"><img alt="국제크레인 현장 사진 1" src="gallery-01.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-02.jpg"><img alt="국제크레인 현장 사진 2" src="gallery-02.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-03.jpg"><img alt="국제크레인 현장 사진 3" src="gallery-03.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-04.jpg"><img alt="국제크레인 현장 사진 4" src="gallery-04.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-05.jpg"><img alt="국제크레인 현장 사진 5" src="gallery-05.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-06.jpg"><img alt="국제크레인 현장 사진 6" src="gallery-06.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-07.jpg"><img alt="국제크레인 현장 사진 7" src="gallery-07.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-08.jpg"><img alt="국제크레인 현장 사진 8" src="gallery-08.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-09.jpg"><img alt="국제크레인 현장 사진 9" src="gallery-09.jpg"/></a>
-<a class="photo-card" href="javascript:void(0)" data-full="gallery-10.jpg"><img alt="국제크레인 현장 사진 10" src="gallery-10.jpg"/></a>
-</div>
-</div>
+<div class="conveyor"><div class="train-row"><div class="train-move"><div class="train-group"><a class="photo-card" href="javascript:void(0)" data-full="gallery-01.jpg"><img alt="국제크레인 현장 사진 1" src="gallery-01.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-02.jpg"><img alt="국제크레인 현장 사진 2" src="gallery-02.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-03.jpg"><img alt="국제크레인 현장 사진 3" src="gallery-03.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-04.jpg"><img alt="국제크레인 현장 사진 4" src="gallery-04.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-05.jpg"><img alt="국제크레인 현장 사진 5" src="gallery-05.jpg" loading="eager"/></a></div><div class="train-group" aria-hidden="true"><a class="photo-card" href="javascript:void(0)" data-full="gallery-01.jpg"><img alt="국제크레인 현장 사진 1" src="gallery-01.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-02.jpg"><img alt="국제크레인 현장 사진 2" src="gallery-02.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-03.jpg"><img alt="국제크레인 현장 사진 3" src="gallery-03.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-04.jpg"><img alt="국제크레인 현장 사진 4" src="gallery-04.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-05.jpg"><img alt="국제크레인 현장 사진 5" src="gallery-05.jpg" loading="eager"/></a></div></div></div><div class="train-row reverse"><div class="train-move"><div class="train-group"><a class="photo-card" href="javascript:void(0)" data-full="gallery-06.jpg"><img alt="국제크레인 현장 사진 6" src="gallery-06.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-07.jpg"><img alt="국제크레인 현장 사진 7" src="gallery-07.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-08.jpg"><img alt="국제크레인 현장 사진 8" src="gallery-08.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-09.jpg"><img alt="국제크레인 현장 사진 9" src="gallery-09.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-10.jpg"><img alt="국제크레인 현장 사진 10" src="gallery-10.jpg" loading="eager"/></a></div><div class="train-group" aria-hidden="true"><a class="photo-card" href="javascript:void(0)" data-full="gallery-06.jpg"><img alt="국제크레인 현장 사진 6" src="gallery-06.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-07.jpg"><img alt="국제크레인 현장 사진 7" src="gallery-07.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-08.jpg"><img alt="국제크레인 현장 사진 8" src="gallery-08.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-09.jpg"><img alt="국제크레인 현장 사진 9" src="gallery-09.jpg" loading="eager"/></a><a class="photo-card" href="javascript:void(0)" data-full="gallery-10.jpg"><img alt="국제크레인 현장 사진 10" src="gallery-10.jpg" loading="eager"/></a></div></div></div></div>
 </section>
 </main>
 <div aria-hidden="true" class="lightbox" id="lightbox">
@@ -467,22 +470,5 @@ box.querySelector('.lightbox-close').addEventListener('click',closeBox); box.add
 <p>국제크레인은 문의 과정에서 제공받은 정보를 상담 및 작업 안내 목적 외에는 사용하지 않습니다.</p>
 </div>
 </dialog>
-<script id="kj-gallery-group-fade-js-20261009">
-(function(){
-  const photos=Array.from(document.querySelectorAll('.track .photo-card'));
-  if(!photos.length || !('IntersectionObserver' in window) ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  // 처음부터 투명 상태로 시작하되, 화면에 들어온 사진은 함께 등장
-  document.documentElement.classList.add('kj-gallery-motion');
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      entry.target.classList.add('kj-gallery-visible');
-      observer.unobserve(entry.target); // 한 번 등장한 사진은 그대로 유지
-    });
-  }, {rootMargin:'0px 0px 45px 0px',threshold:0.06});
-  photos.forEach(photo=>observer.observe(photo));
-})();
-</script>
 </body>
 </html>
