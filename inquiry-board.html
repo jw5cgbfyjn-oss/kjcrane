@@ -396,18 +396,18 @@ $('#saveAnswer').addEventListener('click',async()=>{
   const btn=$('#saveAnswer');
   try{
     btn.disabled=true; btn.textContent='저장 중...';
-    const data=await rpc('answer_inquiry',{
-      p_id:currentPostId,
-      p_admin_password:adminPassword,
-      p_answer:answer
+    const replyRes=await fetch(SUPABASE_URL+'/functions/v1/notify-board-reply',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+      body:JSON.stringify({p_id:currentPostId,p_admin_password:adminPassword,p_answer:answer})
     });
-    const ok=(data===true)||(Array.isArray(data)&&data[0]===true);
-    if(!ok){alert('관리자 비밀번호가 일치하지 않습니다.');return;}
+    const data=await replyRes.json();
+    if(!replyRes.ok||!data.ok){alert('답변 저장에 실패했습니다. 관리자 비밀번호와 서버 설정을 확인해 주세요.');return;}
     $('#answerText').textContent=answer;
     $('#answerBox').style.display='block';
     $('#detailStatus').textContent='답변완료';
     await loadPosts();
-    alert('답변이 등록되었습니다.');
+    alert(data.sms==='submitted'?'답변이 등록되고 문자 발송이 접수되었습니다.':data.sms==='failed'?'답변은 등록됐지만 문자 발송에 실패했습니다. 관리자가 확인해 주세요.':'답변이 등록되었습니다.');
   }catch(err){
     console.error(err);
     alert('답변 등록에 실패했습니다.');
