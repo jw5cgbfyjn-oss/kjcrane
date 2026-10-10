@@ -19,6 +19,11 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-
 footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;text-align:center;font-size:11px;line-height:1.7}.footer-name{color:#fff;font-weight:750;margin-bottom:4px}
 @media(max-width:760px){.wrap{width:min(100% - 30px,1080px)}.head{height:70px}.brand img{height:44px}.nav a:not(.phone){display:none}.nav{gap:0}.phone{font-size:11px!important;padding:9px 11px}.hero{padding:46px 0 28px}.hero h1{font-size:29px}.hero p{font-size:13px}.tabs{overflow-x:auto}.tabs a{padding:13px 15px;white-space:nowrap;font-size:13px}.board{padding:30px 0 60px}.row{grid-template-columns:52px minmax(0,1fr) 82px}.row .cell:nth-child(3),.row .cell:nth-child(4){display:none}.row.headrow .cell:nth-child(3),.row.headrow .cell:nth-child(4){display:none}.cell{padding:11px 6px;font-size:12px}.title-btn{font-size:13px}.grid{grid-template-columns:1fr}.field.full,.secret-line{grid-column:auto}.board-top{align-items:flex-end}.write-btn{padding:11px 15px}.notice{font-size:12px}.detail-meta{flex-wrap:wrap}.form-actions{justify-content:stretch}.form-actions .btn{flex:1}}
 </style>
+<style id="kj-sms-consent-style-20261010">
+.sms-optin{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;margin:8px 0 0;color:#555;font-size:13px;line-height:1.55;cursor:pointer}
+.sms-optin input{flex:0 0 auto;width:17px;height:17px;margin:2px 0 0;accent-color:#111}
+.sms-optin small{display:block;color:#888;font-size:11px;margin-top:3px}
+</style>
 <style id="kj-inquiry-delete-20261008">.btn.danger{border-color:#b42323!important;color:#b42323!important;background:#fff!important}.btn.danger:hover{background:#fff5f5!important}</style>
 
 <style id="kj-category-footer-unified-final-20261009">
@@ -146,6 +151,7 @@ footer{border-top:1px solid #e7e7e7;background:#111;color:#bbb;padding:30px 0;te
 
 <div class="field full"><label>문의내용 <span class="req">*</span></label><textarea id="qContent" required placeholder="자유롭게 기재"></textarea></div>
 <label class="secret-line"><input type="checkbox" checked disabled> 문의글은 자동으로 비밀글로 등록됩니다.</label>
+<label class="sms-optin" for="qSmsConsent"><input id="qSmsConsent" type="checkbox"><span>답변 등록 문자 알림 받기 (선택)<small>동의하시면 관리자 답변 등록 시 입력하신 연락처로 안내 문자를 보내드립니다. 문자 알림을 받지 않아도 문의글 작성이 가능합니다.</small></span></label>
 </div><div class="form-actions"><button class="btn" id="cancelWrite" type="button">취소</button><button class="btn primary" type="submit">등록하기</button></div></form></div>
 </div></section>
 </main>
@@ -527,18 +533,17 @@ $('#inquiryForm').addEventListener('submit',async e=>{
   const phone=$('#qPhone').value.trim();
   
   const content=$('#qContent').value.trim();
-  const savedText=location?`[현장 지역] ${location}
-
-${content}`:content;
+  const savedText=content;
   if(!title||!phone||!content){alert('필수 항목을 모두 입력해 주세요.');return;}
   try{
     if(submit){submit.disabled=true;submit.textContent='등록 중...';}
-    await rpc('create_inquiry',{
+    await rpc('create_inquiry_with_sms',{
       p_title:title,
       p_name:name,
       p_phone:phone,
       p_content:savedText,
-      p_password:pw
+      p_password:pw,
+      p_sms_consent:$('#qSmsConsent').checked
     });
     e.target.reset();
     $('#formWrap').classList.remove('open');
