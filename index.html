@@ -3978,7 +3978,26 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
  #kjr-work.kjr-crane-showcase{min-height:230px!important;padding:25px 12px!important}
  #kjr-work.kjr-crane-showcase .kjr-crane-wrap{width:100%!important}
 }
-</style></head>
+</style>
+<style id="kjr-hero-clean-photo-20261011">
+/* 메인: 인사말 + 대표 현장 사진 1장 + 작고 절제된 위치 표시 */
+#kjr-hero .kjr-home-work-slider .kjr-thumbs{display:none!important}
+#kjr-hero .kjr-home-work-slider{z-index:4!important}
+#kjr-hero .kjr-work-main{display:block!important;overflow:hidden!important}
+#kjr-hero .kjr-work-main img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+#kjr-hero .kjr-hero-dots{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px;height:10px}
+#kjr-hero .kjr-hero-dot{width:5px;height:5px;border-radius:50%;background:#c9c9c9;transition:background .2s,transform .2s}
+#kjr-hero .kjr-hero-dot.active{background:#d52b2b;transform:scale(1.25)}
+@media(max-width:760px){
+ #kjr-hero.kjr-hero{padding:8px 0 25px!important}
+ #kjr-hero .kjr-hero-copy{box-sizing:border-box!important;padding:10px 24px 0!important;margin:0!important;width:100%!important;max-width:100%!important;left:auto!important;right:auto!important;transform:none!important}
+ #kjr-hero .kjr-hero-copy .kjr-redline{margin-left:0!important}
+ #kjr-hero .kjr-hero-copy h1{font-size:clamp(29px,8.1vw,37px)!important;line-height:1.19!important;letter-spacing:-.055em!important;margin:20px 0 0!important;max-width:100%!important}
+ #kjr-hero .kjr-home-work-slider{width:calc(100% - 48px)!important;margin:28px 24px 0!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important}
+ #kjr-hero .kjr-home-work-slider .kjr-work-main{height:auto!important;aspect-ratio:1.5!important;max-height:320px!important;border-radius:7px!important}
+}
+</style>
+</head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
 
@@ -5057,6 +5076,7 @@ var originals=[].slice.call(document.querySelectorAll('.kj-work-fade-slide img')
     originals.forEach(function(img){ if(img.src && unique.indexOf(img.src)===-1) unique.push(img.src); });
     
 
+    unique=unique.slice(0,4);
     var main=document.getElementById('kjr-work-main-img');
     var thumbs=document.getElementById('kjr-thumbs');
     if(main && unique.length) main.src=unique[0];
@@ -8644,5 +8664,32 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 </style>
 
 
+
+<script id="kjr-hero-dots-20261011">
+(function(){
+ function init(){
+  var wrap=document.querySelector('#kjr-hero .kjr-home-work-slider');
+  var main=document.getElementById('kjr-work-main-img');
+  var thumbs=document.getElementById('kjr-thumbs');
+  if(!wrap||!main||!thumbs)return;
+  var dots=document.createElement('div');
+  dots.className='kjr-hero-dots';
+  dots.setAttribute('aria-hidden','true');
+  wrap.appendChild(dots);
+  function sync(){
+   var buttons=Array.from(thumbs.querySelectorAll('.kjr-thumb'));
+   if(dots.children.length!==buttons.length){
+    dots.replaceChildren(...buttons.map(function(){var d=document.createElement('i');d.className='kjr-hero-dot';return d;}));
+   }
+   var index=buttons.findIndex(function(b){return b.classList.contains('is-active')});
+   Array.from(dots.children).forEach(function(dot,i){dot.classList.toggle('active',i===(index<0?0:index));});
+  }
+  new MutationObserver(sync).observe(thumbs,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  sync();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+ else init();
+})();
+</script>
 </body>
 </html>
