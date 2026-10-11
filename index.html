@@ -3943,6 +3943,14 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
   html body #kjr-hero .kj-pc-map-address{width:310px!important;max-width:310px!important;font-size:11px!important}
 }
 </style>
+<style id="kj-board-in-review-position-20261011">
+@media(min-width:761px){
+ .kjr-pc-existing-first-bottom{grid-template-columns:1fr!important;height:auto!important;min-height:0!important;padding:10px 0 16px!important}
+ .kjr-pc-existing-first-bottom>.kjr-quick{width:100%!important}
+ .kjr-hero{height:auto!important;min-height:clamp(360px,55vh,650px)!important}
+}
+.kjr-board-preview{scroll-margin-top:90px}
+</style>
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
@@ -4988,84 +4996,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="kjr-thumbs" id="kjr-thumbs"></div>
 
 </section>
-<!-- 최신 고객후기 미리보기: 기존 공개 후기 RPC 연동 -->
-<section class="kjr-review-preview" id="kjr-review-preview" aria-labelledby="kjr-review-preview-title">
-  <div class="kjr-review-preview-head">
-    <div><h2 id="kjr-review-preview-title">고객후기</h2><p>소중한 경험담을 들려주세요!</p></div>
-    <a href="review.html">후기 구경하기 <span aria-hidden="true">→</span></a>
-  </div>
-  <div class="kjr-review-preview-grid" id="kjrReviewPreviewList" aria-live="polite">
-    <p class="kjr-review-preview-notice">고객후기를 불러오는 중입니다.</p>
-  </div>
-</section>
-
-<style id="kjr-home-review-preview-style-20261011">
-.kjr-review-preview{width:min(1180px,calc(100% - 64px));margin:0 auto;padding:58px 0 66px;background:#fff}
-.kjr-review-preview-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:24px}
-.kjr-review-preview-head h2{font-size:31px;letter-spacing:-.045em;margin:0;color:#222}
-.kjr-review-preview-head p{margin:9px 0 0;font-size:13px;color:#777}
-.kjr-review-preview-head>a{font-size:13px;font-weight:700;white-space:nowrap;color:#333}
-.kjr-review-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.kjr-review-preview-card{min-width:0;display:flex;flex-direction:column;gap:12px;min-height:166px;padding:23px 22px;border:1px solid #ededed;border-radius:3px;background:#fff;color:#222;transition:border-color .2s ease}
-.kjr-review-preview-card:hover{border-color:#bdbdbd}
-.kjr-review-preview-stars{font-size:14px;letter-spacing:2px;color:#bc3030;line-height:1}
-.kjr-review-preview-text{font-size:14px;line-height:1.7;color:#3b3b3b;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow-wrap:anywhere}
-.kjr-review-preview-meta{margin-top:auto;display:flex;gap:10px;font-size:12px;color:#999}
-.kjr-review-preview-notice{grid-column:1/-1;padding:26px 0;margin:0;text-align:center;color:#888;font-size:13px;border-top:1px solid #eee;border-bottom:1px solid #eee}
-@media(max-width:760px){
- .kjr-review-preview{width:calc(100% - 40px);padding:42px 0 48px}
- .kjr-review-preview-head{margin-bottom:18px}
- .kjr-review-preview-head h2{font-size:25px}
- .kjr-review-preview-head p{font-size:12px}
- .kjr-review-preview-head>a{font-size:12px}
- /* 모바일: 한 줄 가로 스와이프, 다음 카드 일부 노출 */
- .kjr-review-preview-grid{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:1px 16px 8px 1px;margin-right:-20px}
- .kjr-review-preview-grid::-webkit-scrollbar{display:none}
- .kjr-review-preview-card{flex:0 0 86%;min-height:118px;max-height:165px;padding:17px 17px;gap:9px;scroll-snap-align:start}
- .kjr-review-preview-text{font-size:13px;-webkit-line-clamp:2}
- .kjr-review-preview-notice{flex:0 0 100%}
-}
-</style>
-<script id="kjr-home-review-preview-script-20261011">
-(function(){
-  var box=document.getElementById('kjrReviewPreviewList');
-  if(!box)return;
-  var url='https://topybambfbohphrfxrbg.supabase.co/rest/v1/rpc/list_reviews_public_v3';
-  var key='sb_publishable_xZuvRklbXZ3mQNvo2UxGBQ_Du-RNz35';
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function pick(row,names){for(var i=0;i<names.length;i++){var v=row[names[i]];if(v!==undefined&&v!==null&&v!=='')return v;}return '';}
-  function mask(s){s=String(s||'');if(!s)return '이용 고객';if(s.indexOf('*')>=0||s.indexOf('○')>=0)return s;return s.length===1?s+'*':s.slice(0,1)+'○'+(s.length>2?s.slice(-1):'');}
-  function fmt(v){if(!v)return '';var d=new Date(v);return isNaN(d.getTime())?'':d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');}
-  fetch(url,{method:'POST',headers:{apikey:key,Authorization:'Bearer '+key,'Content-Type':'application/json'},body:'{}',cache:'no-store'})
-  .then(function(r){if(!r.ok)throw new Error('reviews');return r.json();})
-  .then(function(rows){
-    if(!Array.isArray(rows))throw new Error('format');
-    // 공개 후기 전용 RPC의 반환 결과만 사용. 비공개 여부가 명시된 행은 추가 제외.
-    rows=rows.filter(function(r){return r&&r.is_private!==true&&r.private!==true&&r.is_public!==false&&r.public!==false;});
-    rows.sort(function(a,b){return new Date(b.created_at||0)-new Date(a.created_at||0);});
-    rows=rows.slice(0,3);
-    if(!rows.length){box.innerHTML='<p class="kjr-review-preview-notice">등록된 공개 후기가 없습니다.</p>';return;}
-    box.innerHTML=rows.map(function(r){
-      var rating=Number(pick(r,['rating','stars','star_rating','score']));
-      var stars=Number.isFinite(rating)&&rating>=1&&rating<=5?'<span class="kjr-review-preview-stars" aria-label="별점 '+rating+'점">'+'★'.repeat(Math.round(rating))+'</span>':'';
-      var content=pick(r,['content','review','review_text','body','message','text','comment','title']);
-      var name=pick(r,['name','author_name','writer','nickname','author']);
-      return '<a class="kjr-review-preview-card" href="review.html" aria-label="고객후기 게시판에서 자세히 보기">'+stars+
-        '<span class="kjr-review-preview-text">'+esc(content||'고객후기 게시판에서 확인해 주세요.')+'</span>'+
-        '<span class="kjr-review-preview-meta"><span>'+esc(mask(name))+'</span></span></a>';
-    }).join('');
-  })
-  .catch(function(){box.innerHTML='<p class="kjr-review-preview-notice">후기를 불러오지 못했습니다. <a href="review.html" style="text-decoration:underline">고객후기 게시판에서 확인하기</a></p>';});
-})();
-</script>
-<section class="kjr-location" id="kjr-location">
-<div class="kjr-kicker">LOCATION <i></i></div>
-<h2>오시는 길</h2>
-<p class="kjr-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p>
-<a class="kjr-map-btn" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 <span>→</span></a>
-<div id="kjr-kakao-map"><div class="kjr-map-loading">지도를 불러오는 중입니다.</div></div>
-</section>
-
+<!-- 메인 문의게시판 미리보기 -->
 <section class="kjr-board-preview" id="kjr-board-preview">
   <div class="kjr-board-preview-head">
     <div>
@@ -5078,6 +5009,15 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="kjr-board-preview-empty">문의글을 불러오는 중입니다.</div>
   </div>
 </section>
+<section class="kjr-location" id="kjr-location">
+<div class="kjr-kicker">LOCATION <i></i></div>
+<h2>오시는 길</h2>
+<p class="kjr-address">강원특별자치도 춘천시 동내면 학곡서3길 20-31</p>
+<a class="kjr-map-btn" href="https://kko.to/UqjyMgz-Bb" rel="noopener" target="_blank">지도에서 보기 <span>→</span></a>
+<div id="kjr-kakao-map"><div class="kjr-map-loading">지도를 불러오는 중입니다.</div></div>
+</section>
+
+
 
 <footer class="kjr-footer"><div class="kjr-footer-logo"><img alt="국제크레인" src="kj-logo-new.png"/></div><div class="kjr-footer-table"><div class="kjr-footer-table-row"><span class="kjr-footer-label">대표자</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">김선원</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">사업자등록번호</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">221-08-87838</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">소재지</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">강원특별자치도 춘천시 동내면 학곡서3길 20-31</span></div><div class="kjr-footer-table-row"><span class="kjr-footer-label">전화문의</span><span class="kjr-footer-bar">|</span><span class="kjr-footer-data">010-6379-8692</span></div></div><button class="kjr-privacy" type="button">개인정보처리방침</button></footer>
 <div class="kjr-fixed-contact"><a class="kjr-call" href="tel:01063798692">
@@ -7881,57 +7821,30 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 
 <script id="kj-pc-existing-board-preview-firstscreen-js-20261008">
 (function(){
-  var quick, board, hero, quickMarker, boardMarker, panel;
-
+  var quick, hero, marker, panel;
   function setup(){
     quick=document.querySelector('.kjr-quick');
-    board=document.querySelector('.kjr-board-preview');
     hero=document.querySelector('.kjr-hero');
-
-    if(!board || !hero) return;
-
-    if(quick){
-      quickMarker=document.createElement('span');
-      quickMarker.id='kjQuickExistingOriginalMarker';
-      quickMarker.style.display='none';
-      quick.parentNode.insertBefore(quickMarker,quick);
-    }
-
-    boardMarker=document.createElement('span');
-    boardMarker.id='kjBoardExistingOriginalMarker';
-    boardMarker.style.display='none';
-    board.parentNode.insertBefore(boardMarker,board);
-
+    if(!quick || !hero)return;
+    marker=document.createElement('span');
+    marker.style.display='none';
+    quick.parentNode.insertBefore(marker,quick);
     panel=document.createElement('div');
     panel.className='kjr-pc-existing-first-bottom';
     panel.id='kjrPcExistingFirstBottom';
     hero.insertAdjacentElement('afterend',panel);
-
     apply();
   }
-
   function apply(){
-    if(!quick || !board || !panel) return;
-
+    if(!quick || !panel)return;
     if(window.matchMedia('(min-width:761px)').matches){
-      if(quick) panel.appendChild(quick);
-      panel.appendChild(board);
-    }else{
-      if(quick && quickMarker && quickMarker.parentNode){
-        quickMarker.parentNode.insertBefore(quick,quickMarker.nextSibling);
-      }
-      if(boardMarker && boardMarker.parentNode){
-        boardMarker.parentNode.insertBefore(board,boardMarker.nextSibling);
-      }
+      panel.appendChild(quick);
+    }else if(marker && marker.parentNode){
+      marker.parentNode.insertBefore(quick,marker.nextSibling);
     }
   }
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',setup,{once:true});
-  }else{
-    setup();
-  }
-
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});
+  else setup();
   window.addEventListener('resize',apply);
 })();
 </script>
