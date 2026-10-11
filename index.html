@@ -4045,6 +4045,23 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
  html body #kjr-hero .kjr-home-work-slider{margin-top:0!important}
 }
 </style>
+
+<style id="kj-mobile-scroll-effect-fix-20261011">
+@media (max-width:760px) and (prefers-reduced-motion:no-preference){
+  body.kj-scroll-rise-ready .kj-mobile-redesign .kj-scroll-rise:not(.kj-scroll-visible){
+    opacity:0!important;
+    transform:translate3d(0,32px,0)!important;
+  }
+  body.kj-scroll-rise-ready .kj-mobile-redesign .kj-scroll-rise.kj-scroll-visible{
+    opacity:1!important;
+    transform:translate3d(0,0,0)!important;
+  }
+  body.kj-scroll-rise-ready .kj-mobile-redesign .kj-scroll-rise{
+    transition:opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1)!important;
+    will-change:opacity,transform;
+  }
+}
+</style>
 </head>
 <body>
 <!-- KJCRANE BUILD 20261006-0325 QUICKNAV ICONS -->
