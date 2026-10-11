@@ -4013,7 +4013,29 @@ html.kj-skip-intro #kj-mobile-entrance{display:none!important;visibility:hidden!
  }
 }
 @media(prefers-reduced-motion:reduce){.kj-scroll-rise{opacity:1!important;transform:none!important;transition:none!important}}
-</style><style id="kj-mobile-business-first-20261011">
+</style><style id="kj-mobile-greeting-centered-20261011">
+@media(max-width:760px){
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy{height:auto!important;min-height:0!important;overflow:visible!important;padding:0!important;margin:0!important;}
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > .kjr-redline,
+  html body .kj-mobile-redesign #kjr-hero .kjr-hero-copy > h1{display:none!important;}
+  html body .kj-mobile-redesign #kjr-hero .kj-mobile-greeting{
+    display:block!important;text-align:center!important;margin:4px auto 17px!important;
+    padding:0 8px!important;width:100%!important;max-width:100%!important;
+    color:#333!important;letter-spacing:-.035em!important;
+  }
+  html body .kj-mobile-redesign #kjr-hero .kj-mobile-greeting .kj-mobile-greeting-title{
+    margin:0!important;font-size:clamp(16px,4.4vw,19px)!important;
+    line-height:1.55!important;font-weight:600!important;color:#303030!important;
+  }
+  html body .kj-mobile-redesign #kjr-hero .kj-mobile-greeting .kj-mobile-greeting-sub{
+    margin:9px 0 0!important;font-size:clamp(12px,3.35vw,14px)!important;
+    line-height:1.65!important;font-weight:400!important;color:#777!important;
+  }
+  html body .kj-mobile-redesign #kjr-hero .kjr-home-work-slider{margin-top:0!important;}
+}
+@media(min-width:761px){.kj-mobile-greeting{display:none!important;}}
+</style>
+<style id="kj-mobile-business-first-20261011">
 /* 모바일 첫 화면: 큰 홍보 문구와 빨간 선을 빼고 작업 사진 중심으로 */
 @media(max-width:760px){
  html body #kjr-hero .kjr-hero-copy > .kjr-redline,
@@ -5040,6 +5062,11 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <section class="kjr-hero" id="kjr-hero">
 <div class="kjr-hero-copy">
+<div class="kj-mobile-greeting" aria-label="국제크레인 소개">
+  <p class="kj-mobile-greeting-title">안녕하세요.<br/>춘천크레인 전문업체 국제크레인입니다.</p>
+  <p class="kj-mobile-greeting-sub">성실과 신뢰를 바탕으로<br/>안전하고 신속하게 작업하겠습니다.</p>
+</div>
+
 <div class="kj-pc-namecard" aria-label="국제크레인 대표 연락처">
   <strong class="kj-pc-namecard-title">국제크레인</strong>
   <span class="kj-pc-namecard-rule"></span>
