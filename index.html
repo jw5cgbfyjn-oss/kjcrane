@@ -9118,18 +9118,43 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 </style>
 
 
-<style id="kj-pc-remove-map-clean-20261012">
+<style id="kj-pc-remove-map-final-20261012">
 @media(min-width:761px){
-  /* PC에서는 지도 제거, 좌측 정보만 깔끔하게 중앙 정렬 */
   html body #kjr-hero .kj-pc-hero-map,
   html body #kjr-hero .kj-pc-map-address{
     display:none!important;
   }
+
+  html body .kj-mobile-redesign #kjr-hero{
+    grid-template-columns:360px minmax(0,1fr)!important;
+    align-items:center!important;
+    min-height:520px!important;
+    padding:28px 0 34px!important;
+  }
+
   html body .kj-mobile-redesign #kjr-hero > .kjr-hero-copy{
     align-self:center!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    height:455px!important;
   }
+
   html body #kjr-hero .kj-pc-namecard{
     margin:0!important;
+  }
+
+  html body .kj-mobile-redesign #kjr-hero > .kjr-home-work-slider{
+    align-self:center!important;
+  }
+}
+
+@media(min-width:761px) and (max-width:1050px){
+  html body .kj-mobile-redesign #kjr-hero{
+    grid-template-columns:310px minmax(0,1fr)!important;
+  }
+  html body .kj-mobile-redesign #kjr-hero > .kjr-hero-copy{
+    height:405px!important;
   }
 }
 </style>
