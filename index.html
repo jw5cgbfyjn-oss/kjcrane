@@ -9117,5 +9117,64 @@ body.kj-polish-ready main > section#work.kj-polish-visible {
 }
 </style>
 
+
+<style id="kj-pc-visual-cleanup-20261012">
+@media(min-width:761px){
+  /* 오른쪽 작업사진: 세로사진도 전체가 보이도록 */
+  html body #kjr-hero .kjr-home-work-slider .kjr-work-main{
+    height:455px!important;
+    min-height:455px!important;
+    max-height:455px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    background:#f4f4f4!important;
+  }
+  html body #kjr-hero .kjr-home-work-slider .kjr-work-main img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+    background:#f4f4f4!important;
+  }
+
+  /* 사진 아래 슬라이드 점 정리 */
+  html body #kjr-hero .kjr-hero-dots{
+    display:flex!important;
+    justify-content:center!important;
+    align-items:center!important;
+    gap:9px!important;
+    min-height:18px!important;
+    margin:10px 0 0!important;
+  }
+
+  /* PC에서는 중간 대표문의 띠 제거 */
+  html body .kj-mobile-redesign > .kjr-watermark,
+  html body .kj-watermark-bridge{
+    display:none!important;
+  }
+
+  /* 첫 영역과 다음 문의게시판/콘텐츠 사이 호흡 */
+  html body .kj-mobile-redesign #kjr-hero{
+    padding-bottom:42px!important;
+    margin-bottom:18px!important;
+  }
+  html body .kjr-pc-first-bottom,
+  html body #board,
+  html body .board-section,
+  html body [id*="board"]{
+    scroll-margin-top:92px!important;
+  }
+}
+
+@media(min-width:761px) and (max-width:1050px){
+  html body #kjr-hero .kjr-home-work-slider .kjr-work-main{
+    height:405px!important;
+    min-height:405px!important;
+    max-height:405px!important;
+  }
+}
+</style>
+
 </body>
 </html>
